@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>질문하는 챗봇을 넘어 '일해주는 비서'로 · 크랩아카데미 특강 (2026.11.18)</title>
-<meta name="description" content="2026년 11월 18일 크랩아카데미 특강 '질문하는 챗봇을 넘어 일해주는 비서로'의 핵심 요약과, 피클(Pickle) 사용법·하루 루틴 노션 세팅 가이드·보안 5축을 한 페이지에 정리했습니다.">
+<meta name="description" content="2026년 11월 18일 크랩아카데미 특강(주관 신동선 박사, 강사 박종익 원장) '질문하는 챗봇을 넘어 일해주는 비서로'의 핵심 메시지와 피클(Pickle) 사용법·하루 루틴 세팅 가이드·보안 5축을 한 페이지에 정리했습니다.">
 <meta name="author" content="박종익">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
@@ -345,6 +345,78 @@
   }
   pre code{font:inherit;}
 
+  /* ---------- key messages ---------- */
+  .keys{display:grid;gap:12px;grid-template-columns:1fr;}
+  @media(min-width:700px){ .keys{grid-template-columns:1fr 1fr;} .keys .key.wide{grid-column:1 / -1;} }
+  .key{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:12px;
+    padding:18px 18px 16px;
+  }
+  .key > :last-child{margin-bottom:0;}
+  .key .knum{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;border-radius:6px;
+    background:var(--gold-soft);color:var(--gold);
+    font-size:11.5px;font-weight:800;margin:0 0 9px;
+  }
+  .key .kq{
+    margin:0 0 8px;
+    font-size:17px;line-height:1.55;font-weight:800;
+    color:var(--ink);letter-spacing:-0.025em;
+  }
+  .key .kd{margin:0;font-size:14px;line-height:1.78;color:#46535f;}
+  .key.big .kq{font-size:19px;line-height:1.5;}
+  .key.big .kq .mark{color:var(--gold);font-weight:900;}
+
+  /* ---------- people ---------- */
+  .person dl{
+    display:grid;grid-template-columns:74px 1fr;gap:9px 14px;
+    margin:0;font-size:14px;line-height:1.7;
+  }
+  .person dt{color:var(--muted);font-weight:700;font-size:12.5px;letter-spacing:.02em;padding-top:2px;}
+  .person dd{margin:0;color:#46535f;}
+  .vendors{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .vendor{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:38px;padding:7px 14px;
+    border:1px solid #cfdce4;border-radius:9px;
+    background:#f7fafb;
+    font-size:13px;font-weight:750;color:var(--accent-2);
+    text-decoration:none;
+  }
+  .vendor:hover{background:var(--accent-soft);text-decoration:none;}
+  .book h4{font-size:16.5px;margin-bottom:4px;}
+  .book p{font-size:13.5px;line-height:1.72;margin:0;color:#46535f;}
+
+  /* ---------- replay ---------- */
+  .video{
+    background:var(--ink);
+    background-image:radial-gradient(90% 90% at 100% 0%, rgba(19,107,88,.45) 0%, rgba(16,26,35,0) 60%);
+    border-radius:var(--radius);
+    padding:24px 22px;
+    color:#dbe7ec;
+    margin:0 0 10px;
+  }
+  .video .badge{
+    display:inline-block;
+    font-size:11.5px;font-weight:800;letter-spacing:.04em;
+    color:#0f1b24;background:#e9c46a;border-radius:6px;
+    padding:3px 8px;margin:0 0 10px;
+  }
+  .video h4{margin:0 0 8px;font-size:17.5px;line-height:1.55;color:#fff;font-weight:800;letter-spacing:-0.02em;}
+  .video p{margin:0;font-size:14px;line-height:1.8;color:#c0d0d9;}
+  .video .slot{
+    margin-top:14px;padding:14px;
+    border:1px dashed rgba(255,255,255,.32);
+    border-radius:10px;
+    text-align:center;
+    font-size:13px;color:#9fb2c0;
+  }
+
   /* ---------- links ---------- */
   .links{margin:0;padding:0;list-style:none;}
   .links li{margin:0 0 10px;}
@@ -390,7 +462,7 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header class="hero">
   <div class="wrap">
@@ -398,29 +470,78 @@
     <h1>질문하는 챗봇을 넘어,<br><span class="accent">‘일해주는 비서’</span>로</h1>
     <p class="lead">오늘 한 시간의 핵심과, 내일부터 그대로 따라 하실 수 있는 사용법·세팅 가이드를 한 페이지에 담았습니다. 강의 뒤에 다시 펼쳐 보시라고 남기는 자료죠.</p>
     <ul class="hero-meta">
-      <li>발표 <b>박종익</b> · 가온자리한의원 대표원장 · 크랩독서회 회원</li>
+      <li>주관 <b>신동선 박사</b> · 크랩아카데미</li>
+      <li>강사 <b>박종익 원장</b> · 가온자리한의원</li>
       <li><b>3축 55분</b> + 질의 5분</li>
-      <li>줌(Zoom) · 크랩아카데미</li>
+      <li>2026.11.18(수) 22:30 · 줌(Zoom)</li>
     </ul>
   </div>
 </header>
 
 <nav class="nav" aria-label="페이지 목차">
   <div class="nav-inner">
-    <a href="#summary"><span>①</span> 특강 핵심 요약</a>
-    <a href="#guide"><span>②</span> 피클 따라 하기</a>
-    <a href="#security"><span>③</span> 보안과 신뢰</a>
-    <a href="#links"><span>④</span> 참고 링크</a>
+    <a href="#message"><span>①</span> 핵심 메시지</a>
+    <a href="#summary"><span>②</span> 특강 요약</a>
+    <a href="#guide"><span>③</span> 피클 따라 하기</a>
+    <a href="#security"><span>④</span> 보안과 신뢰</a>
+    <a href="#host"><span>⑤</span> 신동선 박사</a>
+    <a href="#replay"><span>⑥</span> 다시 보기</a>
+    <a href="#links"><span>⑦</span> 참고 링크</a>
   </div>
 </nav>
 
 <main>
 
-<!-- ============ ① 요약 ============ -->
+<!-- ============ ① 핵심 메시지 ============ -->
+<section id="message">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>①</i> 오늘의 핵심 메시지</p>
+      <h2>제가 오늘 가장 하고 싶었던 말</h2>
+      <p>기능은 잊혀도 원리는 남습니다. 이 몇 줄만 가져가셔도 오늘 강의는 충분합니다.</p>
+    </div>
+
+    <div class="keys">
+      <div class="key">
+        <span class="knum">1</span>
+        <p class="kq">파레토 법칙의 현실화</p>
+        <p class="kd">20%의 일이 80%의 성과를 만든다는 법칙, 이제는 실제로 그렇게 살 수 있습니다. 잔일 80%는 피클에게 위임하고, 남은 시간은 정말 알차게 보내십시오.</p>
+      </div>
+      <div class="key">
+        <span class="knum">2</span>
+        <p class="kq">결국, 자그맣게 피드백 무한반복</p>
+        <p class="kd">단기기억이 장기기억이 되고, 장기기억이 자동기억이 될 때까지 자그맣게 반복하는 것. 도구도 사람도 같은 원리로 자랍니다.</p>
+      </div>
+      <div class="key big wide">
+        <span class="knum">3</span>
+        <p class="kq"><span class="mark">“</span>문해력도 이젠 옛말이다. 상상력이 최고의 지능이다.<span class="mark">”</span></p>
+        <p class="kd">읽고 이해하는 힘은 이제 기본값입니다. 무엇을 시킬지 그려 내는 힘이 차이를 만듭니다.</p>
+      </div>
+      <div class="key wide">
+        <span class="knum">4</span>
+        <p class="kq">상상력의 크기에 따라 피클이 할 수 있는 능력도 천차만별입니다</p>
+        <p class="kd">같은 도구라도 무엇을 상상하느냐에 따라 결과가 달라집니다. 능력의 상한은 도구가 아니라 내 상상력입니다.</p>
+      </div>
+      <div class="key big wide">
+        <span class="knum">5</span>
+        <p class="kq"><span class="mark">“</span>피클은 여의주, 요술램프 지니. 상상하는 대로 다 이루어질지니.<span class="mark">”</span></p>
+        <p class="kd">부탁의 크기를 스스로 줄이지 마십시오. 오늘 보신 일들도 몇 달 전에는 상상이었습니다.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      AI를 잘 쓰는 법보다 <b>무엇을 맡길지 상상하는 힘</b>이 먼저입니다. 그 상상이 구체적일수록 피클은 더 멀리까지 일을 끝내 옵니다.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ② 요약 ============ -->
 <section id="summary">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>①</i> 특강 핵심 요약</p>
+      <p class="sec-kicker"><i>②</i> 특강 핵심 요약</p>
       <h2>답을 아는 AI에서, 일을 끝내는 AI로</h2>
       <p>출발점은 한 문장입니다. AI는 답을 아는 단계를 지나 일을 하는 단계로 왔는데, 우리는 아직 질문만 던지고 있습니다. 유료 AI 구독을 정리하고도 일이 더 많이 끝난 이유도 여기에 있습니다. 바뀐 것은 도구가 아니라 <b>맡기는 방식</b>이었습니다.</p>
     </div>
@@ -555,7 +676,7 @@
 <section id="guide">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>②</i> 피클 따라 하기</p>
+      <p class="sec-kicker"><i>③</i> 피클 따라 하기</p>
       <h2>처음 시작하는 분을 위한 네 단계</h2>
       <p>피클은 질문에 답하는 챗봇이 아니라, 앱과 웹과 전화를 직접 오가며 일을 끝내는 실행형 개인 AI 비서입니다. 시작은 어렵지 않습니다. 순서는 딱 네 칸입니다.</p>
     </div>
@@ -675,7 +796,7 @@
 <section id="security">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>③</i> 보안과 신뢰</p>
+      <p class="sec-kicker"><i>④</i> 보안과 신뢰</p>
       <h2>계정과 돈을 맡기는 조건은 성능이 아니라 구조</h2>
       <p>피클은 미국 샌프란시스코에 있고, Y Combinator W25 배치입니다. 2024년 9월에 설립했고 팀은 6인, 목표 시장은 아시아 6억 7천만 명입니다. 숫자보다 먼저 보실 것은 아래 다섯 가지입니다.</p>
     </div>
@@ -713,11 +834,108 @@
 
 <hr class="divider">
 
-<!-- ============ ④ 링크 ============ -->
+<!-- ============ ⑤ 주관 ============ -->
+<section id="host">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>⑤</i> 주관</p>
+      <h2>신동선 박사 — 크랩독서법을 만든 뇌신경 의사</h2>
+      <p>오늘 강의의 이론 틀은 신동선 박사의 크랩 시스템에서 나왔습니다. 크랩독서회를 열고 ㈜크랩아카데미를 이끄는 분이죠.</p>
+    </div>
+
+    <div class="card person">
+      <dl>
+        <dt>소속</dt><dd>경기도립노인전문병원(용인) 원장 · 신경과 전문의</dd>
+        <dt>학력</dt><dd>중앙대학교 의과대학 졸업, 같은 대학 석사·신경과 전문의 과정</dd>
+        <dt>활동</dt><dd>㈜크랩아카데미 설립·대표강사, 크랩독서회 운영</dd>
+        <dt>수상</dt><dd>〈언어만을 듣지 못하는 장애에 대한 뇌신경연결〉로 대한신경과학회 우수 논문상</dd>
+        <dt>경력</dt><dd>용인시 치매예방센터 부센터장, 광역치매센터 운영위원, 용인시 두뇌건강 학교 운영</dd>
+        <dt>저서</dt><dd>『뇌신경 의사, 책을 읽다』 『재능을 만드는 뇌신경 연결의 비밀』 『스몰 윈』</dd>
+      </dl>
+    </div>
+
+    <div class="note">
+      <p><strong>크랩독서법이란.</strong> 뇌신경이 반복 자극을 받으면 핵 속의 CREB 단백질이 켜지고, 그때 단기기억이 장기기억이 되며, 마침내 생각하지 않아도 나오는 자동기억으로 굳습니다. 크랩독서법은 이 원리를 독서에 옮긴 방법입니다. 책의 20%를 읽고 내용 80%를 얻도록, 마음잡기 → 반복읽기 → 정리하기 세 단계로 읽습니다. 오늘 강의의 이론 틀도 이 시스템에 기대고 있습니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 블로그와 공식 사이트</h3>
+    <ul class="links">
+      <li>
+        <a class="link" href="https://blog.naver.com/sunstar000" target="_blank" rel="noopener">
+          <span class="lt">네이버 블로그 — (뇌신경)연결이 실력이다</span>
+          <span class="ld">신동선 박사가 직접 쓰는 크랩 독서·뇌신경연결 이야기.</span>
+          <span class="lu">blog.naver.com/sunstar000</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="http://creb.kr/" target="_blank" rel="noopener">
+          <span class="lt">크랩아카데미 공식 사이트</span>
+          <span class="ld">크랩소개강의 소개와 온·오프라인 강의 일정 안내.</span>
+          <span class="lu">creb.kr</span>
+        </a>
+      </li>
+    </ul>
+
+    <h3><span class="dot">▪</span> 대표 도서</h3>
+    <div class="grid">
+      <div class="mini book">
+        <h4>뇌신경 의사, 책을 읽다</h4>
+        <p class="muted" style="font-size:12.5px;margin:0 0 7px;">한 시간 한 권 크랩독서법 · 더메이커, 2022</p>
+        <p>책의 20%를 읽고 내용의 80%를 얻는 크랩독서법을 세 단계로 정리한 책입니다.</p>
+        <div class="vendors">
+          <a class="vendor" href="https://www.yes24.com/product/goods/105760711" target="_blank" rel="noopener">예스24에서 보기</a>
+          <a class="vendor" href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=285351383" target="_blank" rel="noopener">알라딘에서 보기</a>
+        </div>
+      </div>
+      <div class="mini book">
+        <h4>재능을 만드는 뇌신경 연결의 비밀</h4>
+        <p class="muted" style="font-size:12.5px;margin:0 0 7px;">더메이커, 2017</p>
+        <p>재능은 뇌신경이 연결되고 조합된 상태라는 관점에서, 단기·장기·자동기억과 반복의 원리를 풀어낸 책입니다.</p>
+        <div class="vendors">
+          <a class="vendor" href="https://product.kyobobook.co.kr/detail/S000001906446" target="_blank" rel="noopener">교보문고에서 보기</a>
+          <a class="vendor" href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=116319575" target="_blank" rel="noopener">알라딘에서 보기</a>
+        </div>
+      </div>
+      <div class="mini book">
+        <h4>스몰 윈</h4>
+        <p class="muted" style="font-size:12.5px;margin:0 0 7px;">해나무, 2023</p>
+        <p>작은 성공을 쌓아 능력을 키우는 뇌과학적 연습법. 자그맣게 잘게 썰고, 반복하고, 감정을 살피고, 자신을 믿는 네 단계로 정리했습니다.</p>
+        <div class="vendors">
+          <a class="vendor" href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=311523730" target="_blank" rel="noopener">알라딘에서 보기</a>
+        </div>
+      </div>
+    </div>
+    <p class="small muted">가격과 재고는 서점마다 다릅니다. 저자 소개와 책 소개는 서점의 저자·도서 정보와 크랩아카데미 공식 사이트를 근거로 정리했습니다.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ⑥ 다시 보기 ============ -->
+<section id="replay">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>⑥</i> 특강 다시 보기</p>
+      <h2>영상은 편집을 거쳐 일부공개로 올라갑니다</h2>
+      <p>오늘 밤 줌 특강 전체 녹화본입니다. 편집이 끝나는 대로 이 자리에 링크가 걸립니다.</p>
+    </div>
+
+    <div class="video">
+      <span class="badge">준비 중</span>
+      <h4>특강 다시 보기 영상 (편집 후 일부공개 링크 업데이트 예정)</h4>
+      <p>강의 전체 녹화본을 편집해 유튜브 일부공개로 올립니다. 링크가 준비되면 이 카드에 바로 연결되고, 같은 주소로 다시 들어오시면 보실 수 있습니다. 단톡방에도 함께 안내드리겠습니다.</p>
+      <div class="slot">링크 자리 · 영상 공개 후 이 카드에 연결됩니다</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ⑦ 링크 ============ -->
 <section id="links">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>④</i> 참고 링크</p>
+      <p class="sec-kicker"><i>⑦</i> 참고 링크</p>
       <h2>더 보실 거리</h2>
       <p>오늘 강의에서 언급한 공개 자료입니다. 모두 외부에서 바로 열리는 주소만 담았습니다.</p>
     </div>
@@ -781,7 +999,7 @@
 
 <footer>
   <div class="wrap">
-    <p><strong>크랩아카데미 특강 · 2026년 11월 18일</strong><br>발표 박종익 · 가온자리한의원 대표원장 · 크랩독서회 회원</p>
+    <p><strong>크랩아카데미 특강 · 2026년 11월 18일</strong><br>주관 신동선 박사 · ㈜크랩아카데미<br>강사 박종익 · 가온자리한의원 대표원장 · 크랩독서회 회원</p>
     <p>이 페이지는 특강 수강생을 위해 정리한 공개 자료입니다. 회사·보안 관련 내용은 공개된 자료와 공개 소스를 기준으로 했으며, 투자 권유나 서비스 보증이 아닙니다.</p>
     <a class="top" href="#top">▲ 맨 위로</a>
   </div>
