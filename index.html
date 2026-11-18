@@ -495,6 +495,14 @@
   .resource.dark h4{color:#fff;}
   .resource.dark p{color:#c0d0d9;}
   .resource.dark .rslot{border-color:rgba(255,255,255,.32);color:#9fb2c0;}
+  .rlink{
+    margin-top:auto;display:block;padding:11px 12px;
+    background:var(--accent);border:1px solid var(--accent);
+    border-radius:9px;text-align:center;
+    font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.01em;
+    text-decoration:none;transition:background .15s ease,border-color .15s ease;
+  }
+  .rlink:hover,.rlink:focus{background:var(--accent-2);border-color:var(--accent-2);color:#fff;text-decoration:none;}
   .note code{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:12px;background:#e9eef3;border-radius:4px;padding:1px 5px;
@@ -629,22 +637,22 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="sec-kicker"><i>②</i> 핵심 자료 &amp; 다시 보기</p>
-      <h2>자료와 영상은 이 자리에 차례로 걸립니다</h2>
-      <p>오늘 강의에서 쓴 자료와 녹화 영상입니다. 노션 페이지는 웹에 게시를 켠 뒤, 영상은 편집이 끝난 뒤 이 카드에 주소가 붙습니다.</p>
+      <h2>노션 자료는 지금 바로, 영상은 이 자리에</h2>
+      <p>오늘 강의에서 쓴 자료와 녹화 영상입니다. 노션 자료 두 개는 공개 링크로 연결해 두었으니 바로 열어 보십시오. 녹화 영상은 편집이 끝나는 대로 이 자리에 걸립니다.</p>
     </div>
 
     <div class="grid">
       <div class="resource">
-        <span class="rbadge">노션 · 웹 공개 예정</span>
+        <span class="rbadge">노션 · 웹 공개</span>
         <h4>기업설명 — Pickle, Inc. IR 브리핑</h4>
         <p>회사 소개와 보안 구조, 아시아 비전을 한 장으로 정리한 자료입니다. 오늘 강의 2부(보안)의 근거이기도 합니다.</p>
-        <div class="rslot">공개 주소 연결 예정</div>
+        <a class="rlink" href="https://gaonjari.notion.site/IR-Pickle-Inc-AI-41b6b7d061178137be32cd3d904d9d15" target="_blank" rel="noopener">기업설명 노션 열기 →</a>
       </div>
       <div class="resource">
-        <span class="rbadge">노션 · 웹 공개 예정</span>
+        <span class="rbadge">노션 · 웹 공개</span>
         <h4>오늘 강의 — 크랩독서회 특강 자료</h4>
         <p>전체 강의안과 발표 슬라이드, 3분 데모 페이지가 한데 묶여 있습니다.</p>
-        <div class="rslot">공개 주소 연결 예정</div>
+        <a class="rlink" href="https://gaonjari.notion.site/AGI-41b6b7d06117819db7f1f6c8fafabfac" target="_blank" rel="noopener">오늘 강의 노션 열기 →</a>
       </div>
       <div class="resource dark">
         <span class="rbadge">유튜브 · 일부공개 예정</span>
@@ -655,7 +663,7 @@
     </div>
 
     <div class="note">
-      <p><strong>주소를 기다리는 중입니다.</strong> 노션 페이지는 지금 비공개 상태입니다. 앱에서 여는 <code>app.notion.com</code> 주소를 그대로 보내면 외부에서는 권한이 없다는 안내만 뜨므로, 노션 오른쪽 위 <b>공유 → 웹에 게시 → 웹 링크 복사</b>로 만든 공개 주소만 이 카드에 연결합니다.</p>
+      <p><strong>노션 자료 두 개는 로그인 없이 바로 열립니다.</strong> 두 카드에 걸린 주소는 노션 <b>웹 게시</b> 링크라서 수강생 누구나 볼 수 있습니다. 휴대폰에서 누르면 노션 앱이 깔려 있을 때는 앱으로, 없으면 브라우저로 열립니다.</p>
       <p style="margin-bottom:0;">영상은 편집이 끝나는 대로 <b>일부공개</b>로 올립니다. 주소가 준비되면 이 페이지와 단톡방에 함께 안내드리겠습니다.</p>
     </div>
   </div>
@@ -1109,7 +1117,7 @@
         </a>
       </li>
     </ul>
-    <p class="small muted">강의 슬라이드와 대시보드는 비공개 노션에 있습니다. 웹에 게시되는 대로 위 ‘핵심 자료 &amp; 다시 보기’ 카드에 연결하겠습니다. 급히 필요하시면 발표자에게 직접 요청해 주십시오.</p>
+    <p class="small muted">기업설명(IR 브리핑)과 오늘 강의 자료는 위 ‘핵심 자료 &amp; 다시 보기’ 카드의 버튼으로 바로 열 수 있습니다. 녹화 영상은 편집이 끝나는 대로 그 자리에 연결하겠습니다.</p>
   </div>
 </section>
 
