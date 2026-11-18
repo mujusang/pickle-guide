@@ -13,7 +13,13 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="질문하는 챗봇을 넘어 '일해주는 비서'로 — 박종익 원장">
 <meta property="og:description" content="크랩아카데미 2026-11-18 특강 핵심 요약과 피클 사용법·하루 루틴 세팅 가이드. 오늘부터 바로 해보는 3가지까지 한 페이지에 담았습니다.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://mujusang.github.io/pickle-guide/assets/hero-banner-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="여의주와 요술램프를 모티프로 한 크랩아카데미 피클 특강 대표 이미지">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mujusang.github.io/pickle-guide/assets/hero-banner-og.jpg">
+<meta name="twitter:image:alt" content="여의주와 요술램프를 모티프로 한 크랩아카데미 피클 특강 대표 이미지">
 <meta name="theme-color" content="#0f1b24">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1b24'/%3E%3Cpath d='M20 44V22h10c6 0 9 3 9 8s-3 8-9 8h-4v6z' fill='none' stroke='%23e9c46a' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
@@ -61,8 +67,18 @@
       radial-gradient(90% 70% at 15% 0%, rgba(19,107,88,.55) 0%, rgba(16,26,35,0) 60%),
       radial-gradient(70% 60% at 100% 10%, rgba(169,122,38,.28) 0%, rgba(16,26,35,0) 55%);
     color:#eaf1f4;
-    padding:44px 0 40px;
+    padding:0 0 40px;
     overflow:hidden;
+  }
+  .hero-art{position:relative;margin:0 0 26px;}
+  .hero-art img{
+    display:block;width:100%;height:auto;
+    max-height:56vh;object-fit:cover;object-position:center 42%;
+  }
+  .hero-art:after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:110px;
+    background:linear-gradient(to bottom, rgba(16,26,35,0), var(--ink));
+    pointer-events:none;
   }
   .hero:after{
     content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
@@ -513,7 +529,9 @@
   .divider{height:1px;background:var(--line);margin:34px 0 0;border:0;}
 
   @media(max-width:480px){
-    .hero{padding:36px 0 30px;}
+    .hero{padding:0 0 28px;}
+    .hero-art{margin-bottom:20px;}
+    .hero-art img{max-height:38vh;}
     .card{padding:17px 16px;}
     .mini{padding:15px 15px;}
     th,td{padding:11px 12px;}
@@ -532,6 +550,9 @@
 <body id="top">
 
 <header class="hero">
+  <div class="hero-art">
+    <img src="assets/hero-banner.png" alt="어둠 속에서 빛나는 여의주와 금빛 요술램프, 책과 브라우저 창이 빛의 연결로 이어지는 특강 대표 이미지" width="1400" height="788" fetchpriority="high" decoding="async">
+  </div>
   <div class="wrap">
     <p class="eyebrow">크랩아카데미 특강 · 2026.11.18 (수)</p>
     <h1>질문하는 챗봇을 넘어,<br><span class="accent">‘일해주는 비서’</span>로</h1>
