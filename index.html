@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>질문하는 챗봇을 넘어 '일해주는 비서'로 · 크랩아카데미 특강 (2026.11.18)</title>
+<meta name="description" content="2026년 11월 18일 크랩아카데미 특강 '질문하는 챗봇을 넘어 일해주는 비서로'의 핵심 요약과, 피클(Pickle) 사용법·하루 루틴 노션 세팅 가이드·보안 5축을 한 페이지에 정리했습니다.">
+<meta name="author" content="박종익">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mujusang.github.io/pickle-guide/">
+<meta property="og:site_name" content="크랩아카데미 특강 자료">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="질문하는 챗봇을 넘어 '일해주는 비서'로 — 박종익 원장">
+<meta property="og:description" content="크랩아카데미 2026-11-18 특강 핵심 요약과 피클 사용법·하루 루틴 세팅 가이드. 오늘부터 바로 해보는 3가지까지 한 페이지에 담았습니다.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0f1b24">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1b24'/%3E%3Cpath d='M20 44V22h10c6 0 9 3 9 8s-3 8-9 8h-4v6z' fill='none' stroke='%23e9c46a' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#101a23;
+    --ink-2:#1b2a36;
+    --body:#2f3b47;
+    --muted:#6a7784;
+    --line:#e2e7ec;
+    --line-2:#eef1f4;
+    --paper:#ffffff;
+    --bg:#f4f6f8;
+    --accent:#136b58;
+    --accent-2:#0e5446;
+    --accent-soft:#e9f4f0;
+    --gold:#a97a26;
+    --gold-soft:#fbf4e3;
+    --radius:14px;
+    --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-text-size-adjust:100%;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--body);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.72;
+    letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px;}
+  .wrap-wide{max-width:960px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--ink);
+    background-image:
+      radial-gradient(90% 70% at 15% 0%, rgba(19,107,88,.55) 0%, rgba(16,26,35,0) 60%),
+      radial-gradient(70% 60% at 100% 10%, rgba(169,122,38,.28) 0%, rgba(16,26,35,0) 55%);
+    color:#eaf1f4;
+    padding:44px 0 40px;
+    overflow:hidden;
+  }
+  .hero:after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(233,196,106,.55),rgba(255,255,255,0));
+  }
+  .hero .eyebrow{
+    display:inline-block;
+    font-size:12.5px;letter-spacing:.14em;
+    color:#e9c46a;font-weight:700;
+    border:1px solid rgba(233,196,106,.4);
+    border-radius:999px;padding:5px 12px;
+    margin:0 0 18px;
+  }
+  .hero h1{
+    margin:0 0 14px;
+    font-size:clamp(25px,6.2vw,40px);
+    line-height:1.32;
+    letter-spacing:-0.035em;
+    font-weight:800;
+    color:#fff;
+  }
+  .hero h1 .accent{color:#e9c46a;}
+  .hero .lead{
+    margin:0 0 24px;
+    font-size:clamp(14.5px,3.6vw,16.5px);
+    line-height:1.8;
+    color:#c9d6dd;
+    max-width:640px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin:0;padding:0;list-style:none;
+  }
+  .hero-meta li{
+    font-size:12.5px;line-height:1.5;
+    color:#dce6eb;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:999px;
+    padding:6px 12px;
+  }
+  .hero-meta li b{color:#fff;font-weight:700;}
+
+  /* ---------- nav ---------- */
+  .nav{background:var(--paper);border-bottom:1px solid var(--line);}
+  .nav-inner{
+    display:flex;gap:8px;overflow-x:auto;
+    padding:12px 20px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    max-width:960px;margin:0 auto;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav a{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13.5px;font-weight:600;
+    color:var(--ink-2);
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 14px;
+    text-decoration:none;
+    min-height:38px;
+  }
+  .nav a span{color:var(--accent);font-weight:800;}
+
+  /* ---------- sections ---------- */
+  main{padding:8px 0 40px;}
+  section{padding:40px 0 4px;scroll-margin-top:12px;}
+  .sec-head{margin:0 0 22px;}
+  .sec-kicker{
+    display:flex;align-items:center;gap:10px;
+    font-size:12.5px;font-weight:700;letter-spacing:.1em;
+    color:var(--accent);text-transform:uppercase;
+    margin:0 0 8px;
+  }
+  .sec-kicker i{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:8px;
+    background:var(--accent-soft);color:var(--accent-2);
+    font-style:normal;font-size:13px;font-weight:800;letter-spacing:0;
+  }
+  h2{
+    margin:0 0 10px;
+    font-size:clamp(21px,5vw,28px);
+    line-height:1.4;letter-spacing:-0.03em;
+    color:var(--ink);font-weight:800;
+  }
+  .sec-head p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.8;}
+  h3{
+    margin:30px 0 12px;
+    font-size:clamp(16.5px,4.2vw,19px);
+    line-height:1.5;letter-spacing:-0.02em;
+    color:var(--ink);font-weight:750;
+  }
+  h3 .dot{color:var(--gold);}
+  p{margin:0 0 14px;}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 20px;
+    margin:0 0 14px;
+  }
+  .card > :last-child{margin-bottom:0;}
+  .muted{color:var(--muted);}
+  .small{font-size:13.5px;line-height:1.75;}
+  ul.clean{margin:0 0 14px;padding:0;list-style:none;}
+  ul.clean li{
+    position:relative;padding-left:18px;margin:0 0 9px;font-size:15px;line-height:1.75;
+  }
+  ul.clean li:last-child{margin-bottom:0;}
+  ul.clean li:before{
+    content:"";position:absolute;left:2px;top:.72em;
+    width:6px;height:6px;border-radius:50%;background:var(--gold);
+  }
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:step;}
+  ol.steps > li{
+    position:relative;
+    padding:0 0 20px 44px;
+    counter-increment:step;
+    border-left:1px solid var(--line);
+    margin-left:15px;
+  }
+  ol.steps > li:last-child{border-left:1px solid transparent;padding-bottom:0;}
+  ol.steps > li:before{
+    content:counter(step);
+    position:absolute;left:-16px;top:-2px;
+    width:31px;height:31px;border-radius:50%;
+    background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:800;
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  ol.steps h4{
+    margin:0 0 6px;font-size:16px;color:var(--ink);font-weight:750;line-height:1.5;
+  }
+  ol.steps p{margin:0 0 6px;font-size:14.5px;line-height:1.75;}
+  ol.steps .path{
+    display:inline-block;
+    font-size:13px;font-weight:650;
+    color:var(--accent-2);
+    background:var(--accent-soft);
+    border-radius:7px;
+    padding:3px 8px;
+    margin:2px 0 6px;
+  }
+
+  .quote{
+    border-left:3px solid var(--gold);
+    background:var(--gold-soft);
+    border-radius:0 var(--radius) var(--radius) 0;
+    padding:16px 18px;
+    margin:0 0 16px;
+    font-size:15px;line-height:1.8;color:#4a3a1a;
+  }
+  .quote b{color:#6b4f12;}
+  .note{
+    background:#f7f9fb;
+    border:1px dashed #cfd9e2;
+    border-radius:var(--radius);
+    padding:16px 18px;
+    font-size:13.5px;line-height:1.8;
+    color:#40505f;
+    margin:0 0 16px;
+  }
+  .note strong{color:var(--ink);}
+  .note > :last-child{margin-bottom:0;}
+
+  /* ---------- table ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--paper);
+    margin:0 0 10px;
+  }
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:14px;}
+  caption{
+    caption-side:top;text-align:left;
+    font-size:12.5px;color:var(--muted);
+    padding:0 0 7px;
+  }
+  th,td{
+    padding:12px 14px;
+    text-align:left;
+    vertical-align:top;
+    line-height:1.65;
+    border-bottom:1px solid var(--line-2);
+  }
+  thead th{
+    background:#f2f6f8;
+    color:var(--ink);
+    font-size:13px;
+    font-weight:800;
+    white-space:nowrap;
+    border-bottom:1px solid var(--line);
+  }
+  tbody th{
+    font-size:13.5px;color:var(--ink);font-weight:750;
+    white-space:nowrap;background:#fbfcfd;
+  }
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0;}
+  td b{color:var(--ink);}
+  .scroll-hint{font-size:12px;color:var(--muted);margin:0 0 18px;}
+
+  /* ---------- cards grid ---------- */
+  .grid{display:grid;gap:12px;grid-template-columns:1fr;}
+  @media(min-width:700px){ .grid.two{grid-template-columns:1fr 1fr;} }
+  .mini{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 17px;
+  }
+  .mini > :last-child{margin-bottom:0;}
+  .mini .tag{
+    display:inline-block;
+    font-size:11.5px;font-weight:800;letter-spacing:.02em;
+    color:var(--accent-2);background:var(--accent-soft);
+    border-radius:6px;padding:2px 7px;margin:0 0 8px;
+  }
+  .mini h4{margin:0 0 6px;font-size:15.5px;line-height:1.5;color:var(--ink);font-weight:750;}
+  .mini p{margin:0;font-size:14px;line-height:1.75;color:#46535f;}
+
+  .value{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 18px 16px;
+  }
+  .value .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;border-radius:7px;
+    background:var(--ink);color:#e9c46a;
+    font-size:12.5px;font-weight:800;
+    margin:0 0 8px;
+  }
+  .value h4{margin:0 0 4px;font-size:16px;color:var(--ink);font-weight:750;}
+  .value .who{font-size:13px;color:var(--muted);margin:0 0 8px;}
+  .value p{margin:0;font-size:14px;line-height:1.75;color:#46535f;}
+
+  /* ---------- prompt block ---------- */
+  .prompt{
+    background:#0f1b24;
+    border-radius:var(--radius);
+    margin:0 0 12px;
+    overflow:hidden;
+    border:1px solid #16232e;
+  }
+  .prompt-bar{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:9px 12px 9px 16px;
+    background:#16242f;
+    border-bottom:1px solid #223340;
+  }
+  .prompt-bar span{font-size:12px;font-weight:700;color:#9fb2c0;letter-spacing:.04em;}
+  .copy-btn{
+    flex:0 0 auto;
+    font-family:var(--sans);
+    font-size:12.5px;font-weight:750;
+    color:#0f1b24;background:#e9c46a;
+    border:0;border-radius:7px;
+    padding:7px 12px;min-height:34px;
+    cursor:pointer;-webkit-appearance:none;appearance:none;
+  }
+  .copy-btn:active{background:#d9b458;}
+  .copy-btn.done{background:#79c7a4;color:#0b2b20;}
+  pre{
+    margin:0;padding:16px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    font-size:12.5px;line-height:1.72;
+    color:#d7e3ea;white-space:pre;
+    tab-size:2;
+  }
+  pre code{font:inherit;}
+
+  /* ---------- links ---------- */
+  .links{margin:0;padding:0;list-style:none;}
+  .links li{margin:0 0 10px;}
+  .links a.link{
+    display:block;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    text-decoration:none;
+    transition:border-color .15s ease;
+  }
+  .links a.link:hover{border-color:#b9c8d2;text-decoration:none;}
+  .links .lt{display:block;font-size:15px;font-weight:750;color:var(--ink);line-height:1.5;}
+  .links .ld{display:block;font-size:13px;color:var(--muted);line-height:1.65;margin-top:2px;}
+  .links .lu{display:block;font-size:12.5px;color:var(--accent);margin-top:5px;word-break:break-all;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);color:#a9bcc8;
+    padding:32px 0 calc(36px + env(safe-area-inset-bottom));
+    font-size:13px;line-height:1.8;
+  }
+  footer strong{color:#eaf1f4;font-weight:700;}
+  footer p{margin:0 0 8px;}
+  footer .top{display:inline-block;margin-top:6px;color:#e9c46a;font-weight:700;text-decoration:none;min-height:40px;}
+  .divider{height:1px;background:var(--line);margin:34px 0 0;border:0;}
+
+  @media(max-width:480px){
+    .hero{padding:36px 0 30px;}
+    .card{padding:17px 16px;}
+    .mini{padding:15px 15px;}
+    th,td{padding:11px 12px;}
+    section{padding:34px 0 2px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .hero{background:#fff;color:#000;padding:0 0 16px;}
+    .hero h1,.hero .lead,.hero-meta li{color:#000;}
+    .hero-meta li{border-color:#ccc;background:#fff;}
+    .nav,.copy-btn,footer .top{display:none;}
+    .card,.mini,.value,.table-wrap,.links a.link{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">크랩아카데미 특강 · 2026.11.18 (수)</p>
+    <h1>질문하는 챗봇을 넘어,<br><span class="accent">‘일해주는 비서’</span>로</h1>
+    <p class="lead">오늘 한 시간의 핵심과, 내일부터 그대로 따라 하실 수 있는 사용법·세팅 가이드를 한 페이지에 담았습니다. 강의 뒤에 다시 펼쳐 보시라고 남기는 자료죠.</p>
+    <ul class="hero-meta">
+      <li>발표 <b>박종익</b> · 가온자리한의원 대표원장 · 크랩독서회 회원</li>
+      <li><b>3축 55분</b> + 질의 5분</li>
+      <li>줌(Zoom) · 크랩아카데미</li>
+    </ul>
+  </div>
+</header>
+
+<nav class="nav" aria-label="페이지 목차">
+  <div class="nav-inner">
+    <a href="#summary"><span>①</span> 특강 핵심 요약</a>
+    <a href="#guide"><span>②</span> 피클 따라 하기</a>
+    <a href="#security"><span>③</span> 보안과 신뢰</a>
+    <a href="#links"><span>④</span> 참고 링크</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ ① 요약 ============ -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>①</i> 특강 핵심 요약</p>
+      <h2>답을 아는 AI에서, 일을 끝내는 AI로</h2>
+      <p>출발점은 한 문장입니다. AI는 답을 아는 단계를 지나 일을 하는 단계로 왔는데, 우리는 아직 질문만 던지고 있습니다. 유료 AI 구독을 정리하고도 일이 더 많이 끝난 이유도 여기에 있습니다. 바뀐 것은 도구가 아니라 <b>맡기는 방식</b>이었습니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 문제 — 대화창을 닫으면 정한 일도 같이 사라집니다</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>대화는 잘 됩니다. 그런데 대화창을 닫는 순간, 거기서 정한 일이 같이 사라집니다.</li>
+        <li>“다음 주에 서류 내야지” 하고 정하고, 일주일 뒤에 기억하지 못합니다. AI가 똑똑해서 안 된 일이 아닙니다.</li>
+        <li>원인은 하나입니다. <b>정한 일의 상태를 두는 곳이 대화창 안뿐</b>이라는 것. 대화는 흐르고, 사람의 기억은 30분을 못 갑니다.</li>
+        <li>그래서 남는 것은 성과가 아니라 검수 노동과 인지적 피로입니다.</li>
+      </ul>
+    </div>
+    <div class="quote">
+      오늘 드리는 답은 기능 소개가 아니라 <b>구조 하나</b>입니다. 상태를 대화 밖에 두고, 스스로 마감하는 루틴을 갖는 것. <b>모델 성능이 아니라 구조가 일을 끝냅니다.</b>
+    </div>
+
+    <h3><span class="dot">▪</span> 챗봇과 실행형 비서는 무엇이 다른가</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>같은 AI라도 ‘끝나는 지점’이 다릅니다.</caption>
+        <thead>
+          <tr><th scope="col">구분</th><th scope="col">기존 AI 챗봇</th><th scope="col">피클(Pickle)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">하는 일</th><td>질문에 답을 만들어 냄</td><td>앱·웹·전화를 직접 조작해 <b>과업을 완결</b></td></tr>
+          <tr><th scope="row">작업 공간</th><td>대화창 안</td><td>격리된 가상 컴퓨터 + 브라우저 + 발신 전화</td></tr>
+          <tr><th scope="row">끝나는 지점</th><td>답변</td><td>예약 확정·주문·서류 접수·송금 직전까지</td></tr>
+          <tr><th scope="row">앱 생태계</th><td>새 앱을 또 하나 요구</td><td>이미 쓰는 앱 수십 개를 대신 오감</td></tr>
+          <tr><th scope="row">기억</th><td>대화 단위로 끊김</td><td>사용자별 상시 기억 + 지역 맥락</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
+    <div class="quote">
+      챗봇은 <b>답</b>을 팔고, 피클은 <b>일이 끝난 상태</b>를 팝니다. 그리고 그 가격표인 신뢰는 “믿어 주세요”가 아니라 “이렇게 되어 있어서 저는 못 봅니다”로 증명합니다.
+    </div>
+
+    <h3><span class="dot">▪</span> 오늘 케이스는 다섯 갈래 — 5대 가치 프레임</h3>
+    <div class="grid two">
+      <div class="value">
+        <span class="num">1</span>
+        <h4>돈과 시간 절약</h4>
+        <p class="who">“한 시간이라도 돌려받고 싶다”</p>
+        <p>구독 26건 정리, 두 쪽짜리 주문표 보고서, 동의서 서식 1분 제작, 가격 비교.</p>
+      </div>
+      <div class="value">
+        <span class="num">2</span>
+        <h4>안전</h4>
+        <p class="who">“돈과 계정을 맡겨도 되나”</p>
+        <p>은행 직원 사칭 전화 19초 격퇴, 잃어버린 카드 추적, 처방 자료 암호 잠금.</p>
+      </div>
+      <div class="value">
+        <span class="num">3</span>
+        <h4>생활 전반</h4>
+        <p class="who">“집안일이 줄었으면”</p>
+        <p>보일러 난방 비서, 아파트 공지·급식표 캘린더 반영, 예약 전화.</p>
+      </div>
+      <div class="value">
+        <span class="num">4</span>
+        <h4>직장·사업 최적화</h4>
+        <p class="who">“일이 빨라졌으면”</p>
+        <p>진료 녹음이 블로그 두 편으로, 노션 대시보드, 약재 60종 전수 대조, 90곳 시세 조사.</p>
+      </div>
+      <div class="value">
+        <span class="num">5</span>
+        <h4>마케팅 파트너</h4>
+        <p class="who">“손님이 늘었으면”</p>
+        <p>블로그 두 편, 짧은 영상 11편, 인스타·틱톡, 유튜브 자동 편집, 안내 페이지.</p>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:12px;">오늘 들으시면서 “이건 나에게 2번이구나” 하나만 골라 두시면 됩니다.</p>
+
+    <h3><span class="dot">▪</span> 오늘 시연한 장면들</h3>
+    <div class="grid two">
+      <div class="mini">
+        <span class="tag">축 1 · 두 번 맡겨도 된다</span>
+        <h4>전화 두 통이 캘린더 두 줄로</h4>
+        <p>“차 두 대 정기점검 잡아 줘” 한 줄로 센터 조사 → 예약 전화 → 소요 시간·준비물 확인까지. 제가 결정한 것은 두 줄이었고, 나머지 서른 줄은 넘어갔습니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 1 · 두 번 맡겨도 된다</span>
+        <h4>거래내역 1,500여 건 전수 조사</h4>
+        <p>매달 나가는 고정지출을 6개 영역 표로 정리했습니다. 사람이 못 견디는 건 지루함이지 판단이 아닙니다. 전수 조사는 맡기고 결정은 제가 합니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 1 · 두 번 맡겨도 된다</span>
+        <h4>구독 26건 감사</h4>
+        <p>계속 쓸 것과 끊을 것을 이유와 함께 나란히 놓아 주었습니다. 결정은 제 몫으로 남겼습니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 2 · 보안</span>
+        <h4>사칭 전화가 19초에 끊긴 이유</h4>
+        <p>은행 직원을 사칭한 전화에, 지점과 이름을 조회해 없는 직원임을 확인하고 그 번호로 되걸어 소속을 물었습니다. 19초 만에 끊겼습니다. AI의 값은 똑똑함이 아니라 지치지 않는 확인입니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 3 · 남들이 잘 모르는 케이스</span>
+        <h4>진료 기록이 블로그 두 편으로</h4>
+        <p>매일 10:30과 18:00에 두 편이 예약 발행됩니다. 공개는 RSS와 휴대폰 화면을 실제로 열어 확인한 뒤 보고합니다. 짧은 영상 11편은 11일 연속 예약했습니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 3 · 남들이 잘 모르는 케이스</span>
+        <h4>한 편의 규격이 300편의 규격으로</h4>
+        <p>7권 300화 오디오북이 매일 오전 6시에 무인 연재됩니다. 구독자 지적 한 장으로 원서 383쪽과 대조해 55초 누락 구간까지 복원했습니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 3 · 남들이 잘 모르는 케이스</span>
+        <h4>하루 루틴 대시보드</h4>
+        <p>낮에 말하면 표의 행이 되고, 새벽 1시에 혼자 마감하고, 5시 8분 브리핑이 오늘 할 일로 읽어 줍니다. 아침에 생각할 것이 남지 않습니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">축 3 · 남들이 잘 모르는 케이스</span>
+        <h4>이 강의안도 같은 기록에서 나왔습니다</h4>
+        <p>보고서 한 장이 대시보드·슬라이드·3분 데모·오늘의 강의안이 되었습니다. 준비물은 잘 만든 슬라이드가 아니라 오늘의 기록입니다.</p>
+      </div>
+    </div>
+
+    <h3><span class="dot">▪</span> 오늘 가져가실 세 가지</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>잔일부터 맡겨 신뢰를 쌓는다.</b> 첫 맡김은 결과가 하나라 확인이 쉬운 일, 두 번째부터 판단이 섞인 일입니다. 순서를 뒤집으면 한 번의 실수로 전부 잃습니다.</li>
+        <li><b>승인은 내 손에 쥔다.</b> 준비는 AI가 하고, 결제·계약·발송의 마지막 버튼은 사람이 누릅니다.</li>
+        <li><b>기록은 대화 밖에 남긴다.</b> 말이 표의 행이 되고, 밤에 마감되고, 아침에 다시 읽히는 구조를 만드십시오.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ② 사용법 ============ -->
+<section id="guide">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>②</i> 피클 따라 하기</p>
+      <h2>처음 시작하는 분을 위한 네 단계</h2>
+      <p>피클은 질문에 답하는 챗봇이 아니라, 앱과 웹과 전화를 직접 오가며 일을 끝내는 실행형 개인 AI 비서입니다. 시작은 어렵지 않습니다. 순서는 딱 네 칸입니다.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h4>앱을 설치하고, 첫 대화를 겁니다</h4>
+        <p>공식 사이트 <a href="https://www.pickle.com" target="_blank" rel="noopener">pickle.com</a>에서 앱을 설치합니다(아이폰·안드로이드). 앱을 열면 채팅방이 먼저 보입니다. 인사부터 시작하지 마시고, 오늘 미뤄 둔 일 하나를 평소 말로 그대로 던져 보십시오.</p>
+      </li>
+      <li>
+        <h4>자주 쓰는 서비스를 연결합니다</h4>
+        <span class="path">나의 피클 탭 → 연결(Connections) → 연결 추가</span>
+        <p>메일·캘린더·노션처럼 매일 쓰는 것부터 연결하십시오. 그러면 예약 확인, 일정 변경, 할 일 등록까지 맡길 수 있습니다. 휴대폰 안의 연락처·일정 같은 자료는 권한을 허용할 때만 보입니다.</p>
+      </li>
+      <li>
+        <h4>첫 일은 ‘잔일’로 맡깁니다</h4>
+        <p>로그인, 예약, 가격 비교, 서류 접수처럼 답이 하나인 일부터 시작하십시오. “이번 주 안으로 되는 날짜로 잡아 줘”처럼 평소 말로 하면 됩니다. 필요한 것만 되묻고, 선택지가 있으면 나란히 보여 줍니다.</p>
+      </li>
+      <li>
+        <h4>카드로 확인하고, 마지막은 직접 승인합니다</h4>
+        <p>결제·예약처럼 되돌리기 어려운 일은 하기 전에 ‘무엇을, 얼마에, 어떤 조건으로’ 하는지 카드로 보여 주고 기다립니다. 마지막 버튼은 직접 누르십시오. 작업은 앱을 닫아도 계속됩니다.</p>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p><strong>비밀번호와 카드번호는 채팅에 쓰지 마십시오.</strong> 저장은 앱 안의 금고(Vault)에 하고, 피클은 필요한 값만 그 사이트 입력창으로 넣습니다. 인증번호 6자리는 휴대폰으로만 옵니다. 결제 전에는 금액과 조건이 카드로 다시 확인되고, 승인 전에는 1원도 나가지 않습니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 오늘부터 바로 해보는 3가지</h3>
+    <div class="grid">
+      <div class="mini">
+        <span class="tag">오늘 밤 · 10분</span>
+        <h4>노션에 표 하나 만들기</h4>
+        <p>칸은 다섯 개면 됩니다 — 이름 / 분야 / 날짜 / 상태 / 핵심내용·다음 액션. 아래 지시문을 그대로 붙여넣으십시오. 내일 아침에 행이 하나라도 생겨 있으면 성공입니다. 그게 이 구조의 첫 증거죠.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">내일 아침 · 1분</span>
+        <h4>오늘 할 일을 체크리스트로 받기</h4>
+        <p>“오늘 할 일 세 개를 체크리스트로 만들어 줘” 한 줄이면 됩니다. 우선순위와 예상 시간까지 붙여 달라고 하면 더 좋습니다. 표를 만들기 전이라면 이것부터 하셔도 됩니다.</p>
+      </div>
+      <div class="mini">
+        <span class="tag">이번 주 안에</span>
+        <h4>미뤄 둔 잔일 하나를 통째로</h4>
+        <p>정비 예약, 보험 서류, 가격 비교, 환불 요청처럼 전화·검색·입력이 함께 필요한 일이 좋습니다. 결과는 꼭 증거로 받으십시오 — 주문번호, 예약 확인 링크, 화면 캡처.</p>
+      </div>
+    </div>
+
+    <h3><span class="dot">▪</span> 하루 루틴 세팅 — 상태를 대화 밖, 노션에 둡니다</h3>
+    <p>역할을 네 칸으로 나눕니다. 표는 AI가 대화 중에 채우고, 페이지는 밤에 혼자 마감합니다.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>노션에 두는 네 칸</caption>
+        <thead>
+          <tr><th scope="col">칸</th><th scope="col">무엇을 담나</th><th scope="col">누가, 언제</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">실행 보드 (표)</th><td>일이 생기는 순간 한 행</td><td>AI가 대화 중에 바로</td></tr>
+          <tr><th scope="row">일일 루틴 체크 (표)</th><td>매일 반복하는 일</td><td>AI가 하루 한 행</td></tr>
+          <tr><th scope="row">일일 아카이브 (페이지)</th><td>하루 마감, 체크박스·취소선·달성률</td><td>AI가 01:00에 혼자</td></tr>
+          <tr><th scope="row">프로젝트 진행률 (페이지)</th><td>긴 일의 진척</td><td>AI가 01:00에 다시 계산</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
+    <p>바뀌는 것은 셋입니다. 적는 시점이 ‘나중에 정리’에서 <b>‘말한 그 자리’</b>로, 세는 단위가 ‘기분’에서 <b>‘체크박스 개수’</b>로, 마감 시각이 없음에서 <b>‘매일 01:00’</b>으로 바뀝니다.</p>
+
+    <div class="prompt">
+      <div class="prompt-bar">
+        <span>실행 보드 지시문 · 그대로 붙여넣기</span>
+        <button class="copy-btn" type="button" data-copy="prompt-board">복사</button>
+      </div>
+      <pre id="prompt-board"><code>[역할]
+너는 내 하루를 관리하는 AI 비서다. 내 노션에 '실행 보드' 데이터베이스가 있다.
+속성: 이름(제목) / 분야(선택: 업무·집안일·건강·공부·돈·사람·기타) / 날짜(날짜) / 상태(선택: 진행중·확인대기·정기루틴·보류·완료) / 핵심내용·다음 액션(텍스트)
+
+[규칙]
+1. 우리 대화에서 할 일·약속·결정·기한이 나오면 그 자리에서 실행 보드에 행을 하나 만든다. 밤에 몰아서 하지 않는다.
+2. 이름은 '무엇을' 한 줄로, 핵심내용·다음 액션은 '왜 하는지 + 다음에 누가 무엇을 하는지' 두 줄 이내로 쓴다.
+3. 날짜에는 기한이나 예정일을 넣고, 없으면 비워 둔다. 상태는 정하지 않았으면 '진행중'으로 둔다.
+4. 단순한 질문·잡담·이미 끝난 이야기는 등록하지 않는다.
+5. 같은 일이 이미 있으면 새로 만들지 말고 그 행을 고친다.
+6. 등록했으면 "실행 보드에 넣었습니다: (이름)" 한 줄로 알려 준다.</code></pre>
+    </div>
+
+    <div class="card">
+      <p><b>하루가 도는 고리</b></p>
+      <p class="small" style="margin:0;">01:00 마감 → 05:08 아침 브리핑 → 낮에는 말하면 등록 → 다시 01:00. 이 고리가 돌기 시작하면 사람이 기억할 것이 없어집니다. 표는 하나로 시작해서 한 달 써 보고 늘리십시오. 처음부터 네 칸을 다 만들면 오래 못 갑니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 잘 쓰는 일곱 가지 팁</h3>
+    <div class="grid two">
+      <div class="mini"><h4>1. 결론과 완성본을 먼저</h4><p>“설명부터”가 아니라 “먼저 만들어 주고, 고칠 점을 알려 줘”가 빠릅니다. 고치는 일은 사람이 훨씬 잘합니다.</p></div>
+      <div class="mini"><h4>2. 평소 쓰는 말로, 짧게</h4><p>길게 잘 쓴 프롬프트보다 조건 두 줄이 낫습니다. “이번 주 화요일 오전, 강남 쪽, 예산은 이 정도”면 충분합니다.</p></div>
+      <div class="mini"><h4>3. 나만 아는 조건은 먼저</h4><p>일정, 취향, 가족 사정을 미리 말하십시오. 묻는 것은 그 조건뿐이고, 나머지는 알아서 조사해 표로 가져옵니다.</p></div>
+      <div class="mini"><h4>4. 안 되는 일은 대안과 비용까지</h4><p>“안 됩니다”로 끝내는 도구는 오래 못 씁니다. 대안 세 가지에 비용과 부작용을 붙여 오게 하십시오.</p></div>
+      <div class="mini"><h4>5. ‘했다’는 증거로 확인</h4><p>주문번호, 예약 확인 링크, 게시 시각, 화면 캡처. 완료 보고는 확인의 시작일 뿐입니다. 저는 공개 여부를 실제 화면으로 열어 본 뒤에 보고합니다.</p></div>
+      <div class="mini"><h4>6. 반복되는 일은 예약과 루틴으로</h4><p>사람이 매일 같은 시각에 손으로 하던 일은 ‘예약’과 ‘실측 확인’ 두 가지로 바뀝니다. 만들기는 몰아서, 공개는 시스템이 합니다.</p></div>
+      <div class="mini"><h4>7. 묻는 횟수가 줄면 신뢰가 쌓인 것</h4><p>처음에는 서너 번 묻고, 나중에는 한 번 묻고, 끝에는 결과만 가져옵니다. 잘된 일만 보고하는 도구에게는 두 번째 일을 맡길 수 없습니다.</p></div>
+    </div>
+
+    <h3><span class="dot">▪</span> 정직하게 밝히는 경계</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>걸려오는 전화를 대신 받는 것은 안 됩니다.</b> 나가는 전화만 대신 겁니다. 수신은 통화 스크리닝이나 별도 앱으로 거르는 식으로 나누면 됩니다.</li>
+        <li><b>보안문자(캡차)와 본인인증은 사람 몫입니다.</b> 화면을 그대로 열어 둔 채 “여기서 멈췄습니다. 네 자리만 입력해 주시면 나머지는 제가 이어서 하겠습니다”라고 넘깁니다.</li>
+        <li><b>은행 앱 알림이나 인터넷뱅킹 화면을 직접 읽는 것은 막혀 있습니다.</b> 입금 알림을 메일로 받게 하거나, 거래내역 파일(CSV)과 캡처를 대조하는 방식이 실제 해법입니다. 비밀번호를 넘기는 방식이 아니라서 더 안전합니다.</li>
+        <li><b>결제·계약·메시지 발송은 준비까지만.</b> 마지막 승인은 사람이 합니다.</li>
+        <li><b>피클도 실수할 수 있습니다.</b> 카드에 적힌 조건과 결과는 직접 확인하십시오.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ③ 보안 ============ -->
+<section id="security">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>③</i> 보안과 신뢰</p>
+      <h2>계정과 돈을 맡기는 조건은 성능이 아니라 구조</h2>
+      <p>피클은 미국 샌프란시스코에 있고, Y Combinator W25 배치입니다. 2024년 9월에 설립했고 팀은 6인, 목표 시장은 아시아 6억 7천만 명입니다. 숫자보다 먼저 보실 것은 아래 다섯 가지입니다.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h4 style="margin:0 0 6px;color:var(--ink);font-size:16px;">① 열쇠는 기기 밖으로 나가지 않습니다</h4>
+        <p class="small" style="margin:0;">마스터키는 아이폰에서 만들어져 기기 키체인에 보관되고, 서버에도 격리 공간에도 원형이 가지 않습니다. 서비스가 열쇠를 보관하는 구조가 아니라, 내가 기간을 정해 잠시 빌려주는 구조입니다. 위임은 최대 30일이고, 앱에서 줄일 수 있습니다.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px;color:var(--ink);font-size:16px;">② 격리와 검증 — 검증은 신뢰가 아니라 산수입니다</h4>
+        <p class="small" style="margin:0;">자격증명을 다루는 프로그램은 AWS Nitro Enclave 안에서 돌고, 디스크에 아무것도 쓰지 않습니다. 그 소스가 공개되어 있어(<a href="https://github.com/pickle-com/credential-enclave" target="_blank" rel="noopener">github.com/pickle-com/credential-enclave</a>), 지금 도는 코드가 같은 빌드인지 누구나 원격 증명으로 대조할 수 있습니다.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px;color:var(--ink);font-size:16px;">③ 모델과 직원도 못 봅니다</h4>
+        <p class="small" style="margin:0;">비밀번호·인증번호·카드번호는 모델에 전달되지 않고, 결과에서도 가려집니다. 인증번호는 시드를 넘기지 않고 계산된 6자리만 잠깐 나옵니다. 내부 열람 도구도 저장된 비밀값을 돌려주지 않습니다.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px;color:var(--ink);font-size:16px;">④ 기록은 못 지웁니다 — 365일</h4>
+        <p class="small" style="margin:0;">카드를 쓰기 전에 기록이 먼저 남고, 그 기록은 365일 동안 회사도 운영자도 수정·삭제할 수 없습니다(S3 Object Lock). 언제 어떤 자격증명이 쓰였는지는 앱의 Activity에서 직접 확인하십시오.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px;color:var(--ink);font-size:16px;">⑤ 팔지 않습니다 — 판매·광고 0%</h4>
+        <p class="small" style="margin:0;">대화와 기억의 판매·광고 활용은 0%입니다. 모델 개선 학습은 사용자가 직접 켤 때만, 그것도 대화와 작업 기록에 한합니다. 메모리, 카메라 화면, 연동 계정, 저장된 카드와 로그인은 학습 대상이 아닙니다. 친구 비서와의 공유도 기본값은 비공개입니다.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>한계도 함께 적습니다.</strong> 브라우저에 값을 채우는 그 순간에는 복호화된 평문이 대상 사이트로 전달됩니다. 피클이 보장하는 것은 “어디에도 평문으로 남지 않는다”가 아니라 <b>“비밀값이 모델과 열람 도구에는 도달하지 않고, 쓰이는 순간에만 잠깐 존재한다”</b>입니다.</p>
+      <p>또 하나. 내부 직원은 대화·기억·작업 기록을 운영·장애 대응·안전·법적 의무 목적으로 열람할 수 있습니다(열람 기록이 남습니다). 카메라 화면, 저장된 비밀번호·카드, 연동 계정 토큰은 그 열람 대상이 아닙니다. 이 구분을 숨기지 않는 것이 보안 설명의 신뢰라고 생각합니다.</p>
+      <p style="margin-bottom:0;">이 요약은 공개된 자료와 공개 소스를 기준으로 했습니다. 릴리스에 따라 달라지는 보호는 ‘지원되는 보호’로 적었고, 확인되지 않은 것은 수치로 쓰지 않았습니다.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ ④ 링크 ============ -->
+<section id="links">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>④</i> 참고 링크</p>
+      <h2>더 보실 거리</h2>
+      <p>오늘 강의에서 언급한 공개 자료입니다. 모두 외부에서 바로 열리는 주소만 담았습니다.</p>
+    </div>
+
+    <ul class="links">
+      <li>
+        <a class="link" href="https://mujusang.github.io/hyeolmaekgi/" target="_blank" rel="noopener">
+          <span class="lt">《혈맥기》 오디오북 안내 페이지</span>
+          <span class="ld">경전을 읽어 주는 오디오북 7권 300편. 매일 오전 6시에 한 편씩 올라갑니다.</span>
+          <span class="lu">mujusang.github.io/hyeolmaekgi</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://mujusang.github.io/habbang/" target="_blank" rel="noopener">
+          <span class="lt">가온자리 표준 합방기</span>
+          <span class="ld">처방 자료와 탕전실 규칙, A4 조제지를 그대로 옮긴 웹앱입니다(암호 잠금).</span>
+          <span class="lu">mujusang.github.io/habbang</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://www.pickle.com" target="_blank" rel="noopener">
+          <span class="lt">피클 공식 사이트</span>
+          <span class="ld">앱 설치와 서비스 소개.</span>
+          <span class="lu">pickle.com</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://www.pickle.com/help" target="_blank" rel="noopener">
+          <span class="lt">피클 도움말</span>
+          <span class="ld">일 맡기는 법, 연결, 금고, 사용량까지 공식 설명서.</span>
+          <span class="lu">pickle.com/help</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://pickle.com/privacy-policy" target="_blank" rel="noopener">
+          <span class="lt">개인정보 처리방침</span>
+          <span class="ld">무엇을 모으고 무엇을 하지 않는지 원문.</span>
+          <span class="lu">pickle.com/privacy-policy</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://github.com/pickle-com/credential-enclave" target="_blank" rel="noopener">
+          <span class="lt">자격증명 격리 공간 소스</span>
+          <span class="ld">격리 공간 안에서 도는 프로그램과 원격 증명 검증 도구.</span>
+          <span class="lu">github.com/pickle-com/credential-enclave</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://www.ycombinator.com/companies/pickle-2" target="_blank" rel="noopener">
+          <span class="lt">Y Combinator 컴퍼니 프로필</span>
+          <span class="ld">W25 배치, 팀 규모, D1 리텐션 70%와 K-factor 1.2의 출처.</span>
+          <span class="lu">ycombinator.com/companies/pickle-2</span>
+        </a>
+      </li>
+    </ul>
+    <p class="small muted">강의 슬라이드와 대시보드는 비공개 노션에 있어 외부에서 열리지 않습니다. 필요한 자료는 발표자에게 직접 요청해 주십시오.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>크랩아카데미 특강 · 2026년 11월 18일</strong><br>발표 박종익 · 가온자리한의원 대표원장 · 크랩독서회 회원</p>
+    <p>이 페이지는 특강 수강생을 위해 정리한 공개 자료입니다. 회사·보안 관련 내용은 공개된 자료와 공개 소스를 기준으로 했으며, 투자 권유나 서비스 보증이 아닙니다.</p>
+    <a class="top" href="#top">▲ 맨 위로</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.copy-btn');
+  function fallback(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (!ok) {
+      // last resort: select the code block so the user can copy by hand
+      var block = document.getElementById(btn.getAttribute('data-copy'));
+      if (block && window.getSelection) {
+        var r = document.createRange();
+        r.selectNodeContents(block);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+      }
+      btn.textContent = '길게 눌러 복사';
+      return;
+    }
+    done(btn);
+  }
+  function done(btn) {
+    btn.textContent = '복사했습니다';
+    btn.classList.add('done');
+    setTimeout(function () {
+      btn.textContent = '복사';
+      btn.classList.remove('done');
+    }, 2000);
+  }
+  Array.prototype.forEach.call(btns, function (btn) {
+    btn.addEventListener('click', function () {
+      var block = document.getElementById(btn.getAttribute('data-copy'));
+      if (!block) return;
+      var text = block.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done(btn); }, function () { fallback(text, btn); });
+      } else {
+        fallback(text, btn);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
