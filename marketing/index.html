@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 · 원소스 멀티유즈 설계</title>
+<meta name="description" content="진료실 녹음과 주 1회 촬영을 원본으로 삼아, 피클이 임상 키워드·논문 근거·환자 질문을 뽑아내고 열 개 채널의 문법에 맞게 다시 쓰고, 매일 05시에 재고를 점검해 12시 30분·18시에 내보내는 실전 설계입니다. 이상마 실행반 공유용.">
+<meta name="author" content="박종익">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mujusang.github.io/pickle-guide/marketing/">
+<meta property="og:site_name" content="가온자리한의원 박종익 원장">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 설계">
+<meta property="og:description" content="진료실 녹음 한 번, 촬영 한 번. 나머지는 피클이 쪼개고 다듬고 쌓아 둡니다. 이상마 실행반 공유용 실전 설계도.">
+<meta property="og:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 설계 표지">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
+<meta name="theme-color" content="#0f1b24">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1b24'/%3E%3Cpath d='M18 46V20h9c6 0 9 3 9 8s-3 8-9 8h-3v10z' fill='none' stroke='%23e9c46a' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M42 26v20' stroke='%23136b58' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#101a23;
+    --ink-2:#1b2a36;
+    --body:#2f3b47;
+    --muted:#68757f;
+    --line:#e2e7ec;
+    --line-2:#eef1f4;
+    --paper:#ffffff;
+    --bg:#f4f6f8;
+    --accent:#136b58;
+    --accent-2:#0e5446;
+    --accent-soft:#e9f4f0;
+    --gold:#a97a26;
+    --gold-soft:#fbf4e3;
+    --blue:#2f5d8a;
+    --blue-soft:#eaf1f8;
+    --radius:14px;
+    --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic","Noto Sans KR","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-text-size-adjust:100%;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--bg);color:var(--body);
+    font-family:var(--sans);font-size:16px;line-height:1.78;letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(19,107,88,.45);outline-offset:2px;border-radius:4px;}
+  .skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--ink);padding:10px 16px;z-index:99;border-radius:0 0 10px 0;font-weight:700;}
+  .skip:focus{left:0;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px;}
+  .wrap-wide{max-width:980px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;color:#eaf1f4;padding:0 0 46px;overflow:hidden;
+    background:var(--ink);
+    background-image:
+      radial-gradient(85% 70% at 12% 0%, rgba(19,107,88,.58) 0%, rgba(16,26,35,0) 62%),
+      radial-gradient(60% 55% at 100% 6%, rgba(169,122,38,.30) 0%, rgba(16,26,35,0) 58%);
+  }
+  .hero-grid{
+    position:absolute;inset:0;pointer-events:none;opacity:.30;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.10) 1px, transparent 1px);
+    background-size:52px 52px;
+    mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);
+    -webkit-mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);
+  }
+  .hero-inner{position:relative;padding-top:clamp(40px,9vw,64px);}
+  .hero .eyebrow{
+    display:inline-block;font-size:12.5px;letter-spacing:.12em;color:#e9c46a;font-weight:800;
+    border:1px solid rgba(233,196,106,.42);border-radius:999px;padding:5px 13px;margin:0 0 20px;
+    background:rgba(233,196,106,.07);
+  }
+  .hero h1{
+    margin:0 0 16px;font-size:clamp(27px,6.6vw,44px);line-height:1.3;letter-spacing:-0.04em;font-weight:800;color:#fff;
+  }
+  .hero h1 .accent{color:#e9c46a;}
+  .hero h1 .sub{display:block;margin-top:8px;font-size:clamp(15px,3.7vw,20px);line-height:1.55;font-weight:700;color:#c8d7dd;letter-spacing:-0.02em;}
+  .hero .lead{
+    margin:0 0 26px;font-size:clamp(14.5px,3.6vw,16.5px);line-height:1.85;color:#c9d6dd;max-width:660px;
+  }
+  .hero .lead b{color:#fff;font-weight:700;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;}
+  .hero-meta li{
+    font-size:12.5px;line-height:1.5;color:#dce6eb;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px;
+  }
+  .hero-meta li b{color:#fff;font-weight:700;}
+
+  /* ---------- pipeline map ---------- */
+  .mapband{background:linear-gradient(180deg,#0f1b24 0%, #14222d 100%);padding:0 0 40px;color:#dfe9ee;}
+  .mapband .maphead{display:flex;align-items:baseline;gap:10px;margin:0 0 18px;flex-wrap:wrap;}
+  .mapband .maphead h2{margin:0;font-size:clamp(16px,4.2vw,19px);color:#fff;letter-spacing:-0.02em;font-weight:800;}
+  .mapband .maphead p{margin:0;font-size:13px;color:#93a6b1;}
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none;}
+  .flow li{
+    position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
+    border-radius:12px;padding:14px 14px 15px;
+  }
+  .flow li:after{
+    content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+    color:rgba(233,196,106,.8);font-size:14px;font-weight:800;
+  }
+  .flow li:last-child:after{content:"";}
+  .flow .fn{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#e9c46a;margin:0 0 6px;}
+  .flow .ft{display:block;font-size:14.5px;font-weight:750;color:#fff;line-height:1.45;margin:0 0 6px;}
+  .flow .fd{display:block;font-size:12.5px;line-height:1.62;color:#a9bac3;}
+
+  /* ---------- nav ---------- */
+  .nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;}
+  .nav-inner{
+    display:flex;gap:8px;overflow-x:auto;padding:11px 20px;max-width:980px;margin:0 auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav a{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:650;
+    color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;text-decoration:none;min-height:38px;
+  }
+  .nav a:hover{background:var(--accent-soft);border-color:#cfe4dd;text-decoration:none;}
+  .nav a span{color:var(--accent);font-weight:800;}
+
+  /* ---------- sections ---------- */
+  main{padding:6px 0 30px;}
+  section{padding:44px 0 6px;scroll-margin-top:64px;}
+  .sec-head{margin:0 0 22px;}
+  .sec-kicker{
+    display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.09em;
+    color:var(--accent);margin:0 0 10px;
+  }
+  .sec-kicker i{
+    display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
+    background:var(--accent-soft);color:var(--accent-2);font-style:normal;font-size:13px;font-weight:800;letter-spacing:0;
+  }
+  h2{margin:0 0 12px;font-size:clamp(21px,5.2vw,29px);line-height:1.42;letter-spacing:-0.035em;color:var(--ink);font-weight:800;}
+  .sec-head p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.82;}
+  .sec-head p b{color:var(--body);font-weight:700;}
+  h3{margin:32px 0 12px;font-size:clamp(16.5px,4.3vw,19.5px);line-height:1.5;letter-spacing:-0.025em;color:var(--ink);font-weight:780;}
+  h3 .dot{color:var(--gold);margin-right:2px;}
+  h4{margin:0 0 8px;font-size:16px;line-height:1.5;color:var(--ink);font-weight:750;letter-spacing:-0.02em;}
+  p{margin:0 0 14px;}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 14px;}
+  .card > :last-child{margin-bottom:0;}
+  .card.tint{background:linear-gradient(180deg,#fbfdfc,#f7faf9);border-color:#d9e8e3;}
+  .muted{color:var(--muted);}
+  .small{font-size:13.5px;line-height:1.78;}
+  .grid{display:grid;gap:14px;}
+  .grid.two{grid-template-columns:1fr 1fr;}
+  ul.clean{margin:0 0 14px;padding:0;list-style:none;}
+  ul.clean li{position:relative;padding-left:18px;margin:0 0 9px;font-size:15px;line-height:1.78;}
+  ul.clean li:last-child{margin-bottom:0;}
+  ul.clean li:before{content:"";position:absolute;left:2px;top:.74em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  ul.clean li b{color:var(--ink);font-weight:700;}
+  .quote{
+    background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+    padding:16px 18px;margin:0 0 16px;font-size:15px;line-height:1.85;color:#4a3a19;
+  }
+  .quote b{color:#3a2c10;font-weight:750;}
+  .note{background:var(--blue-soft);border:1px solid #d3e2f1;border-radius:12px;padding:16px 18px;margin:0 0 16px;font-size:14px;line-height:1.8;color:#254260;}
+  .note b{color:#1b3550;font-weight:750;}
+  .warn{background:#fff7ed;border:1px solid #f6dfc4;border-radius:12px;padding:16px 18px;margin:0 0 16px;font-size:14px;line-height:1.8;color:#6b4a1e;}
+  .warn b{color:#533709;font-weight:750;}
+  .divider{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);margin:34px 0 0;}
+
+  /* ---------- source cards ---------- */
+  .src2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px;}
+  .src{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+  .src .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--accent-2);background:var(--accent-soft);border-radius:999px;padding:4px 10px;margin:0 0 10px;}
+  .src h4{margin:0 0 8px;font-size:16.5px;}
+  .src p{margin:0;font-size:14px;line-height:1.75;color:var(--body);}
+  .src .fine{margin-top:10px;font-size:12.5px;color:var(--muted);}
+
+  /* ---------- extract list ---------- */
+  .extract{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
+  .extract li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 15px;}
+  .extract .en{display:block;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.06em;margin:0 0 5px;}
+  .extract .et{display:block;font-size:15px;font-weight:750;color:var(--ink);margin:0 0 4px;line-height:1.45;}
+  .extract .ed{display:block;font-size:13px;line-height:1.7;color:var(--muted);}
+  .prompt{
+    background:#0f1b24;color:#d8e4ea;border-radius:12px;padding:16px 18px;margin:0 0 16px;
+    font-size:14px;line-height:1.85;border:1px solid #22323f;
+  }
+  .prompt .pl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#7fd0b9;margin:0 0 8px;}
+  .prompt q{quotes:"“" "”";color:#fff;}
+
+  /* ---------- channel ---------- */
+  .ch{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 14px;}
+  .ch-head{display:flex;align-items:flex-start;gap:12px;margin:0 0 12px;}
+  .ch-no{
+    flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
+    background:var(--ink);color:#e9c46a;font-size:14px;font-weight:800;letter-spacing:0;
+  }
+  .ch-head h3{margin:0;font-size:clamp(17px,4.4vw,20px);line-height:1.4;}
+  .ch-role{display:block;margin-top:4px;font-size:13px;font-weight:650;color:var(--accent);}
+  .ch p{font-size:15px;line-height:1.8;}
+  .ch .k{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:13.5px;font-weight:700;color:var(--ink-2);}
+  .ch-foot{margin:12px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);font-size:13.5px;line-height:1.75;color:var(--muted);}
+  .ch-foot b{color:var(--body);font-weight:700;}
+
+  /* ---------- four rules ---------- */
+  .rules{display:grid;gap:12px;margin:0 0 16px;}
+  .rule{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:44px 1fr;gap:14px;}
+  .rule .rn{
+    display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;
+    background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:15px;border:1px solid #f0e2c2;
+  }
+  .rule h4{margin:0 0 6px;font-size:16px;}
+  .rule p{margin:0;font-size:14px;line-height:1.78;}
+  .rule .ex{margin-top:8px;font-size:13.5px;line-height:1.7;color:var(--ink-2);background:var(--bg);border-radius:8px;padding:9px 12px;border:1px solid var(--line-2);}
+  .rule .ex b{color:var(--accent-2);font-weight:750;}
+
+  /* ---------- table ---------- */
+  .table-wrap{overflow-x:auto;margin:0 0 10px;border:1px solid var(--line);border-radius:12px;background:var(--paper);-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px;}
+  caption{caption-side:top;text-align:left;padding:13px 16px 0;font-size:12.5px;color:var(--muted);font-weight:650;}
+  th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-2);line-height:1.68;}
+  thead th{background:#f7f9fa;color:var(--ink);font-weight:750;font-size:13.5px;white-space:nowrap;border-bottom:1px solid var(--line);}
+  tbody th{font-weight:750;color:var(--ink);white-space:nowrap;background:#fcfdfd;}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0;}
+  td b{color:var(--ink);font-weight:700;}
+  .scroll-hint{margin:0 0 18px;font-size:12.5px;color:var(--muted);}
+
+  /* ---------- loop timeline ---------- */
+  .loop{margin:0 0 16px;padding:0;list-style:none;position:relative;}
+  .loop:before{content:"";position:absolute;left:17px;top:12px;bottom:12px;width:2px;background:linear-gradient(180deg,var(--accent),#cfe4dd);}
+  .loop li{position:relative;padding:0 0 20px 50px;}
+  .loop li:last-child{padding-bottom:0;}
+  .loop .lt{
+    position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);
+    border:2px solid var(--accent);color:var(--accent-2);font-size:12px;font-weight:800;
+    display:inline-flex;align-items:center;justify-content:center;line-height:1;
+  }
+  .loop .lh{margin:0 0 4px;font-size:15.5px;font-weight:780;color:var(--ink);letter-spacing:-0.02em;}
+  .loop .lh em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:2px;}
+  .loop p{margin:0;font-size:14px;line-height:1.78;color:var(--body);}
+  .loop p b{color:var(--ink);font-weight:700;}
+
+  /* ---------- checklist ---------- */
+  .stepblock{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 8px;margin:0 0 14px;}
+  .stepblock h4{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:16.5px;}
+  .stepblock h4 .sn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:800;}
+  .stepblock .sd{margin:0 0 12px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+  .check{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line-2);cursor:pointer;}
+  .check input{
+    appearance:none;-webkit-appearance:none;flex:0 0 auto;width:22px;height:22px;margin:2px 0 0;border-radius:7px;
+    border:2px solid #c6d2d0;background:#fff;cursor:pointer;position:relative;transition:.15s;
+  }
+  .check input:checked{background:var(--accent);border-color:var(--accent);}
+  .check input:checked:after{
+    content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
+  }
+  .check span{font-size:14.5px;line-height:1.7;color:var(--body);}
+  .check span b{color:var(--ink);font-weight:750;}
+  .check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px;}
+  .progress{
+    display:flex;align-items:center;gap:12px;background:var(--ink);color:#dbe7ec;border-radius:12px;
+    padding:14px 16px;margin:0 0 18px;font-size:13.5px;
+  }
+  .progress .bar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;}
+  .progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2fae8f,#e9c46a);transition:width .25s;}
+  .progress b{color:#fff;font-weight:800;white-space:nowrap;}
+  .reset{margin-left:6px;background:none;border:1px solid rgba(255,255,255,.28);color:#cfe0e6;border-radius:999px;padding:4px 11px;font-size:12px;font-family:inherit;cursor:pointer;}
+  .reset:hover{background:rgba(255,255,255,.1);}
+
+  /* ---------- footer ---------- */
+  footer{background:#0f1b24;color:#93a6b1;margin-top:44px;padding:34px 0 40px;font-size:13.5px;line-height:1.8;}
+  footer h4{color:#fff;margin:0 0 10px;font-size:14.5px;}
+  footer a{color:#8fd0bd;}
+  footer p{margin:0 0 10px;}
+  footer ul{margin:0 0 16px;padding-left:18px;}
+  footer li{margin-bottom:6px;}
+  .foot-sign{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;color:#c7d6dd;margin:0 0 16px;font-size:14px;}
+  .foot-sign b{color:#fff;font-weight:750;}
+  .foot-top{display:inline-block;margin-top:6px;font-size:13px;color:#8fd0bd;border:1px solid rgba(143,208,189,.35);border-radius:999px;padding:6px 13px;}
+
+  @media (max-width:720px){
+    .flow{grid-template-columns:1fr 1fr;}
+    .flow li:after{content:"";}
+    .src2{grid-template-columns:1fr;}
+    .extract{grid-template-columns:1fr;}
+    .grid.two{grid-template-columns:1fr;}
+    .rule{grid-template-columns:36px 1fr;gap:12px;}
+    .rule .rn{width:32px;height:32px;font-size:14px;}
+  }
+  @media (max-width:400px){
+    .flow{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+  }
+  @media print{
+    body{background:#fff;}
+    .nav,.progress,.reset,.skip,.mapband{display:none;}
+    .hero{background:#fff;color:#111;padding-bottom:10px;}
+    .hero h1,.hero .lead,.hero-meta li{color:#111;}
+    .card,.ch,.src,.rule,.stepblock{break-inside:avoid;border-color:#ccc;}
+    footer{background:#fff;color:#333;}
+    footer h4{color:#111;}
+  }
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">본문으로 바로 가기</a>
+
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">이상마 실행반 공유 자료 · 2026.11.20</p>
+    <h1>원본 한 번으로,<br><span class="accent">채널 열 곳</span>을 움직이는 법
+      <span class="sub">피클을 활용한 인공지능 검색 최적화 · 원소스 멀티유즈 설계</span>
+    </h1>
+    <p class="lead">
+      진료실에서 한 번 녹음하고, 일주일에 한 번 촬영하면 끝입니다. 쪼개고, 다시 쓰고, 창고에 쌓아 두고, 시간 맞춰 내보내는 일은 피클이 합니다.
+      제가 지난 세 주 동안 제 한의원에서 실제로 굴려 본 순서를, 그대로 따라 하실 수 있게 풀어 적었습니다.
+    </p>
+    <ul class="hero-meta">
+      <li><b>원본 두 가지</b> 진료 녹음 · 주 1회 촬영</li>
+      <li><b>채널 열 곳</b> 블로그 4 · 영상 6</li>
+      <li><b>원장님 몫</b> 촬영과 최종 승인</li>
+    </ul>
+  </div>
+</header>
+
+<div class="mapband">
+  <div class="wrap-wide">
+    <div class="maphead">
+      <h2>설계도 한 장</h2>
+      <p>이 네 칸이 전부입니다. 아래에서 하나씩 풀어 봅니다.</p>
+    </div>
+    <ol class="flow">
+      <li>
+        <span class="fn">① 원본</span>
+        <span class="ft">진료 녹음 · 촬영</span>
+        <span class="fd">한 번만 만듭니다. 이게 재료입니다.</span>
+      </li>
+      <li>
+        <span class="fn">② 추출</span>
+        <span class="ft">피클이 쪼갭니다</span>
+        <span class="fd">환자 질문 · 임상 키워드 · 논문 근거.</span>
+      </li>
+      <li>
+        <span class="fn">③ 변주</span>
+        <span class="ft">채널 문법으로 다시 쓰기</span>
+        <span class="fd">같은 재료, 다른 그릇. 복사는 금지.</span>
+      </li>
+      <li>
+        <span class="fn">④ 운영</span>
+        <span class="ft">재고로 쌓고 시간에 내보내기</span>
+        <span class="fd">05시 점검, 12시 30분 · 18시 발행.</span>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<nav class="nav" aria-label="페이지 목차">
+  <div class="nav-inner">
+    <a href="#source"><span>①</span> 원본 만들기</a>
+    <a href="#channels"><span>②</span> 채널별 문법</a>
+    <a href="#loop"><span>③</span> 운영 루프</a>
+    <a href="#checklist"><span>④</span> 3단계 체크리스트</a>
+    <a href="#notes">보안·주의·출처</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ================= ① 원본 ================= -->
+<section id="source">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>①</i> 원소스 입력</p>
+      <h2>잘 쓰는 것보다, 한 번 잘 남기는 것이 먼저입니다</h2>
+      <p>글을 열 개 채널에 뿌리려면 재료가 열 벌 필요할까요. 아닙니다. <b>좋은 원본 하나면 열 벌이 나옵니다.</b> 그래서 순서를 바꿔야 합니다. 쓰는 시간을 줄이는 게 아니라, 남기는 순간의 밀도를 높이는 것이죠.</p>
+    </div>
+
+    <div class="src2">
+      <div class="src">
+        <span class="tag">원본 1 · 매일</span>
+        <h4>진료실 녹음</h4>
+        <p>진료하면서 플라우드로 녹음해 둡니다. 환자가 자기 증상을 설명하는 말은, 그대로 검색창에 들어가는 말입니다. “손목이 저리다”가 아니라 “새끼손가락 쪽이 밤에 저려서 잠을 깨요”처럼요.</p>
+        <p class="fine">진료실 카트 PC에서 켜 두면 진료 흐름을 끊지 않습니다.</p>
+      </div>
+      <div class="src">
+        <span class="tag">원본 2 · 주 1회</span>
+        <h4>긴 영상 촬영</h4>
+        <p>일주일에 한 번, 8~10분짜리 한 편을 찍습니다. 이 한 편에서 쇼츠 다섯 편이 나옵니다. 카메라 앞에서 설명하는 습관이 생기면, 그 말이 그대로 블로그 문장이 됩니다.</p>
+        <p class="fine">저는 금요일에 두 편을 몰아 찍습니다. 다음 주 화·토 공개분입니다.</p>
+      </div>
+    </div>
+
+    <h3><span class="dot">▪</span> 피클에게 시키는 일 — 원본에서 네 가지를 뽑습니다</h3>
+    <ul class="extract">
+      <li>
+        <span class="en">01</span>
+        <span class="et">환자가 실제로 쓴 질문</span>
+        <span class="ed">그대로 소제목이 됩니다. 제가 만든 질문보다 검색창에 가깝습니다.</span>
+      </li>
+      <li>
+        <span class="en">02</span>
+        <span class="et">임상 키워드</span>
+        <span class="ed">증상 · 병명 · 체질 · 계절 · 직업. 글의 뼈대가 됩니다.</span>
+      </li>
+      <li>
+        <span class="en">03</span>
+        <span class="et">논문 · 교과서 근거</span>
+        <span class="ed">수치, 표본 수, 연도까지. 인공지능 검색이 인용하는 부분입니다.</span>
+      </li>
+      <li>
+        <span class="en">04</span>
+        <span class="et">장면의 디테일</span>
+        <span class="ed">“주방일 하는 분이라 손목을 많이 씁니다” 같은 한 줄. 글이 살아납니다.</span>
+      </li>
+    </ul>
+
+    <div class="prompt">
+      <span class="pl">피클에게 이렇게 한 번만 말하면 됩니다</span>
+      <q>이 진료 녹음에서 환자가 실제로 물은 질문 10개, 그 답에 붙일 논문 근거 3개(수치·표본·연도 포함), 제목으로 쓸 만한 표현 5개를 표로 뽑아 줘. 환자 이름·나이·연락처는 빼고, 진료 내용은 일반화해서 정리해.</q>
+    </div>
+
+    <div class="warn">
+      <p><b>환자 정보는 원본 단계에서 지웁니다.</b> 이름·나이·직업·거주지·진료 날짜가 조합되면 그 사람이 특정됩니다. 피클에게 처음 시킬 때 “이름과 나이는 빼고, 사례는 일반화해서”를 반드시 붙이고, 완성된 글도 한 번 더 훑어보십시오. 사진도 마찬가지입니다. 얼굴·차트·명찰이 걸린 컷은 쓰지 않습니다.</p>
+      <p style="margin-bottom:0;">환자 후기를 인용할 때는 본인 동의를 받은 것만, 표현은 그대로 쓰지 말고 요약해서 씁니다.</p>
+    </div>
+
+    <div class="quote">
+      원본을 남기는 데 드는 시간은 <b>진료 중 30초, 촬영 1시간</b>입니다. 그 30초가 없으면 저녁에 두 시간을 써도 글이 얄팍해집니다. 재료가 없어서 문장을 꾸미게 되니까요.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ② 채널 ================= -->
+<section id="channels">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>②</i> 채널별 문법 변주</p>
+      <h2>같은 재료라도 그릇이 다르면 담는 법이 다릅니다</h2>
+      <p>여기서 많이들 미끄러집니다. 네이버에 쓴 글을 그대로 티스토리에 복사해 붙이는 것. <b>그건 새 콘텐츠가 아니라 사본입니다.</b> 네이버는 원본과 사본을 판별하는 체계를 따로 두고 있습니다. 같은 글을 여러 곳에 올리면 한 곳만 남고 나머지는 밀립니다.</p>
+    </div>
+
+    <div class="ch">
+      <div class="ch-head">
+        <span class="ch-no">1</span>
+        <div>
+          <h3>네이버 블로그</h3>
+          <span class="ch-role">역할 · 국내 환자 유입의 본진</span>
+        </div>
+      </div>
+      <p>우리 동네에서 “동래 손목 통증 한의원”을 검색하는 사람은 대개 네이버에서 시작합니다. 그래서 이 채널은 <b>읽기 편함</b>이 기술보다 앞섭니다. 환자는 휴대폰으로, 대기실에서, 한 손으로 봅니다.</p>
+      <ul class="clean">
+        <li><b>한 문장 한 줄, 문단 사이는 띄웁니다.</b> 스크롤을 내리다 지치지 않게. 제 글의 기본값입니다.</li>
+        <li><b>첫 화면에 대표 이미지.</b> 배경을 지운 누끼 썸네일이 눈에 잘 들어옵니다. 사진 위 글씨는 크게, 세 단어 이내로.</li>
+        <li><b>원내 실사 사진을 섞습니다.</b> 직접 찍은 사진은 그 자체로 “이 사람이 여기 있다”는 증거입니다. 빌려온 사진은 반대로 독이 됩니다.</li>
+        <li><b>스토리로 시작합니다.</b> “오늘 아침에 이런 환자분이 오셨습니다”로 시작해 원리로 넘어가면 끝까지 읽힙니다.</li>
+        <li><b>위치 태그와 해시태그</b>는 넣되, 해시태그는 맨 아래에 몰아 둡니다. 본문 중간에 박으면 글이 광고로 읽힙니다.</li>
+      </ul>
+      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “그래서 지금 어떻게 하면 되는지” — 집에서 할 수 있는 것, 병원에 와야 하는 기준.</p>
+    </div>
+
+    <div class="ch">
+      <div class="ch-head">
+        <span class="ch-no">2</span>
+        <div>
+          <h3>티스토리 · 구글 블로거</h3>
+          <span class="ch-role">역할 · 인공지능 검색이 인용해 가는 글</span>
+        </div>
+      </div>
+      <p>요즘 환자는 챗지피티나 제미나이에게 먼저 묻습니다. “손목이 저린데 한의원 가면 뭘 하나요.” 그 대답은 블로그 목록이 아니라, <b>몇 개의 문장을 뽑아 요약한 형태</b>로 나옵니다. 그러니 이 채널의 목표는 잘 읽히는 글이 아니라 <b>인용하기 좋은 글</b>입니다. 원칙은 네 가지뿐입니다.</p>
+
+      <div class="rules">
+        <div class="rule">
+          <span class="rn">1</span>
+          <div>
+            <h4>소제목을 질문으로 씁니다</h4>
+            <p>사람이 실제로 치는 문장을 그대로 답니다. 명사형 제목(“손목 통증의 원인”)보다 질문형(“손목이 밤에 저리는데 파스만 붙여도 될까요”)이 검색 의도와 정확히 맞물립니다.</p>
+            <div class="ex"><b>예</b> ■ 2. 손목터널증후군, 수술하지 않고 좋아질 수 있나요?</div>
+          </div>
+        </div>
+        <div class="rule">
+          <span class="rn">2</span>
+          <div>
+            <h4>첫 한두 줄에 결론을 씁니다</h4>
+            <p>인공지능은 글 전체를 다 읽고 요약하지 않습니다. 앞머리의 분명한 답을 먼저 집어 갑니다. 인사말·날씨 이야기로 시작하는 순간 그 자리를 놓칩니다.</p>
+            <div class="ex"><b>예</b> 결론부터 말씀드리면, 초기 손목터널증후군은 6~8주 보존 치료로 절반 이상이 호전됩니다. 다만 손등 감각이 떨어졌다면 검사가 먼저입니다.</div>
+          </div>
+        </div>
+        <div class="rule">
+          <span class="rn">3</span>
+          <div>
+            <h4>숫자와 출처를 답니다</h4>
+            <p>“많이 좋아집니다”는 인용되지 않습니다. 수치 하나, 그 수치의 출처 하나. 저널명·연도·표본 수를 함께 적으면 그 문장이 근거 있는 문장이 됩니다.</p>
+            <div class="ex"><b>예</b> 60명을 12주간 관찰한 연구에서 침 치료군의 통증 점수가 대조군보다 유의하게 낮았습니다(○○저널, 2019, n=60).</div>
+          </div>
+        </div>
+        <div class="rule">
+          <span class="rn">4</span>
+          <div>
+            <h4>지역과 전문성을 같은 자리에 고정합니다</h4>
+            <p>인공지능이 “누가 쓴 글인지” 확신하려면 매번 같은 표현이 같은 자리에 있어야 합니다. 글마다 바꾸면 서로 다른 사람으로 읽힙니다.</p>
+            <div class="ex"><b>예</b> 부산 동래구 온천동, 가온자리한의원 박종익 원장이 진료실에서 쓴 글입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <p><b>이 네 가지가 그냥 감이 아닙니다.</b> 2024년 국제 학회(KDD)에 실린 연구에서, 출처를 밝히고 통계를 넣는 식으로 글을 다듬으면 생성형 검색 응답 안에서 노출이 최대 40%까지 올랐습니다. 다만 분야마다 효과가 달랐습니다. 한의학처럼 전문 영역은 근거를 붙이는 쪽이 더 크게 먹힌다고 봅니다.<br>
+        <span class="small muted">Aggarwal et al., 「Generative Engine Optimization」, KDD 2024 · <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">논문 보기</a></span></p>
+      </div>
+
+      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “왜 그런지” — 생리·병리·연구 결과. 네이버에서는 줄인 설명을 여기서는 풀어 씁니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 사본이 되지 않으려면 — 세 가지만 바꿉니다</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>같은 사실, 다른 문장. 이 세 축을 채널마다 돌려 쓰면 사본이 아닙니다.</caption>
+        <thead>
+          <tr><th scope="col">바꿀 것</th><th scope="col">네이버 블로그</th><th scope="col">티스토리 · 블로거</th><th scope="col">브런치</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">문장 구조</th>
+            <td>환자 이야기 → 원리 → 안내</td>
+            <td>질문 → 결론 → 근거 → 정리</td>
+            <td>장면 → 생각 → 질문 하나</td>
+          </tr>
+          <tr>
+            <th scope="row">이미지</th>
+            <td>누끼 썸네일 + 원내 실사</td>
+            <td>도해·인포그래픽·표</td>
+            <td>낮은 채도의 사진 한 장</td>
+          </tr>
+          <tr>
+            <th scope="row">맺는 말</th>
+            <td>“이럴 때 오십시오”</td>
+            <td>“정리하면 이렇습니다”</td>
+            <td>“저는 아직 이 질문에 답을 못 했습니다”</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
+    <p class="small muted">사진을 그대로 돌려 쓰는 것이 가장 위험합니다. 같은 사진이 여러 문서에 걸리면 사본 판별에서 먼저 걸립니다. 같은 피사체라도 다른 각도·다른 크롭·다른 도해로 다시 만드십시오.</p>
+
+    <div class="ch">
+      <div class="ch-head">
+        <span class="ch-no">3</span>
+        <div>
+          <h3>긴 영상 하나에서 쇼츠 다섯 채널</h3>
+          <span class="ch-role">역할 · 3초 훅으로 새 사람 만나기</span>
+        </div>
+      </div>
+      <p>긴 영상은 이미 만들어 둔 원본입니다. 여기서 <b>가장 세게 꽂히는 대목 세 개에서 다섯 개</b>를 잘라 냅니다. 새로 찍지 않습니다. 잘라서 자막만 다시 얹습니다.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>제가 쓰는 쇼츠 규격입니다. 채널마다 손볼 곳이 다릅니다.</caption>
+          <thead>
+            <tr><th scope="col">채널</th><th scope="col">길이</th><th scope="col">손보는 곳</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">유튜브 쇼츠</th><td>30~60초</td><td>첫 2초에 결론 자막. 상단에 큰 글씨 두 줄. 긴 영상으로 이어지는 링크.</td></tr>
+            <tr><th scope="row">네이버 클립</th><td>30~60초</td><td>제목에 검색어를 그대로. 네이버 안에서 검색으로도 걸립니다.</td></tr>
+            <tr><th scope="row">틱톡</th><td>15~40초</td><td>더 짧게, 더 세게. 첫 장면부터 결론. 자막 필수.</td></tr>
+            <tr><th scope="row">인스타그램 릴스</th><td>15~30초</td><td>자막을 크게, 저장하고 싶게. 마지막에 한 줄 정리.</td></tr>
+            <tr><th scope="row">당근</th><td>30~60초</td><td>동네 이웃에게 말하듯. 지역명을 넣고, 광고 냄새는 빼고.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
+      <p class="ch-foot"><b>영상에서만 하는 말:</b> 시연과 표정. “이렇게 해 보세요”를 손으로 보여 주는 것. 글로는 안 되는 부분입니다.</p>
+    </div>
+
+    <div class="ch">
+      <div class="ch-head">
+        <span class="ch-no">4</span>
+        <div>
+          <h3>브런치</h3>
+          <span class="ch-role">역할 · 사람으로 남는 글</span>
+        </div>
+      </div>
+      <p>여기는 환자를 데려오는 채널이 아닙니다. <b>“이 원장이 어떤 사람인가”를 남기는 곳</b>입니다. 진료에서 오래 마음에 남은 장면, 답을 못 한 질문, 스승에게 배운 한 줄. 검색으로 들어오는 사람은 적지만, 이 글을 읽고 온 사람은 다릅니다.</p>
+      <p class="ch-foot"><b>주의:</b> 브런치는 작가 승인을 받아야 글을 쓸 수 있습니다. 승인 전에는 임시저장만 쌓아 두고, 승인 뒤에 순서대로 내보내면 됩니다. 진료 이야기는 반드시 일반화하고, 환자가 자기 이야기라고 알아볼 수 있는 디테일은 뺍니다.</p>
+    </div>
+
+    <div class="quote">
+      채널을 늘리는 것보다 <b>채널마다 다른 말을 하는 것</b>이 어렵습니다. 그런데 인공지능 검색 시대에는 그 다른 말이 곧 자산입니다. 같은 말을 열 번 하면 한 번으로 세고, 다른 말을 열 번 하면 열 번으로 셉니다.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ③ 운영 ================= -->
+<section id="loop">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>③</i> 피클 운영 루프</p>
+      <h2>발행은 결심이 아니라 재고로 굴러갑니다</h2>
+      <p>“오늘은 뭘 쓰지”로 시작하면 반드시 끊깁니다. 저는 <b>창고에 미리 쌓아 두고, 기준 이하로 떨어지면 피클이 먼저 알리는</b> 방식으로 바꿨습니다. 이 구조로 바꾼 뒤로 발행이 멈춘 적이 없습니다.</p>
+    </div>
+
+    <ol class="loop">
+      <li>
+        <span class="lt">촬영</span>
+        <p class="lh">금요일 — 몰아서 찍습니다 <em>원장님 몫</em></p>
+        <p>긴 영상 두 편을 한 시간 안에 찍습니다. 대본은 피클이 미리 뽑아 둔 소제목과 근거로 만들고, 저는 앞에 앉아 말하기만 합니다. 이 한 시간이 다음 주 전체의 재료가 됩니다.</p>
+      </li>
+      <li>
+        <span class="lt">생성</span>
+        <p class="lh">그날 밤 — 피클이 초안을 만듭니다 <em>피클 몫</em></p>
+        <p>녹음과 영상에서 키워드·질문·근거를 뽑아, 네이버용 두 편과 티스토리용 한 편을 씁니다. 썸네일 누끼, 도해 인포그래픽, 쇼츠 다섯 편까지 함께 만들어 <b>임시저장 상태로</b> 넣어 둡니다. 아직 세상에 나가지 않습니다.</p>
+      </li>
+      <li>
+        <span class="lt">05:00</span>
+        <p class="lh">매일 새벽 — 재고를 셉니다 <em>자동</em></p>
+        <p>블로그 4편, 티스토리 3편, 쇼츠 7편, 긴 영상 2편. 이 숫자 아래로 떨어지면 그날 아침 보고에 “재고 부족”이 먼저 올라옵니다. 제가 기억하지 않아도 됩니다. <b>재고는 기억이 아니라 숫자로 관리합니다.</b></p>
+      </li>
+      <li>
+        <span class="lt">12:30</span>
+        <p class="lh">점심 — 첫 편이 나갑니다 <em>승인 1회</em></p>
+        <p>아침에 훑어보고 승인하면 12시 30분에 공개됩니다. 손대는 것은 문장 몇 개, 사진 한 장 정도입니다. 고칠 게 없으면 그냥 승인하면 끝입니다.</p>
+      </li>
+      <li>
+        <span class="lt">18:00</span>
+        <p class="lh">저녁 — 둘째 편과 쇼츠가 나갑니다 <em>자동</em></p>
+        <p>이미 승인된 것들이 시간에 맞춰 나갑니다. 저녁 진료가 길어져도 발행은 흔들리지 않습니다. 알림만 오고, 제가 없어도 나갑니다.</p>
+      </li>
+      <li>
+        <span class="lt">주말</span>
+        <p class="lh">일요일 밤 — 다음 주를 한 번에 정합니다 <em>30분</em></p>
+        <p>지난주에 무엇이 걸렸는지, 다음 주에 무엇을 찍을지 한 번에 확인합니다. 이 30분이 없으면 월요일 아침이 다시 “뭘 쓰지”로 시작됩니다.</p>
+      </li>
+    </ol>
+
+    <h3><span class="dot">▪</span> 원장님이 하는 일은 두 가지뿐입니다</h3>
+    <div class="card tint">
+      <div class="grid two">
+        <div>
+          <h4>1. 촬영</h4>
+          <p class="small" style="margin:0;">카메라 앞에 앉아 말하는 일. 이건 아무도 대신할 수 없습니다. 대신 준비는 다 되어 있습니다.</p>
+        </div>
+        <div>
+          <h4>2. 최종 승인</h4>
+          <p class="small" style="margin:0;">환자에게 나가는 말이니까, 마지막 판단은 사람이 해야 합니다. 하루 두 번, 각 5분이면 됩니다.</p>
+        </div>
+      </div>
+    </div>
+    <p class="small muted">정리·검수·업로드·예약·재고 관리는 제가 맡지 않습니다. 20%의 일(촬영과 판단)만 남기고, 80%의 잔일은 넘기는 것이 이 설계의 핵심입니다. 넘길 때 기준을 문서로 정해 두면, 매번 지시하지 않아도 같은 품질로 돌아옵니다.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ④ 체크리스트 ================= -->
+<section id="checklist">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>④</i> 실행반 원장님 적용</p>
+      <h2>이번 주에 셋만 하십시오</h2>
+      <p>처음부터 열 개 채널을 열 필요 없습니다. 아래 세 단계를 순서대로, 한 주에 하나씩. 체크한 것은 이 브라우저에 남습니다.</p>
+    </div>
+
+    <div class="progress" role="status" aria-live="polite">
+      <b id="pgText">0 / 10</b>
+      <div class="bar"><i id="pgBar"></i></div>
+      <span>완료</span>
+      <button class="reset" type="button" id="pgReset">초기화</button>
+    </div>
+
+    <div class="stepblock">
+      <h4><span class="sn">1</span> 채널별 역할을 나눕니다</h4>
+      <p class="sd">채널을 늘리기 전에, 각 채널이 무슨 일을 하는지 한 줄로 정합니다. 역할이 겹치면 글이 겹칩니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s1a"><span><b>네이버 블로그</b>는 국내 환자 유입 — “이럴 때 오십시오”까지 씁니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1b"><span><b>티스토리(또는 구글 블로거)</b>는 인공지능 검색용 — 원리와 근거를 숫자로 씁니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1c"><span><b>영상과 브런치</b>는 얼굴과 철학 — 쇼츠 다섯 채널과 에세이 한 편으로 나눕니다.</span></label>
+    </div>
+
+    <div class="stepblock">
+      <h4><span class="sn">2</span> 인공지능 검색용 구조를 잡습니다</h4>
+      <p class="sd">지금 쓰시는 글 한 편을 골라, 아래 네 가지만 손보십시오. 새로 쓰지 않아도 됩니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s2a"><span>소제목 셋을 <b>환자가 실제로 치는 질문</b>으로 바꿉니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2b"><span>첫 두 줄을 인사말 대신 <b>결론</b>으로 시작합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2c"><span>본문에 <b>수치 하나와 출처 하나</b>(저널·연도·표본)를 넣습니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2d"><span><b>지역·이름·전문성</b>을 글마다 같은 문장으로 고정합니다.</span></label>
+    </div>
+
+    <div class="stepblock">
+      <h4><span class="sn">3</span> 피클에 초안·이미지·재고를 맡깁니다</h4>
+      <p class="sd">맡기는 순간부터 원장님은 촬영과 승인만 하시면 됩니다. 다만 기준은 문서로 남겨야 같은 품질이 돌아옵니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s3a"><span>진료 녹음에서 <b>질문·키워드·근거</b>를 뽑는 지시문을 한 번 만들어 저장합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3b"><span><b>문체·금지 표현·사진 규칙</b>(환자 정보 삭제 포함)을 문서 한 장으로 정해 둡니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3c"><span><b>매일 05시 재고 점검</b>과 12시 30분·18시 발행 알림을 등록합니다.</span></label>
+    </div>
+
+    <div class="quote">
+      이번 주에 하나만 하라면 <b>2단계</b>입니다. 이미 쓰신 글 한 편에 질문형 소제목과 결론 두 줄만 넣어도, 그 글은 다른 글이 됩니다. 도구를 바꾸지 않아도 되고, 돈도 들지 않습니다.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= 안내 ================= -->
+<section id="notes">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>＋</i> 함께 읽을 것</p>
+      <h2>이 페이지에 담지 않은 것</h2>
+      <p>공유용 페이지라서 일부러 뺀 것들이 있습니다. 이유까지 적어 둡니다.</p>
+    </div>
+
+    <div class="card">
+      <ul class="clean">
+        <li><b>환자 사례의 구체 정보</b>는 모두 일반화했습니다. 이름·나이·직업·거주지·날짜가 겹치면 특정됩니다.</li>
+        <li><b>계정 아이디와 비밀번호</b>는 원칙적으로 페이지에 쓰지 않습니다. 링크를 받은 사람이 누구든 열 수 있는 곳이니까요.</li>
+        <li><b>매출·환자 수 같은 숫자</b>도 넣지 않았습니다. 설계를 이해하는 데 필요하지 않고, 남의 눈에 들어갈 이유도 없습니다.</li>
+        <li><b>의료법상 표현</b>은 “치료됩니다·완치·최고” 같은 보장형 문구를 피했습니다. 근거를 붙이는 것과 효과를 보장하는 것은 다릅니다.</li>
+      </ul>
+    </div>
+
+    <h3><span class="dot">▪</span> 참고한 자료</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Aggarwal et al., 「Generative Engine Optimization: How to Dominate AI Search」, KDD 2024 — 생성형 검색 응답에서의 노출 연구(최대 40% 향상, 분야별 차이). <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">arxiv.org/abs/2311.09735</a></li>
+        <li>네이버 검색 공식 블로그, 「UGC 문서 노출 시스템이 더욱 정교하게 개선됩니다」(2025.2.28) — 원본·사본 판별과 저품질 문서 기준. <a href="https://m.blog.naver.com/naver_search/223777208497" target="_blank" rel="noopener">m.blog.naver.com/naver_search/223777208497</a></li>
+        <li>Google Search Central, 「Creating helpful, reliable, people-first content」 — 사람을 먼저 생각한 콘텐츠의 자기 점검 항목. <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">developers.google.com</a></li>
+        <li>제 운영 기록 — 발행 약속 대장, 꼭지 사전, 채널별 서식(2026년 10~11월, 가온자리한의원).</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <p style="margin:0;"><b>이 설계는 정답이 아니라 제 방식입니다.</b> 숫자(주 1회 촬영, 재고 4편, 05시·12시 30분·18시)는 제 한의원 기준으로 맞춘 값입니다. 진료량과 인력에 따라 늘리거나 줄이십시오. 중요한 것은 숫자가 아니라 <b>창고에 쌓아 두고 시간에 내보내는 구조</b>입니다.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-sign"><b>가온자리한의원 박종익 원장</b> · 부산 동래구 온천동 · 2026년 11월 20일</p>
+    <h4>이 페이지에 대하여</h4>
+    <p>이상마 실행반 동료 원장님들께 공유하려고 만든 실전 설계 정리입니다. 링크는 그대로 전달하셔도 됩니다. 내용을 인용하실 때는 출처만 한 줄 남겨 주십시오.</p>
+    <p>피클은 원장님의 촬영·승인 아래에서만 움직입니다. 환자에게 나가는 말의 마지막 판단은 언제나 사람이 합니다.</p>
+    <a class="foot-top" href="#top">맨 위로 ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='pickle-marketing-check-v1';
+  var boxes=[].slice.call(document.querySelectorAll('input[data-ck]'));
+  var bar=document.getElementById('pgBar');
+  var txt=document.getElementById('pgText');
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){saved={};}
+  boxes.forEach(function(b){
+    if(saved[b.getAttribute('data-ck')]) b.checked=true;
+    b.addEventListener('change',function(){
+      if(b.checked) saved[b.getAttribute('data-ck')]=1; else delete saved[b.getAttribute('data-ck')];
+      try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
+      render();
+    });
+  });
+  function render(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    bar.style.width=(boxes.length? (n/boxes.length*100):0)+'%';
+    txt.textContent=n+' / '+boxes.length;
+  }
+  var reset=document.getElementById('pgReset');
+  if(reset) reset.addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false;});
+    saved={}; try{localStorage.removeItem(KEY);}catch(e){}
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
