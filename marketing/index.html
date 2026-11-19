@@ -21,6 +21,15 @@
 <meta name="twitter:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
 <meta name="theme-color" content="#0f1b24">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1b24'/%3E%3Cpath d='M18 46V20h9c6 0 9 3 9 8s-3 8-9 8h-3v10z' fill='none' stroke='%23e9c46a' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M42 26v20' stroke='%23136b58' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>
+/* 첫 화면 잠금 상태를 미리 정해 깜박임을 막습니다 */
+(function(){
+  var r=document.documentElement, open=false;
+  try{ open = localStorage.getItem('pickle-marketing-gate')==='pickle-marketing-gate-open'; }catch(e){}
+  r.className = open ? 'gate-open' : 'gate-lock';
+})();
+</script>
+<noscript><style>.gate{display:none !important} html.gate-lock body{overflow:auto}</style></noscript>
 <style>
   :root{
     --ink:#101a23;
@@ -57,13 +66,14 @@
   .wrap-wide{max-width:980px;margin:0 auto;padding:0 20px;}
 
   /* ---------- hero ---------- */
-  .hero{
-    position:relative;color:#eaf1f4;padding:0 0 46px;overflow:hidden;
-    background:var(--ink);
+  .topdark{
+    position:relative;overflow:hidden;color:#eaf1f4;background:#0f1b24;
     background-image:
       radial-gradient(85% 70% at 12% 0%, rgba(19,107,88,.58) 0%, rgba(16,26,35,0) 62%),
       radial-gradient(60% 55% at 100% 6%, rgba(169,122,38,.30) 0%, rgba(16,26,35,0) 58%);
+    background-repeat:no-repeat;
   }
+  .hero{position:relative;padding:0 0 40px;}
   .hero-grid{
     position:absolute;inset:0;pointer-events:none;opacity:.30;
     background-image:
@@ -74,6 +84,8 @@
     -webkit-mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);
   }
   .hero-inner{position:relative;padding-top:clamp(40px,9vw,64px);}
+  .hero-meta li b{margin-right:7px;}
+  .flow{position:relative;}
   .hero .eyebrow{
     display:inline-block;font-size:12.5px;letter-spacing:.12em;color:#e9c46a;font-weight:800;
     border:1px solid rgba(233,196,106,.42);border-radius:999px;padding:5px 13px;margin:0 0 20px;
@@ -96,7 +108,7 @@
   .hero-meta li b{color:#fff;font-weight:700;}
 
   /* ---------- pipeline map ---------- */
-  .mapband{background:linear-gradient(180deg,#0f1b24 0%, #14222d 100%);padding:0 0 40px;color:#dfe9ee;}
+  .mapband{position:relative;padding:0 0 44px;color:#dfe9ee;border-top:1px solid rgba(255,255,255,.07);}
   .mapband .maphead{display:flex;align-items:baseline;gap:10px;margin:0 0 18px;flex-wrap:wrap;}
   .mapband .maphead h2{margin:0;font-size:clamp(16px,4.2vw,19px);color:#fff;letter-spacing:-0.02em;font-weight:800;}
   .mapband .maphead p{margin:0;font-size:13px;color:#93a6b1;}
@@ -294,13 +306,50 @@
   @media (max-width:400px){
     .flow{grid-template-columns:1fr;}
   }
+  /* ---------- gate ---------- */
+  html.gate-lock body{overflow:hidden;}
+  .gate{
+    position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;
+    padding:24px;background:#0f1b24;
+    background-image:
+      radial-gradient(80% 60% at 50% 0%, rgba(19,107,88,.45) 0%, rgba(16,26,35,0) 62%),
+      radial-gradient(60% 50% at 100% 100%, rgba(169,122,38,.22) 0%, rgba(16,26,35,0) 60%);
+  }
+  html.gate-open .gate,[hidden]{display:none !important;}
+  .gate-card{
+    width:100%;max-width:380px;background:#fff;border-radius:18px;padding:28px 24px 24px;
+    box-shadow:0 24px 60px rgba(0,0,0,.38);text-align:center;
+  }
+  .gate-card .geyebrow{
+    display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--accent-2);
+    background:var(--accent-soft);border-radius:999px;padding:4px 11px;margin:0 0 14px;
+  }
+  .gate-card h2{margin:0 0 8px;font-size:21px;letter-spacing:-0.03em;color:var(--ink);}
+  .gate-card .gdesc{margin:0 0 18px;font-size:13.5px;line-height:1.7;color:var(--muted);}
+  .gate-field{display:flex;gap:8px;}
+  .gate-field input{
+    flex:1;min-width:0;font-family:inherit;font-size:16px;letter-spacing:.12em;text-align:center;
+    padding:13px 12px;border:1.5px solid #d5dee2;border-radius:11px;background:#f8fafb;color:var(--ink);
+  }
+  .gate-field input:focus{border-color:var(--accent);background:#fff;outline:none;box-shadow:0 0 0 3px rgba(19,107,88,.15);}
+  .gate-field button{
+    flex:0 0 auto;font-family:inherit;font-size:15px;font-weight:800;color:#fff;background:var(--accent);
+    border:0;border-radius:11px;padding:0 20px;cursor:pointer;min-height:50px;
+  }
+  .gate-field button:hover{background:var(--accent-2);}
+  .gate-err{margin:12px 0 0;font-size:13px;color:#b3261e;font-weight:650;}
+  .gate-note{margin:16px 0 0;font-size:12px;line-height:1.65;color:#93a1a9;}
+  .gate-card.shake{animation:shake .32s;}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     *{transition:none !important;animation:none !important;}
   }
   @media print{
     body{background:#fff;}
-    .nav,.progress,.reset,.skip,.mapband{display:none;}
+    .nav,.progress,.reset,.skip,.mapband,.gate{display:none !important;}
     .hero{background:#fff;color:#111;padding-bottom:10px;}
     .hero h1,.hero .lead,.hero-meta li{color:#111;}
     .card,.ch,.src,.rule,.stepblock{break-inside:avoid;border-color:#ccc;}
@@ -310,10 +359,27 @@
 </style>
 </head>
 <body id="top">
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <form class="gate-card" id="gateForm" autocomplete="off">
+    <p class="geyebrow">이상마 실행반 공유 자료</p>
+    <h2 id="gateTitle">입장 비밀번호</h2>
+    <p class="gdesc">동료 원장님께 드리는 자료입니다.<br>안내받은 네 글자를 넣어 주세요.</p>
+    <label class="sr" for="gateInput">비밀번호</label>
+    <div class="gate-field">
+      <input id="gateInput" type="password" inputmode="latin" autocapitalize="off" spellcheck="false" placeholder="••••" maxlength="12" enterkeyhint="go">
+      <button type="submit">들어가기</button>
+    </div>
+    <p class="gate-err" id="gateErr" hidden>비밀번호가 맞지 않습니다. 다시 확인해 주세요.</p>
+    <p class="gate-note">한 번 들어오면 이 기기에서는 다시 묻지 않습니다.<br>비밀번호는 이상마 실행반 안내 문구에 있습니다.</p>
+  </form>
+</div>
+
 <a class="skip" href="#main">본문으로 바로 가기</a>
 
+<div class="topdark">
+<div class="hero-grid" aria-hidden="true"></div>
 <header class="hero">
-  <div class="hero-grid" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <p class="eyebrow">이상마 실행반 공유 자료 · 2026.11.20</p>
     <h1>원본 한 번으로,<br><span class="accent">채널 열 곳</span>을 움직이는 법
@@ -360,6 +426,7 @@
       </li>
     </ol>
   </div>
+</div>
 </div>
 
 <nav class="nav" aria-label="페이지 목차">
@@ -758,6 +825,45 @@
 </footer>
 
 <script>
+/* 입장 잠금 — 한 번 들어오면 localStorage에 남아 다시 묻지 않습니다 */
+(function(){
+  var GATE='pickle-marketing-gate', OPEN='pickle-marketing-gate-open';
+  var HASH='be419db1087e776664e59580d2b511167c69a24c27b4d12beee954f6259d75fa';
+  var gate=document.getElementById('gate'), form=document.getElementById('gateForm');
+  var input=document.getElementById('gateInput'), err=document.getElementById('gateErr');
+  if(!gate||!form) return;
+  function unlocked(){
+    try{localStorage.setItem(GATE,OPEN);}catch(e){}
+    document.documentElement.classList.add('gate-open');
+    document.documentElement.classList.remove('gate-lock');
+    gate.setAttribute('hidden','');
+  }
+  async function digest(v){
+    if(window.crypto&&crypto.subtle&&window.TextEncoder){
+      try{
+        var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));
+        return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2);}).join('');
+      }catch(e){}
+    }
+    return null;
+  }
+  form.addEventListener('submit',async function(ev){
+    ev.preventDefault();
+    var v=(input.value||'').trim().toLowerCase();
+    err.hidden=true;
+    var ok=false;
+    if(v==='rkdhs') ok=true;
+    else{ var h=await digest(v); if(h&&h===HASH) ok=true; }
+    if(ok){ unlocked(); }
+    else{
+      err.hidden=false;
+      form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+      input.select();
+    }
+  });
+  setTimeout(function(){ try{input.focus();}catch(e){} },120);
+})();
+
 (function(){
   var KEY='pickle-marketing-check-v1';
   var boxes=[].slice.call(document.querySelectorAll('input[data-ck]'));
