@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>하루 한 번의 녹음이, 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계</title>
-<meta name="description" content="일하면서 남긴 말을 플라우드로 녹음하고, 구글 메일·드라이브에 자동으로 모으고, 노션 데이터베이스로 쌓아 두면, 피클이 채널 열 곳의 문법과 인공지능 검색 구조에 맞게 다시 써서 내보냅니다. 이상마 실행반 공유용 실전 설계.">
+<title>일상은 구글로, 관리는 노션으로 — 피클 삶·마케팅 통합 루프 설계</title>
+<meta name="description" content="플라우드 녹음부터 카톡·영수증·PC 파일·결제 알림·캘린더까지 구글 한곳에 모으고, 노션에는 요약과 상태와 링크만 두고, 하루·주·월·분기·연도 다섯 층의 루프로 굴리면서, 그 위에서 인공지능 검색 최적화와 채널 확산까지 이어지는 피클 활용 설계입니다.">
 <meta name="author" content="박종익">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mujusang.github.io/pickle-guide/marketing/">
 <meta property="og:site_name" content="이상마 실행반 공유 자료">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="하루 한 번의 녹음이, 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계">
-<meta property="og:description" content="플라우드로 남기고, 구글 메일·드라이브로 모으고, 노션에 쌓고, 피클이 채널 문법에 맞게 다시 씁니다. 누구나 자기 일에 그대로 적용하는 실전 설계.">
+<meta property="og:title" content="일상은 구글로, 관리는 노션으로 — 피클 삶·마케팅 통합 루프 설계">
+<meta property="og:description" content="모으는 일은 구글이, 보여 주는 일은 노션이, 돌리는 일은 다섯 층의 루프가. 그 위에서 피클이 채널 열 곳으로 다시 씁니다.">
 <meta property="og:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="하루 한 번의 녹음이 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계 표지">
+<meta property="og:image:alt" content="일상은 구글로, 관리는 노션으로 — 피클 삶·마케팅 통합 루프 설계 표지">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
 <meta name="theme-color" content="#0f1b24">
@@ -32,31 +32,17 @@
 <noscript><style>.gate{display:none !important} html.gate-lock body{overflow:auto}</style></noscript>
 <style>
   :root{
-    --ink:#101a23;
-    --ink-2:#1b2a36;
-    --body:#2f3b47;
-    --muted:#68757f;
-    --line:#e2e7ec;
-    --line-2:#eef1f4;
-    --paper:#ffffff;
-    --bg:#f4f6f8;
-    --accent:#136b58;
-    --accent-2:#0e5446;
-    --accent-soft:#e9f4f0;
-    --gold:#a97a26;
-    --gold-soft:#fbf4e3;
-    --blue:#2f5d8a;
-    --blue-soft:#eaf1f8;
+    --ink:#101a23;--ink-2:#1b2a36;--body:#2f3b47;--muted:#68757f;
+    --line:#e2e7ec;--line-2:#eef1f4;--paper:#ffffff;--bg:#f4f6f8;
+    --accent:#136b58;--accent-2:#0e5446;--accent-soft:#e9f4f0;
+    --gold:#a97a26;--gold-soft:#fbf4e3;--blue:#2f5d8a;--blue-soft:#eaf1f8;
+    --plum:#6b4a7d;--plum-soft:#f2ecf6;
     --radius:14px;
     --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic","Noto Sans KR","Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;-webkit-text-size-adjust:100%;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-  body{
-    margin:0;background:var(--bg);color:var(--body);
-    font-family:var(--sans);font-size:16px;line-height:1.78;letter-spacing:-0.01em;
-    -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;
-  }
+  body{margin:0;background:var(--bg);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.78;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;}
   a{color:var(--accent);text-decoration:none;}
   a:hover{text-decoration:underline;}
   a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(19,107,88,.45);outline-offset:2px;border-radius:4px;}
@@ -65,93 +51,55 @@
   .wrap{max-width:820px;margin:0 auto;padding:0 20px;}
   .wrap-wide{max-width:980px;margin:0 auto;padding:0 20px;}
 
-  /* ---------- hero ---------- */
-  .topdark{
-    position:relative;overflow:hidden;color:#eaf1f4;background:#0f1b24;
-    background-image:
-      radial-gradient(85% 70% at 12% 0%, rgba(19,107,88,.58) 0%, rgba(16,26,35,0) 62%),
-      radial-gradient(60% 55% at 100% 6%, rgba(169,122,38,.30) 0%, rgba(16,26,35,0) 58%);
-    background-repeat:no-repeat;
-  }
+  /* hero */
+  .topdark{position:relative;overflow:hidden;color:#eaf1f4;background:#0f1b24;
+    background-image:radial-gradient(85% 70% at 12% 0%, rgba(19,107,88,.58) 0%, rgba(16,26,35,0) 62%),radial-gradient(60% 55% at 100% 6%, rgba(169,122,38,.30) 0%, rgba(16,26,35,0) 58%);
+    background-repeat:no-repeat;}
   .hero{position:relative;padding:0 0 40px;}
-  .hero-grid{
-    position:absolute;inset:0;pointer-events:none;opacity:.30;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,.12) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.10) 1px, transparent 1px);
+  .hero-grid{position:absolute;inset:0;pointer-events:none;opacity:.30;
+    background-image:linear-gradient(to right, rgba(255,255,255,.12) 1px, transparent 1px),linear-gradient(to bottom, rgba(255,255,255,.10) 1px, transparent 1px);
     background-size:52px 52px;
     mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);
-    -webkit-mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);
-  }
+    -webkit-mask-image:radial-gradient(70% 65% at 50% 0%, #000 0%, transparent 78%);}
   .hero-inner{position:relative;padding-top:clamp(40px,9vw,64px);}
   .hero-meta li b{margin-right:7px;}
-  .hero .eyebrow{
-    display:inline-block;font-size:12.5px;letter-spacing:.12em;color:#e9c46a;font-weight:800;
-    border:1px solid rgba(233,196,106,.42);border-radius:999px;padding:5px 13px;margin:0 0 20px;
-    background:rgba(233,196,106,.07);
-  }
-  .hero h1{
-    margin:0 0 16px;font-size:clamp(27px,6.6vw,44px);line-height:1.3;letter-spacing:-0.04em;font-weight:800;color:#fff;
-  }
+  .hero .eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.12em;color:#e9c46a;font-weight:800;border:1px solid rgba(233,196,106,.42);border-radius:999px;padding:5px 13px;margin:0 0 20px;background:rgba(233,196,106,.07);}
+  .hero h1{margin:0 0 16px;font-size:clamp(26px,6.3vw,42px);line-height:1.32;letter-spacing:-0.04em;font-weight:800;color:#fff;}
   .hero h1 .accent{color:#e9c46a;}
-  .hero h1 .sub{display:block;margin-top:8px;font-size:clamp(15px,3.7vw,20px);line-height:1.55;font-weight:700;color:#c8d7dd;letter-spacing:-0.02em;}
-  .hero .lead{
-    margin:0 0 26px;font-size:clamp(14.5px,3.6vw,16.5px);line-height:1.85;color:#c9d6dd;max-width:660px;
-  }
+  .hero h1 .sub{display:block;margin-top:10px;font-size:clamp(14.5px,3.6vw,19px);line-height:1.6;font-weight:700;color:#c8d7dd;letter-spacing:-0.02em;}
+  .hero .lead{margin:0 0 26px;font-size:clamp(14.5px,3.6vw,16.5px);line-height:1.85;color:#c9d6dd;max-width:680px;}
   .hero .lead b{color:#fff;font-weight:700;}
   .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;}
-  .hero-meta li{
-    font-size:12.5px;line-height:1.5;color:#dce6eb;background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px;
-  }
+  .hero-meta li{font-size:12.5px;line-height:1.5;color:#dce6eb;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px;}
   .hero-meta li b{color:#fff;font-weight:700;}
 
-  /* ---------- pipeline map ---------- */
+  /* map */
   .mapband{position:relative;padding:0 0 44px;color:#dfe9ee;border-top:1px solid rgba(255,255,255,.07);}
   .mapband .maphead{display:flex;align-items:baseline;gap:10px;margin:0 0 18px;flex-wrap:wrap;}
   .mapband .maphead h2{margin:0;font-size:clamp(16px,4.2vw,19px);color:#fff;letter-spacing:-0.02em;font-weight:800;}
   .mapband .maphead p{margin:0;font-size:13px;color:#93a6b1;}
   .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none;position:relative;}
-  .flow li{
-    position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
-    border-radius:12px;padding:14px 14px 15px;
-  }
-  .flow li:after{
-    content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
-    color:rgba(233,196,106,.8);font-size:14px;font-weight:800;
-  }
+  .flow li{position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:14px 14px 15px;}
+  .flow li:after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:rgba(233,196,106,.8);font-size:14px;font-weight:800;}
   .flow li:last-child:after{content:"";}
   .flow .fn{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#e9c46a;margin:0 0 6px;}
   .flow .ft{display:block;font-size:14.5px;font-weight:750;color:#fff;line-height:1.45;margin:0 0 6px;}
   .flow .fd{display:block;font-size:12.5px;line-height:1.62;color:#a9bac3;}
 
-  /* ---------- nav ---------- */
+  /* nav */
   .nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;}
-  .nav-inner{
-    display:flex;gap:8px;overflow-x:auto;padding:11px 20px;max-width:980px;margin:0 auto;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  }
+  .nav-inner{display:flex;gap:8px;overflow-x:auto;padding:11px 20px;max-width:980px;margin:0 auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .nav-inner::-webkit-scrollbar{display:none;}
-  .nav a{
-    flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:650;
-    color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:999px;
-    padding:8px 14px;text-decoration:none;min-height:38px;
-  }
+  .nav a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:650;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;min-height:38px;}
   .nav a:hover{background:var(--accent-soft);border-color:#cfe4dd;text-decoration:none;}
   .nav a span{color:var(--accent);font-weight:800;}
 
-  /* ---------- sections ---------- */
+  /* sections */
   main{padding:6px 0 30px;}
   section{padding:44px 0 6px;scroll-margin-top:64px;}
   .sec-head{margin:0 0 22px;}
-  .sec-kicker{
-    display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.09em;
-    color:var(--accent);margin:0 0 10px;
-  }
-  .sec-kicker i{
-    display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
-    background:var(--accent-soft);color:var(--accent-2);font-style:normal;font-size:13px;font-weight:800;letter-spacing:0;
-  }
+  .sec-kicker{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:.09em;color:var(--accent);margin:0 0 10px;}
+  .sec-kicker i{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent-2);font-style:normal;font-size:13px;font-weight:800;letter-spacing:0;}
   h2{margin:0 0 12px;font-size:clamp(21px,5.2vw,29px);line-height:1.42;letter-spacing:-0.035em;color:var(--ink);font-weight:800;}
   .sec-head p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.82;}
   .sec-head p b{color:var(--body);font-weight:700;}
@@ -171,10 +119,7 @@
   ul.clean li:last-child{margin-bottom:0;}
   ul.clean li:before{content:"";position:absolute;left:2px;top:.74em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
   ul.clean li b{color:var(--ink);font-weight:700;}
-  .quote{
-    background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-    padding:16px 18px;margin:0 0 16px;font-size:15px;line-height:1.85;color:#4a3a19;
-  }
+  .quote{background:var(--gold-soft);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:16px 18px;margin:0 0 16px;font-size:15px;line-height:1.85;color:#4a3a19;}
   .quote b{color:#3a2c10;font-weight:750;}
   .note{background:var(--blue-soft);border:1px solid #d3e2f1;border-radius:12px;padding:16px 18px;margin:0 0 16px;font-size:14px;line-height:1.8;color:#254260;}
   .note b{color:#1b3550;font-weight:750;}
@@ -182,69 +127,59 @@
   .warn b{color:#533709;font-weight:750;}
   .divider{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);margin:34px 0 0;}
 
-  /* ---------- source cards ---------- */
-  .src2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px;}
-  .src{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
-  .src .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--accent-2);background:var(--accent-soft);border-radius:999px;padding:4px 10px;margin:0 0 10px;}
-  .src h4{margin:0 0 8px;font-size:16.5px;}
-  .src p{margin:0;font-size:14px;line-height:1.75;color:var(--body);}
-  .src .fine{margin-top:10px;font-size:12.5px;color:var(--muted);}
-
-  /* ---------- extract list ---------- */
+  /* hub cards */
   .extract{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
   .extract li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 15px;}
   .extract .en{display:block;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.06em;margin:0 0 5px;}
   .extract .et{display:block;font-size:15px;font-weight:750;color:var(--ink);margin:0 0 4px;line-height:1.45;}
   .extract .ed{display:block;font-size:13px;line-height:1.7;color:var(--muted);}
-  .prompt{
-    background:#0f1b24;color:#d8e4ea;border-radius:12px;padding:16px 18px;margin:0 0 16px;
-    font-size:14px;line-height:1.85;border:1px solid #22323f;
-  }
+  .prompt{background:#0f1b24;color:#d8e4ea;border-radius:12px;padding:16px 18px;margin:0 0 16px;font-size:14px;line-height:1.85;border:1px solid #22323f;}
   .prompt .pl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#7fd0b9;margin:0 0 8px;}
   .prompt q{quotes:"“" "”";color:#fff;}
 
-  /* ---------- chain (플라우드 → 구글 → 노션) ---------- */
-  .chain{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
-  .chain li{
-    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;
-    background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:15px 16px;
-  }
-  .chain .cn{
-    display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;
-    background:var(--ink);color:#e9c46a;font-size:14px;font-weight:800;
-  }
-  .chain h4{margin:0 0 5px;font-size:15.5px;}
-  .chain p{margin:0;font-size:14px;line-height:1.75;}
-  .chain .arrow{display:block;text-align:center;color:#c3cfd4;font-size:13px;line-height:1;margin:-6px 0 4px;}
+  /* board cards */
+  .boards{display:grid;gap:12px;margin:0 0 16px;}
+  .board{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:44px 1fr;gap:14px;}
+  .board .bn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--blue-soft);color:var(--blue);font-weight:800;font-size:14px;border:1px solid #d3e2f1;}
+  .board h4{margin:0 0 6px;font-size:16px;}
+  .board p{margin:0;font-size:14px;line-height:1.78;}
+  .board .cols{margin-top:9px;font-size:13px;line-height:1.7;color:var(--ink-2);background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:9px 12px;}
+  .board .cols b{color:var(--blue);font-weight:750;}
 
-  /* ---------- channel ---------- */
+  /* ladder (5 loops) */
+  .ladder{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
+  .ladder li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden;}
+  .ladder .lhead{display:flex;align-items:center;gap:12px;padding:15px 16px 0;}
+  .ladder .tag{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:30px;border-radius:8px;background:var(--ink);color:#e9c46a;font-size:12.5px;font-weight:800;letter-spacing:.02em;padding:0 9px;}
+  .ladder .lname{font-size:16.5px;font-weight:780;color:var(--ink);letter-spacing:-0.02em;line-height:1.4;}
+  .ladder .lbody{padding:10px 16px 16px;}
+  .ladder .lbody p{margin:0 0 8px;font-size:14px;line-height:1.78;}
+  .ladder .lbody p:last-child{margin-bottom:0;}
+  .ladder .lbody b{color:var(--ink);font-weight:700;}
+  .ladder .when{display:inline-block;font-size:12.5px;font-weight:750;color:var(--accent-2);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin:0 0 8px;}
+
+  /* channel */
   .ch{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 14px;}
   .ch-head{display:flex;align-items:flex-start;gap:12px;margin:0 0 12px;}
-  .ch-no{
-    flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
-    background:var(--ink);color:#e9c46a;font-size:14px;font-weight:800;letter-spacing:0;
-  }
+  .ch-no{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--ink);color:#e9c46a;font-size:14px;font-weight:800;}
   .ch-head h3{margin:0;font-size:clamp(17px,4.4vw,20px);line-height:1.4;}
   .ch-role{display:block;margin-top:4px;font-size:13px;font-weight:650;color:var(--accent);}
   .ch p{font-size:15px;line-height:1.8;}
   .ch-foot{margin:12px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);font-size:13.5px;line-height:1.75;color:var(--muted);}
   .ch-foot b{color:var(--body);font-weight:700;}
 
-  /* ---------- four rules ---------- */
+  /* rules */
   .rules{display:grid;gap:12px;margin:0 0 16px;}
   .rule{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:44px 1fr;gap:14px;}
-  .rule .rn{
-    display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;
-    background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:15px;border:1px solid #f0e2c2;
-  }
+  .rule .rn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:15px;border:1px solid #f0e2c2;}
   .rule h4{margin:0 0 6px;font-size:16px;}
   .rule p{margin:0;font-size:14px;line-height:1.78;}
   .rule .ex{margin-top:8px;font-size:13.5px;line-height:1.7;color:var(--ink-2);background:var(--bg);border-radius:8px;padding:9px 12px;border:1px solid var(--line-2);}
   .rule .ex b{color:var(--accent-2);font-weight:750;}
 
-  /* ---------- table ---------- */
+  /* tables */
   .table-wrap{overflow-x:auto;margin:0 0 10px;border:1px solid var(--line);border-radius:12px;background:var(--paper);-webkit-overflow-scrolling:touch;}
-  table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px;}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px;}
   caption{caption-side:top;text-align:left;padding:13px 16px 0;font-size:12.5px;color:var(--muted);font-weight:650;}
   th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-2);line-height:1.68;}
   thead th{background:#f7f9fa;color:var(--ink);font-weight:750;font-size:13.5px;white-space:nowrap;border-bottom:1px solid var(--line);}
@@ -253,90 +188,59 @@
   td b{color:var(--ink);font-weight:700;}
   .scroll-hint{margin:0 0 18px;font-size:12.5px;color:var(--muted);}
 
-  /* ---------- loop timeline ---------- */
+  /* timeline */
   .loop{margin:0 0 16px;padding:0;list-style:none;position:relative;}
   .loop:before{content:"";position:absolute;left:17px;top:12px;bottom:12px;width:2px;background:linear-gradient(180deg,var(--accent),#cfe4dd);}
   .loop li{position:relative;padding:0 0 20px 50px;}
   .loop li:last-child{padding-bottom:0;}
-  .loop .lt{
-    position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);
-    border:2px solid var(--accent);color:var(--accent-2);font-size:11.5px;font-weight:800;
-    display:inline-flex;align-items:center;justify-content:center;line-height:1;
-  }
+  .loop .lt{position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);border:2px solid var(--accent);color:var(--accent-2);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;line-height:1;}
   .loop .lh{margin:0 0 4px;font-size:15.5px;font-weight:780;color:var(--ink);letter-spacing:-0.02em;}
   .loop .lh em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:2px;}
   .loop p{margin:0;font-size:14px;line-height:1.78;color:var(--body);}
   .loop p b{color:var(--ink);font-weight:700;}
 
-  /* ---------- checklist ---------- */
+  /* checklist */
   .stepblock{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 8px;margin:0 0 14px;}
   .stepblock h4{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:16.5px;}
   .stepblock h4 .sn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:800;}
   .stepblock .sd{margin:0 0 12px;font-size:13.5px;color:var(--muted);line-height:1.7;}
   .check{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line-2);cursor:pointer;}
-  .check input{
-    appearance:none;-webkit-appearance:none;flex:0 0 auto;width:22px;height:22px;margin:2px 0 0;border-radius:7px;
-    border:2px solid #c6d2d0;background:#fff;cursor:pointer;position:relative;transition:.15s;
-  }
+  .check input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:22px;height:22px;margin:2px 0 0;border-radius:7px;border:2px solid #c6d2d0;background:#fff;cursor:pointer;position:relative;transition:.15s;}
   .check input:checked{background:var(--accent);border-color:var(--accent);}
-  .check input:checked:after{
-    content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
-  }
+  .check input:checked:after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);}
   .check span{font-size:14.5px;line-height:1.7;color:var(--body);}
   .check span b{color:var(--ink);font-weight:750;}
   .check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px;}
-  .progress{
-    display:flex;align-items:center;gap:12px;background:var(--ink);color:#dbe7ec;border-radius:12px;
-    padding:14px 16px;margin:0 0 18px;font-size:13.5px;
-  }
+  .progress{display:flex;align-items:center;gap:12px;background:var(--ink);color:#dbe7ec;border-radius:12px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;}
   .progress .bar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;}
   .progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2fae8f,#e9c46a);transition:width .25s;}
   .progress b{color:#fff;font-weight:800;white-space:nowrap;}
   .reset{margin-left:6px;background:none;border:1px solid rgba(255,255,255,.28);color:#cfe0e6;border-radius:999px;padding:4px 11px;font-size:12px;font-family:inherit;cursor:pointer;}
   .reset:hover{background:rgba(255,255,255,.1);}
 
-  /* ---------- footer ---------- */
+  /* footer */
   footer{background:#0f1b24;color:#93a6b1;margin-top:44px;padding:34px 0 40px;font-size:13.5px;line-height:1.8;}
   footer h4{color:#fff;margin:0 0 10px;font-size:14.5px;}
   footer a{color:#8fd0bd;}
   footer p{margin:0 0 10px;}
-  footer ul{margin:0 0 16px;padding-left:18px;}
-  footer li{margin-bottom:6px;}
   .foot-sign{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;color:#c7d6dd;margin:0 0 16px;font-size:14px;}
   .foot-sign b{color:#fff;font-weight:750;}
   .foot-top{display:inline-block;margin-top:6px;font-size:13px;color:#8fd0bd;border:1px solid rgba(143,208,189,.35);border-radius:999px;padding:6px 13px;}
 
-  /* ---------- gate ---------- */
+  /* gate */
   html.gate-lock body{overflow:hidden;}
-  .gate{
-    position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;
-    padding:24px;background:#0f1b24;
-    background-image:
-      radial-gradient(80% 60% at 50% 0%, rgba(19,107,88,.45) 0%, rgba(16,26,35,0) 62%),
-      radial-gradient(60% 50% at 100% 100%, rgba(169,122,38,.22) 0%, rgba(16,26,35,0) 60%);
-  }
+  .gate{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px;background:#0f1b24;
+    background-image:radial-gradient(80% 60% at 50% 0%, rgba(19,107,88,.45) 0%, rgba(16,26,35,0) 62%),radial-gradient(60% 50% at 100% 100%, rgba(169,122,38,.22) 0%, rgba(16,26,35,0) 60%);}
   html.gate-open .gate,[hidden]{display:none !important;}
-  .gate-card{
-    width:100%;max-width:380px;background:#fff;border-radius:18px;padding:26px 24px 22px;
-    box-shadow:0 24px 60px rgba(0,0,0,.38);text-align:center;
-  }
+  .gate-card{width:100%;max-width:380px;background:#fff;border-radius:18px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.38);text-align:center;}
   .gate-card .glock{display:block;margin:0 auto 12px;}
-  .gate-card .geyebrow{
-    display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--accent-2);
-    background:var(--accent-soft);border-radius:999px;padding:4px 11px;margin:0 0 14px;
-  }
+  .gate-card .geyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--accent-2);background:var(--accent-soft);border-radius:999px;padding:4px 11px;margin:0 0 14px;}
   .gate-card h2{margin:0 0 8px;font-size:21px;letter-spacing:-0.03em;color:var(--ink);}
   .gate-card .gdesc{margin:0 0 18px;font-size:13.5px;line-height:1.7;color:var(--muted);}
   .gate-field{display:flex;gap:8px;}
-  .gate-field input{
-    flex:1;min-width:0;font-family:inherit;font-size:16px;letter-spacing:.12em;text-align:center;
-    padding:13px 12px;border:1.5px solid #d5dee2;border-radius:11px;background:#f8fafb;color:var(--ink);
-  }
+  .gate-field input{flex:1;min-width:0;font-family:inherit;font-size:16px;letter-spacing:.12em;text-align:center;padding:13px 12px;border:1.5px solid #d5dee2;border-radius:11px;background:#f8fafb;color:var(--ink);}
   .gate-field input:focus{border-color:var(--accent);background:#fff;outline:none;box-shadow:0 0 0 3px rgba(19,107,88,.15);}
-  .gate-field button{
-    flex:0 0 auto;font-family:inherit;font-size:15px;font-weight:800;color:#fff;background:var(--accent);
-    border:0;border-radius:11px;padding:0 20px;cursor:pointer;min-height:50px;
-  }
+  .gate-field button{flex:0 0 auto;font-family:inherit;font-size:15px;font-weight:800;color:#fff;background:var(--accent);border:0;border-radius:11px;padding:0 20px;cursor:pointer;min-height:50px;}
   .gate-field button:hover{background:var(--accent-2);}
   .gate-err{margin:12px 0 0;font-size:13px;color:#b3261e;font-weight:650;}
   .gate-note{margin:16px 0 0;font-size:12px;line-height:1.65;color:#93a1a9;}
@@ -347,25 +251,19 @@
   @media (max-width:720px){
     .flow{grid-template-columns:1fr 1fr;}
     .flow li:after{content:"";}
-    .src2{grid-template-columns:1fr;}
     .extract{grid-template-columns:1fr;}
     .grid.two{grid-template-columns:1fr;}
-    .rule{grid-template-columns:36px 1fr;gap:12px;}
-    .rule .rn{width:32px;height:32px;font-size:14px;}
+    .rule,.board{grid-template-columns:36px 1fr;gap:12px;}
+    .rule .rn,.board .bn{width:32px;height:32px;font-size:14px;}
   }
-  @media (max-width:400px){
-    .flow{grid-template-columns:1fr;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;animation:none !important;}
-  }
+  @media (max-width:400px){ .flow{grid-template-columns:1fr;} }
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none !important;animation:none !important;} }
   @media print{
     body{background:#fff;}
     .nav,.progress,.reset,.skip,.mapband,.gate{display:none !important;}
     .hero{background:#fff;color:#111;padding-bottom:10px;}
     .hero h1,.hero .lead,.hero-meta li{color:#111;}
-    .card,.ch,.src,.rule,.stepblock,.chain li{break-inside:avoid;border-color:#ccc;}
+    .card,.ch,.rule,.stepblock,.board,.ladder li{break-inside:avoid;border-color:#ccc;}
     footer{background:#fff;color:#333;}
     footer h4{color:#111;}
   }
@@ -398,17 +296,17 @@
 <header class="hero">
   <div class="wrap hero-inner">
     <p class="eyebrow">이상마 실행반 공유 자료 · 2026.11.20</p>
-    <h1>하루 한 번의 녹음이,<br><span class="accent">채널 열 곳</span>이 되는 법
-      <span class="sub">피클을 활용한 인공지능 검색 최적화 · 원소스 멀티유즈 설계</span>
+    <h1>일상은 <span class="accent">구글</span>로 모으고,<br>관리는 <span class="accent">노션</span>으로
+      <span class="sub">피클 삶·마케팅 통합 루프 설계 · 인공지능 검색 최적화까지</span>
     </h1>
     <p class="lead">
-      일하면서 남긴 말 한 토막이 그대로 재료가 됩니다. 녹음은 플라우드로 가볍게, 보관은 구글 메일과 드라이브로 자동으로,
-      정리는 노션이 맡습니다. 확산은 피클이 합니다. 상담실이든, 매장이든, 강의실이든, 혼자 하는 사업이든 똑같이 돌아가는 구조입니다.
+      회의에서 한 말, 상담에서 들은 한마디, 영수증 한 장, 예약 알림 하나. 흩어져 있으면 사라지고, 한곳에 모이면 재료가 됩니다.
+      구글에 모으고, 노션에 보이게 두고, 하루·주·월·분기·연도 다섯 층으로 돌리면, 그 위에서 마케팅까지 저절로 굴러갑니다.
     </p>
     <ul class="hero-meta">
-      <li><b>남기기</b> 플라우드 녹음 3분</li>
-      <li><b>모으기</b> 구글 메일 · 드라이브</li>
-      <li><b>쌓기</b> 노션 데이터베이스</li>
+      <li><b>모으기</b> 구글 단일 수신함</li>
+      <li><b>보이기</b> 노션 요약·상태·링크</li>
+      <li><b>돌리기</b> 다섯 층 루프</li>
       <li><b>내보내기</b> 채널 열 곳</li>
     </ul>
   </div>
@@ -418,27 +316,27 @@
   <div class="wrap-wide">
     <div class="maphead">
       <h2>설계도 한 장</h2>
-      <p>이 네 칸이 전부입니다. 아래에서 하나씩 풀어 봅니다.</p>
+      <p>네 칸이 전부입니다. 아래에서 하나씩 풀어 봅니다.</p>
     </div>
     <ol class="flow">
       <li>
-        <span class="fn">① 남기기</span>
-        <span class="ft">일상에서 플라우드로 녹음</span>
-        <span class="fd">회의·상담·강의·아이디어, 3분이면 됩니다.</span>
+        <span class="fn">① 모으기</span>
+        <span class="ft">구글 한곳으로</span>
+        <span class="fd">녹음·카톡·영수증·파일·알림·일정.</span>
       </li>
       <li>
-        <span class="fn">② 모으기</span>
-        <span class="ft">구글 메일·드라이브로</span>
-        <span class="fd">요약과 원문이 자동으로 도착합니다.</span>
+        <span class="fn">② 보이기</span>
+        <span class="ft">노션에 요약과 상태만</span>
+        <span class="fd">무거운 원본은 구글에 두고, 링크만.</span>
       </li>
       <li>
-        <span class="fn">③ 쌓기</span>
-        <span class="ft">노션 데이터베이스로 정리</span>
-        <span class="fd">주제·날짜·상태별로 피클이 깔끔하게.</span>
+        <span class="fn">③ 돌리기</span>
+        <span class="ft">하루·주·월·분기·연도</span>
+        <span class="fd">다섯 층이 서로를 받쳐 줍니다.</span>
       </li>
       <li>
         <span class="fn">④ 내보내기</span>
-        <span class="ft">채널 문법으로 다시 쓰기</span>
+        <span class="ft">검색 최적화 · 채널 확산</span>
         <span class="fd">같은 재료, 다른 그릇. 복사는 금지.</span>
       </li>
     </ol>
@@ -448,156 +346,246 @@
 
 <nav class="nav" aria-label="페이지 목차">
   <div class="nav-inner">
-    <a href="#source"><span>①</span> 남기기</a>
-    <a href="#archive"><span>②</span> 모으기 · 쌓기</a>
-    <a href="#channels"><span>③</span> 채널별 문법</a>
-    <a href="#loop"><span>④</span> 운영 루프</a>
-    <a href="#checklist"><span>⑤</span> 3단계 체크리스트</a>
+    <a href="#collect"><span>①</span> 구글 수집 허브</a>
+    <a href="#notion"><span>②</span> 노션 관리 허브</a>
+    <a href="#loops"><span>③</span> 5단계 루프</a>
+    <a href="#search"><span>④</span> 검색 최적화</a>
+    <a href="#checklist"><span>⑤</span> 시작 3단계</a>
     <a href="#notes">보안·출처</a>
   </div>
 </nav>
 
 <main id="main">
 
-<!-- ================= ① 남기기 ================= -->
-<section id="source">
+<!-- ================= ① 구글 수집 허브 ================= -->
+<section id="collect">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>①</i> 원소스 입력</p>
-      <h2>잘 쓰려고 애쓰는 대신, 일단 말해 두십시오</h2>
-      <p>글을 열 개 채널에 뿌리려면 재료도 열 벌쯤 있어야 할까요. 아닙니다. <b>좋은 원본 하나면 열 벌이 나옵니다.</b> 그래서 순서를 바꿔야 합니다. 쓰는 시간을 줄이는 게 아니라, 말하는 순간을 남기는 것이죠. 이미 하고 있는 말을 남기면 됩니다.</p>
+      <p class="sec-kicker"><i>①</i> 데이터 수집 허브</p>
+      <h2>모으는 곳을 하나로 정하면, 나머지가 쉬워집니다</h2>
+      <p>일이 흩어지는 이유는 대개 게을러서가 아니라 <b>들어오는 문이 너무 많아서</b>입니다. 카톡, 문자, 메일, 사진첩, 수첩, 머릿속. 문을 하나로 줄이면 정리할 것도 하나로 줄어듭니다. 저는 그 문을 구글로 정했습니다.</p>
     </div>
 
-    <ul class="extract">
-      <li>
-        <span class="en">01</span>
-        <span class="et">회의 · 미팅</span>
-        <span class="ed">결정된 것과 보류된 것. 말로만 오가던 근거와 이유가 여기 남습니다.</span>
-      </li>
-      <li>
-        <span class="en">02</span>
-        <span class="et">상담 · 고객 응대</span>
-        <span class="ed">고객이 자기 문제를 표현한 말이 곧 검색어입니다. 이게 가장 값진 재료입니다.</span>
-      </li>
-      <li>
-        <span class="en">03</span>
-        <span class="et">강의 · 설명</span>
-        <span class="ed">남에게 설명하는 말은 원래 구조가 잡혀 있습니다. 그대로 글이 됩니다.</span>
-      </li>
-      <li>
-        <span class="en">04</span>
-        <span class="et">떠오른 생각</span>
-        <span class="ed">운전대에서, 샤워하다가. 30초만 말해 두면 다음 날 초안이 됩니다.</span>
-      </li>
-    </ul>
-
-    <h3><span class="dot">▪</span> 플라우드(Plaud) 한 번 켜 두면 끝나는 일</h3>
-    <div class="card">
-      <ul class="clean">
-        <li><b>하루 한 번, 3분.</b> 길게 잘하려고 하지 마십시오. 오늘 있었던 일 하나, 고객이 물은 것 하나, 내가 판단한 이유 하나. 이 셋이면 충분합니다.</li>
-        <li><b>말할 때 결론부터.</b> “오늘 상담에서 이 얘기가 나왔는데, 결론은 이렇습니다”로 시작하면 요약이 정확해집니다.</li>
-        <li><b>숫자를 말로 넣으십시오.</b> “3주쯤 걸립니다”가 “오래 걸립니다”보다 백 배 쓸모 있습니다. 나중에 근거가 됩니다.</li>
-        <li><b>질문을 소리 내어 던지십시오.</b> “그런데 이건 왜 그럴까요?” 하고 말해 두면, 그 문장이 그대로 소제목이 됩니다.</li>
-        <li><b>이름은 빼고 말하는 습관.</b> 고객 이름·연락처·계약 금액은 말하지 않는 것이 가장 안전합니다. 말버릇으로 만들어 두면 나중에 지울 일이 없습니다.</li>
-      </ul>
-    </div>
-
-    <div class="prompt">
-      <span class="pl">피클에게 이렇게 한 번만 말하면 됩니다</span>
-      <q>이 녹음에서 (1) 고객이 실제로 물은 질문 10개, (2) 다시 쓸 만한 숫자와 사례 5개, (3) 제목으로 쓸 만한 표현 5개를 표로 뽑아 줘. 이름·연락처·금액은 빼고, 사례는 일반화해서 정리해.</q>
-    </div>
-
-    <div class="warn">
-      <p><b>녹음 전에 한 가지만 정하십시오.</b> 고객과 만나는 자리라면 “기록용으로 녹음하겠습니다” 한마디를 먼저 하면 됩니다. 상대가 꺼리면 그 자리는 빼고, 내 생각만 따로 녹음하십시오.</p>
-      <p style="margin-bottom:0;">회의 녹음도 마찬가지입니다. 참석자 이름을 부르지 않고 “담당자분”이라고 말하는 습관만 들이면, 나중에 공유해도 문제 될 것이 거의 없습니다.</p>
-    </div>
-
-    <div class="quote">
-      원본을 남기는 데 드는 시간은 <b>하루 3분</b>입니다. 그 3분이 없으면 저녁에 두 시간을 써도 글이 얄팍해집니다. 재료가 없어서 문장을 꾸미게 되니까요.
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ================= ② 모으기 · 쌓기 ================= -->
-<section id="archive">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker"><i>②</i> 자동 보관</p>
-      <h2>모으는 일은 구글이, 정리하는 일은 피클이</h2>
-      <p>녹음을 남겼는데 어디론가 흩어지면 아무 일도 일어나지 않습니다. <b>한 곳에 자동으로 모이고, 보기 좋게 정리되어야</b> 다음 단계가 됩니다. 여기서 사람이 손대는 일은 없습니다.</p>
-    </div>
-
-    <ul class="chain">
-      <li>
-        <span class="cn">1</span>
-        <div>
-          <h4>플라우드가 요약을 만들어 내 구글 메일로 보냅니다</h4>
-          <p>플라우드 앱에서 받는 사람을 내 지메일 주소로 지정해 두면, 녹음이 끝나고 스크립트가 정리된 뒤에 요약과 원문이 메일로 자동 도착합니다. 손으로 옮길 것이 없습니다.</p>
-        </div>
-      </li>
-      <li>
-        <span class="cn">2</span>
-        <div>
-          <h4>원본 파일은 드라이브 폴더에 한곳으로</h4>
-          <p>플라우드 계정을 구글 드라이브와 연결해 두거나, 내려받은 파일을 <b>‘원소스’ 폴더 하나</b>에 모읍니다. 폴더 이름과 규칙만 정해 두면 나중에 피클이 찾기 쉽습니다.</p>
-        </div>
-      </li>
-      <li>
-        <span class="cn">3</span>
-        <div>
-          <h4>피클이 메일과 드라이브를 읽어 노션에 쌓습니다</h4>
-          <p>“지난 한 주 플라우드 요약 메일과 드라이브 원본을 훑어서, 노션 ‘원소스 창고’에 한 줄씩 정리해 줘.” 이 한마디로 표가 채워집니다. 사람은 훑어보기만 합니다.</p>
-        </div>
-      </li>
-    </ul>
-
-    <h3><span class="dot">▪</span> 노션에 만드는 표 — 열은 여섯 개면 충분합니다</h3>
+    <h3><span class="dot">▪</span> 여섯 갈래로 들어오는 것을 한 수신함에</h3>
     <div class="table-wrap">
       <table>
-        <caption>‘원소스 창고’ 데이터베이스. 이 여섯 열이 재고 관리의 뼈대가 됩니다.</caption>
+        <caption>‘단일 수신함’ 전략. 무엇이든 일단 구글 안으로 들어오게 만듭니다.</caption>
         <thead>
-          <tr><th scope="col">열</th><th scope="col">무엇을 적나</th><th scope="col">왜 필요한가</th></tr>
+          <tr><th scope="col">들어오는 것</th><th scope="col">어떻게 모으나</th><th scope="col">어디에 쌓이나</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">제목</th><td>한 줄로 붙인 이름</td><td>나중에 찾을 때 쓰는 유일한 열쇠</td></tr>
-          <tr><th scope="row">날짜</th><td>녹음한 날</td><td>계절·시기가 있는 소재인지 판단</td></tr>
-          <tr><th scope="row">주제</th><td>묶음 이름(상담·가격·시공·후기 등)</td><td>채널별로 돌려 쓸 때 기준</td></tr>
-          <tr><th scope="row">핵심 3줄</th><td>결론·숫자·질문</td><td>글 쓸 때 이 세 줄만 보고 시작</td></tr>
-          <tr><th scope="row">원본 링크</th><td>메일·드라이브 파일 주소</td><td>근거 확인이 필요할 때 바로</td></tr>
-          <tr><th scope="row">상태</th><td>씨앗 → 초안 → 승인 → 발행</td><td><b>재고가 몇 개인지 이 열 하나로 보입니다</b></td></tr>
+          <tr><th scope="row">말과 회의</th><td>플라우드로 녹음하면 요약과 원문이 메일로 자동 도착</td><td>지메일 라벨 ‘음성기록’</td></tr>
+          <tr><th scope="row">카톡 대화</th><td>대화 내보내기로 텍스트를 뽑아 내 메일로 보내기</td><td>드라이브 ‘카톡’ 폴더</td></tr>
+          <tr><th scope="row">종이·영수증·명함</th><td>휴대폰으로 찍으면 자동 업로드</td><td>드라이브 ‘스캔’ 폴더</td></tr>
+          <tr><th scope="row">PC 파일</th><td>드라이브 동기화 폴더 하나를 작업 폴더로 지정</td><td>드라이브 (스트리밍)</td></tr>
+          <tr><th scope="row">결제·예약 알림</th><td>메일 필터로 제목·발신자 기준 자동 라벨</td><td>지메일 라벨 ‘결제’·‘예약’</td></tr>
+          <tr><th scope="row">일정</th><td>업무·가족·개인 캘린더를 구글 캘린더 하나에 색으로 구분</td><td>구글 캘린더</td></tr>
         </tbody>
       </table>
     </div>
     <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
 
-    <div class="card tint">
-      <h4>왜 굳이 노션인가</h4>
-      <p class="small" style="margin-bottom:8px;">메일함은 읽는 곳이고, 드라이브는 보관하는 곳입니다. 둘 다 “무엇이 아직 안 나갔는지”는 알려주지 않습니다.</p>
-      <p class="small" style="margin-bottom:0;">노션 표는 <b>상태</b>를 볼 수 있습니다. 씨앗이 몇 개인지, 초안이 몇 개 쌓였는지, 발행이 언제 끊겼는지가 한눈에 보입니다. 콘텐츠가 끊기는 이유는 대개 재료가 없어서가 아니라, 무엇이 남았는지 몰라서입니다.</p>
+    <div class="grid two">
+      <div class="card">
+        <h4>왜 구글인가</h4>
+        <p class="small" style="margin:0;">검색이 되고, 어디서든 열리고, 피클이 읽을 수 있기 때문입니다. 메일과 드라이브와 캘린더가 한 계정 안에 있어서 <b>서로를 가리킬 수</b> 있습니다. “그때 그 상담이 언제였지”를 한 번에 찾습니다.</p>
+      </div>
+      <div class="card">
+        <h4>왜 하나여야 하나</h4>
+        <p class="small" style="margin:0;">두 곳에 나뉘면 두 곳을 다 뒤져야 합니다. 뒤지다 지치면 안 찾게 되고, 안 찾으면 없는 것과 같습니다. <b>찾을 수 없는 기록은 기록이 아닙니다.</b></p>
+      </div>
     </div>
 
-    <div class="prompt">
-      <span class="pl">정리 지시문 — 한 번 만들어 저장해 두고 매주 씁니다</span>
-      <q>지난 한 주 동안 내 구글 메일로 온 플라우드 요약과 드라이브 ‘원소스’ 폴더를 확인해서, 노션 ‘원소스 창고’ 데이터베이스에 항목별로 한 줄씩 넣어 줘. 열은 제목·날짜·주제·핵심 3줄·원본 링크·상태이고, 상태는 ‘씨앗’으로. 이미 있는 항목과 겹치면 새로 만들지 말고 합쳐 줘. 고객 이름·연락처·금액은 빼고.</q>
+    <h3><span class="dot">▪</span> 모은 것을 ‘쓸 수 있게’ 만드는 세 가지 습관</h3>
+    <div class="board">
+      <span class="bn">1</span>
+      <div>
+        <h4>이름을 규칙대로 붙입니다</h4>
+        <p>날짜를 앞에, 주제를 뒤에. 예를 들어 <b>2026-11-18 상담_견적문의</b>처럼. 규칙이 없으면 나중에 검색이 안 되고, 검색이 안 되면 다시 만들게 됩니다.</p>
+      </div>
+    </div>
+    <div class="board">
+      <span class="bn">2</span>
+      <div>
+        <h4>라벨은 다섯 개를 넘기지 않습니다</h4>
+        <p>음성기록, 결제, 예약, 고객, 아이디어. 이 정도면 충분합니다. 라벨이 스무 개가 되면 고르는 데 시간이 걸려서 아무도 안 씁니다.</p>
+      </div>
+    </div>
+    <div class="board">
+      <span class="bn">3</span>
+      <div>
+        <h4>매일 5분, 받은편지함을 비웁니다</h4>
+        <p>읽고 라벨 붙이고 닫습니다. 답장이 필요한 것만 남깁니다. 이 5분이 없으면 일주일 뒤에 메일 300통을 다시 읽어야 합니다.</p>
+      </div>
     </div>
 
-    <div class="note">
-      <p style="margin:0;"><b>공유 범위를 먼저 정하십시오.</b> 노션 페이지는 기본이 비공개입니다. 원소스 창고는 나만 보는 상태로 두고, 발행이 끝난 글만 공개 링크로 돌리는 식이 안전합니다. 드라이브 폴더도 ‘링크가 있는 사람’이 아니라 ‘특정 사용자’로 두는 편이 낫습니다.</p>
+    <div class="quote">
+      수집은 <b>일을 줄이는 일</b>입니다. 오늘 흘려보낸 말이 다음 달의 원고가 되고, 지난달 영수증이 이번 달 정산이 됩니다. 버리지 않고 한곳에 두는 것만으로 절반은 끝납니다.
+    </div>
+
+    <div class="warn">
+      <p><b>모으기 전에 선을 하나 그으십시오.</b> 고객 이름·연락처·주민번호·계좌번호·계약 금액은 수집 대상이 아닙니다. 필요한 것은 ‘무슨 일이 있었는가’이지 ‘누구였는가’가 아닙니다.</p>
+      <p style="margin-bottom:0;">녹음은 상대에게 한마디 먼저, 사진은 얼굴과 명찰이 걸리지 않게. 클라우드 계정은 2단계 인증을 켜 두십시오. 한 번 뚫리면 모아 둔 것이 전부 뚫립니다.</p>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ================= ③ 채널 ================= -->
-<section id="channels">
+<!-- ================= ② 노션 관리 허브 ================= -->
+<section id="notion">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>③</i> 채널별 문법 변주</p>
-      <h2>노션에 쌓인 재료를, 채널마다 다른 말로</h2>
-      <p>여기서 많이들 미끄러집니다. 블로그에 쓴 글을 그대로 다른 블로그에 복사해 붙이는 것. <b>그건 새 콘텐츠가 아니라 사본입니다.</b> 네이버는 원본과 사본을 판별하는 체계를 따로 두고 있습니다. 같은 글을 여러 곳에 올리면 한 곳만 남고 나머지는 밀립니다.</p>
+      <p class="sec-kicker"><i>②</i> 표현·일정 관리 허브</p>
+      <h2>구글은 창고, 노션은 지도입니다</h2>
+      <p>모으기만 하면 창고가 됩니다. 창고에서는 “무엇이 남았는지”가 안 보입니다. 그래서 노션에는 <b>요약과 상태와 링크만</b> 올립니다. 무거운 원본은 구글에 그대로 두고, 노션은 손가락으로 짚는 지도 역할만 합니다.</p>
+    </div>
+
+    <div class="note">
+      <p style="margin:0;"><b>이 원칙 하나만 지키면 노션이 느려지지 않습니다.</b> 파일을 노션에 올리지 않고, 긴 원문을 붙여 넣지 않습니다. 노션 한 줄에는 ‘제목 · 한 줄 요약 · 상태 · 구글 링크’만. 나머지는 필요할 때 링크로 들어가서 봅니다.</p>
+    </div>
+
+    <h3><span class="dot">▪</span> 노션에 두는 다섯 개의 판</h3>
+    <div class="boards">
+      <div class="board">
+        <span class="bn">1</span>
+        <div>
+          <h4>일일 체크리스트</h4>
+          <p>오늘 할 일 세 개에서 다섯 개. 많으면 아무것도 못 합니다. 끝낸 것은 지우지 않고 완료로 표시해서, 저녁에 “오늘 이것은 했다”가 남게 합니다.</p>
+          <div class="cols"><b>열</b> 할 일 · 언제까지 · 상태 · 메모</div>
+        </div>
+      </div>
+      <div class="board">
+        <span class="bn">2</span>
+        <div>
+          <h4>통합 실행 보드</h4>
+          <p>일이 어디쯤 왔는지 한 장으로 봅니다. 상태는 세 개면 충분합니다. 진행중, 확인대기(내 결정이나 남의 회신을 기다리는 것), 완료. ‘확인대기’를 따로 두는 순간 막힌 일이 눈에 보입니다.</p>
+          <div class="cols"><b>열</b> 일 · 담당 · 상태 · 기한 · 관련 링크</div>
+        </div>
+      </div>
+      <div class="board">
+        <span class="bn">3</span>
+        <div>
+          <h4>콘텐츠 재고 현황판</h4>
+          <p>글과 영상이 몇 편 남았는지 셉니다. 씨앗, 초안, 승인, 발행 네 단계. 재고가 기준 아래로 떨어지면 그때 채우면 늦습니다. 미리 쌓아 두는 것이 이 판의 목적입니다.</p>
+          <div class="cols"><b>열</b> 제목 · 주제 · 상태 · 채널 · 발행 예정일 · 원본 링크</div>
+        </div>
+      </div>
+      <div class="board">
+        <span class="bn">4</span>
+        <div>
+          <h4>분야별 서재</h4>
+          <p>읽은 것, 인용할 것, 내 문장. 책·논문·기사에서 건진 한 줄을 분야별로 쌓아 둡니다. 글을 쓸 때 빈 화면을 마주하지 않는 이유가 여기 있습니다.</p>
+          <div class="cols"><b>열</b> 제목 · 분야 · 인용 문장 · 출처 · 내 메모</div>
+        </div>
+      </div>
+      <div class="board">
+        <span class="bn">5</span>
+        <div>
+          <h4>고정지출·만기 대장</h4>
+          <p>매달 나가는 돈과 끝나는 날. 구독, 보험, 정기점검, 카드 결제일. 한 번 적어 두면 “이번 달에 뭐 나가지”를 다시 세지 않아도 됩니다.</p>
+          <div class="cols"><b>열</b> 항목 · 금액 · 결제일 · 만기일 · 자동결제 여부</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="board" style="display:block;">
+      <span class="small muted">이 다섯 판은 따로 놀지 않습니다. 체크리스트에서 끝낸 일이 실행 보드에 쌓이고, 실행 보드의 ‘확인대기’가 아침 브리핑에 올라오고, 재고 현황판이 비면 발행 알림이 먼저 울립니다. <b>판끼리 연결되어 있으면 사람이 기억하지 않아도 됩니다.</b></span>
+    </p>
+
+    <div class="prompt">
+      <span class="pl">피클에게 이렇게 말하면 판이 채워집니다</span>
+      <q>지난 한 주 구글 메일과 드라이브를 훑어서, 노션 ‘원소스 창고’에 제목·날짜·주제·핵심 3줄·원본 링크·상태(씨앗)로 한 줄씩 넣어 줘. 겹치는 항목은 새로 만들지 말고 합치고, 이름·연락처·금액은 빼고. 끝나면 실행 보드의 확인대기 목록도 같이 정리해 줘.</q>
+    </div>
+
+    <div class="grid two">
+      <div class="card tint">
+        <h4>노션이 잘하는 것</h4>
+        <p class="small" style="margin:0;">상태를 보여 주고, 순서를 바꾸고, 오늘 볼 것만 골라 보여 주는 일. 사람이 판단하는 자리를 만들어 줍니다.</p>
+      </div>
+      <div class="card tint">
+        <h4>구글이 잘하는 것</h4>
+        <p class="small" style="margin:0;">큰 파일을 오래 보관하고, 어디서든 열고, 원문을 그대로 두는 일. 노션에 이걸 시키면 느려집니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ③ 5단계 루프 ================= -->
+<section id="loops">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>③</i> 5단계 순환 루프</p>
+      <h2>하루가 돌고, 그 위에서 한 주가 돌고, 그 위에서 한 달이 돕니다</h2>
+      <p>계획이 무너지는 이유는 의지가 약해서가 아니라 <b>층이 하나뿐이어서</b>입니다. 하루 계획만 있으면 한 주가 흔들릴 때마다 전부 무너집니다. 층을 다섯으로 나누면, 하루가 망가져도 주간이 받아 줍니다.</p>
+    </div>
+
+    <ul class="ladder">
+      <li>
+        <div class="lhead"><span class="tag">하루</span><span class="lname">새벽에 훑고, 낮에 모으고, 밤에 닫습니다</span></div>
+        <div class="lbody">
+          <span class="when">매일 · 손대는 시간 15분</span>
+          <p><b>새벽(자동)</b> 메일·일정·재고를 피클이 훑어 아침 브리핑을 만듭니다. 오늘의 약속, 어제 못 한 것, 재고가 부족한 채널.</p>
+          <p><b>아침(5분)</b> 브리핑을 읽고 오늘 할 일 세 개를 정합니다. 이 세 개만 체크리스트에 올립니다.</p>
+          <p><b>낮(수집)</b> 일하면서 그대로 녹음하고, 영수증은 찍고, 회의는 메일로 남깁니다. 따로 정리하지 않습니다.</p>
+          <p><b>밤(10분)</b> 오늘 한 일을 한 줄로 남기고, 내일 세 개를 미리 세팅합니다. 아침에 고민하지 않게 만드는 것이 밤의 일입니다.</p>
+        </div>
+      </li>
+      <li>
+        <div class="lhead"><span class="tag">일주일</span><span class="lname">주중에 처리하고, 주말에 다음 주를 통째로 정합니다</span></div>
+        <div class="lbody">
+          <span class="when">주 1회 고정 · 30분</span>
+          <p><b>주중(월~목)</b> 실행 보드에 쌓인 일을 처리합니다. 이때 새 계획을 세우지 않습니다. 정해진 것을 하는 주입니다.</p>
+          <p><b>주 1회 고정 시간(주간 배치 컨펌)</b> 다음 주 일정과 콘텐츠를 한 번에 확정합니다. 요일을 정해 두고 그 시간에는 아무것도 잡지 않습니다. 저는 일요일 밤으로 정해 두었습니다.</p>
+          <p><b>확인하는 것</b> 지난주에 무엇이 막혔는지, 다음 주에 무엇을 찍고 무엇을 쓸지, 재고가 몇 편인지. 셋만 보면 됩니다.</p>
+        </div>
+      </li>
+      <li>
+        <div class="lhead"><span class="tag">한 달</span><span class="lname">나가는 돈과 끝나는 날을 한 번에 봅니다</span></div>
+        <div class="lbody">
+          <span class="when">월 1회 · 20분</span>
+          <p><b>고정지출 점검</b> 대장을 열고 실제 결제 내역과 맞춰 봅니다. 안 쓰는 구독은 이때 하나씩 정리합니다. 한 달에 하나만 줄여도 1년이면 열두 개입니다.</p>
+          <p><b>만기·갱신</b> 보험, 정기점검, 계약 갱신, 카드 결제일. 미리 알면 협상할 수 있고, 놓치면 할증됩니다.</p>
+          <p><b>재고 보충</b> 블로그 4편, 티스토리 3편, 짧은 영상 7편, 긴 영상 2편. 이 숫자를 기준으로 채웁니다.</p>
+        </div>
+      </li>
+      <li>
+        <div class="lhead"><span class="tag">분기</span><span class="lname">잘 되는 것만 남기고, 안 되는 루틴은 버립니다</span></div>
+        <div class="lbody">
+          <span class="when">3개월마다 · 1시간</span>
+          <p><b>프로젝트 중간 점검</b> 진행중인 큰일 세 개만 골라 “계속 갈 것인가”를 묻습니다. 계속 갈 것이면 다음 3개월에 무엇을 끝낼지 한 줄로 적습니다.</p>
+          <p><b>성과 보기</b> 어떤 질문으로 사람이 들어왔는지, 어떤 글이 오래 읽혔는지. 숫자보다 <b>문장</b>을 봅니다. “이 검색어로 들어왔구나”가 다음 글의 제목이 됩니다.</p>
+          <p><b>루틴 가지치기</b> 3개월 동안 한 번도 안 쓴 판·라벨·알림은 지웁니다. 남기는 것보다 버리는 것이 어렵고, 버리는 쪽이 효과가 큽니다.</p>
+        </div>
+      </li>
+      <li>
+        <div class="lhead"><span class="tag">연도</span><span class="lname">한 해에 한 번씩 오는 일을 미리 자리에 놓습니다</span></div>
+        <div class="lbody">
+          <span class="when">연 1회 · 반나절</span>
+          <p><b>선배치</b> 세금 신고, 차량 정비, 보험 갱신, 가족 행사, 학교 일정. 날짜가 정해진 일은 1월에 캘린더에 미리 박아 둡니다. 그때 생각하자고 하면 반드시 놓칩니다.</p>
+          <p><b>목표 세 개</b> 올해 끝내고 싶은 것 세 개. 열 개를 적으면 하나도 안 남습니다.</p>
+          <p><b>아카이브 회고</b> 한 해 동안 쌓인 기록에서 다시 쓸 것을 골라 ‘서재’로 옮깁니다. 지난해의 말이 올해의 글이 됩니다.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="quote">
+      다섯 층의 핵심은 <b>위층이 아래층을 구속하지 않는 것</b>입니다. 하루가 무너져도 주간이 있고, 주간을 놓쳐도 월간이 있습니다. 한 번의 실수로 전체가 무너지지 않는 구조가 오래 갑니다.
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ④ 검색 최적화 ================= -->
+<section id="search">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>④</i> 그 위에서 굴러가는 확산</p>
+      <h2>모아 둔 재료가, 채널 열 곳의 글이 됩니다</h2>
+      <p>여기까지 갖추면 재료는 이미 있습니다. 남은 것은 <b>채널마다 다른 문법으로 다시 쓰는 일</b>입니다. 같은 글을 복사해 붙이면 사본으로 걸러집니다. 네이버는 원본과 사본을 판별하는 체계를 따로 두고 있습니다.</p>
     </div>
 
     <div class="ch">
@@ -610,11 +598,11 @@
       </div>
       <p>우리 동네에서 “동래 상담 잘하는 곳”을 검색하는 사람은 대개 네이버에서 시작합니다. 그래서 이 채널은 <b>읽기 편함</b>이 기술보다 앞섭니다. 사람들은 휴대폰으로, 이동 중에, 한 손으로 봅니다.</p>
       <ul class="clean">
-        <li><b>한 문장 한 줄, 문단 사이는 띄웁니다.</b> 스크롤을 내리다 지치지 않게. 제 글의 기본값입니다.</li>
-        <li><b>첫 화면에 대표 이미지.</b> 배경을 지운 누끼 썸네일이 눈에 잘 들어옵니다. 사진 위 글씨는 크게, 세 단어 이내로.</li>
+        <li><b>한 문장 한 줄, 문단 사이는 띄웁니다.</b> 스크롤을 내리다 지치지 않게.</li>
+        <li><b>첫 화면에 대표 이미지.</b> 배경을 지운 누끼 썸네일이 눈에 잘 들어옵니다. 글씨는 크게, 세 단어 이내로.</li>
         <li><b>직접 찍은 사진을 섞습니다.</b> 그 자체로 “내가 여기 있다”는 증거입니다. 빌려온 사진은 반대로 독이 됩니다.</li>
         <li><b>이야기로 시작합니다.</b> “오늘 이런 문의가 왔습니다”로 시작해 원리로 넘어가면 끝까지 읽힙니다.</li>
-        <li><b>위치 태그와 해시태그</b>는 넣되, 해시태그는 맨 아래에 몰아 둡니다. 본문 중간에 박으면 글이 광고로 읽힙니다.</li>
+        <li><b>해시태그는 맨 아래에</b> 몰아 둡니다. 본문 중간에 박으면 글이 광고로 읽힙니다.</li>
       </ul>
       <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “그래서 지금 어떻게 하면 되는지” — 집에서 해볼 수 있는 것, 찾아와야 하는 기준.</p>
     </div>
@@ -627,14 +615,14 @@
           <span class="ch-role">역할 · 인공지능 검색이 인용해 가는 글</span>
         </div>
       </div>
-      <p>요즘 사람은 챗지피티나 제미나이에게 먼저 묻습니다. “이런 거 어디에 물어봐야 하나요”, “가격은 보통 얼마인가요.” 그 대답은 링크 목록이 아니라, <b>몇 개의 문장을 뽑아 요약한 형태</b>로 나옵니다. 그러니 이 채널의 목표는 잘 읽히는 글이 아니라 <b>인용하기 좋은 글</b>입니다. 원칙은 네 가지뿐입니다.</p>
+      <p>요즘 사람은 챗지피티나 제미나이에게 먼저 묻습니다. “이런 거 어디에 물어봐야 하나요”, “가격은 보통 얼마인가요.” 그 대답은 링크 목록이 아니라, <b>몇 개의 문장을 뽑아 요약한 형태</b>로 나옵니다. 그러니 목표는 잘 읽히는 글이 아니라 <b>인용하기 좋은 글</b>입니다. 원칙은 네 가지뿐입니다.</p>
 
       <div class="rules">
         <div class="rule">
           <span class="rn">1</span>
           <div>
             <h4>소제목을 질문으로 씁니다</h4>
-            <p>사람이 실제로 치는 문장을 그대로 답니다. 명사형 제목(“상담 절차 안내”)보다 질문형(“처음 상담 갈 때 뭘 준비해야 하나요”)이 검색 의도와 정확히 맞물립니다.</p>
+            <p>사람이 실제로 치는 문장을 그대로 답니다. 명사형 제목(“상담 절차 안내”)보다 질문형이 검색 의도와 정확히 맞물립니다.</p>
             <div class="ex"><b>예</b> ■ 2. 예약 없이 가도 상담이 가능한가요?</div>
           </div>
         </div>
@@ -680,45 +668,27 @@
           <tr><th scope="col">바꿀 것</th><th scope="col">네이버 블로그</th><th scope="col">티스토리 · 블로거</th><th scope="col">브런치</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">문장 구조</th>
-            <td>사례 → 원리 → 안내</td>
-            <td>질문 → 결론 → 근거 → 정리</td>
-            <td>장면 → 생각 → 질문 하나</td>
-          </tr>
-          <tr>
-            <th scope="row">이미지</th>
-            <td>누끼 썸네일 + 현장 사진</td>
-            <td>도해·인포그래픽·표</td>
-            <td>낮은 채도의 사진 한 장</td>
-          </tr>
-          <tr>
-            <th scope="row">맺는 말</th>
-            <td>“이럴 때 연락 주십시오”</td>
-            <td>“정리하면 이렇습니다”</td>
-            <td>“저는 아직 답을 못 찾았습니다”</td>
-          </tr>
+          <tr><th scope="row">문장 구조</th><td>사례 → 원리 → 안내</td><td>질문 → 결론 → 근거 → 정리</td><td>장면 → 생각 → 질문 하나</td></tr>
+          <tr><th scope="row">이미지</th><td>누끼 썸네일 + 현장 사진</td><td>도해·인포그래픽·표</td><td>낮은 채도의 사진 한 장</td></tr>
+          <tr><th scope="row">맺는 말</th><td>“이럴 때 연락 주십시오”</td><td>“정리하면 이렇습니다”</td><td>“저는 아직 답을 못 찾았습니다”</td></tr>
         </tbody>
       </table>
     </div>
     <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
-    <p class="small muted">사진을 그대로 돌려 쓰는 것이 가장 위험합니다. 같은 사진이 여러 문서에 걸리면 사본 판별에서 먼저 걸립니다. 같은 피사체라도 다른 각도·다른 크롭·다른 도해로 다시 만드십시오.</p>
 
     <div class="ch">
       <div class="ch-head">
         <span class="ch-no">3</span>
         <div>
-          <h3>긴 영상 하나에서 쇼츠 다섯 채널</h3>
+          <h3>긴 영상 하나에서 짧은 영상 다섯 채널</h3>
           <span class="ch-role">역할 · 3초 훅으로 새 사람 만나기</span>
         </div>
       </div>
       <p>긴 영상은 이미 만들어 둔 원본입니다. 여기서 <b>가장 세게 꽂히는 대목 세 개에서 다섯 개</b>를 잘라 냅니다. 새로 찍지 않습니다. 잘라서 자막만 다시 얹습니다.</p>
       <div class="table-wrap">
         <table>
-          <caption>제가 쓰는 쇼츠 규격입니다. 채널마다 손볼 곳이 다릅니다.</caption>
-          <thead>
-            <tr><th scope="col">채널</th><th scope="col">길이</th><th scope="col">손보는 곳</th></tr>
-          </thead>
+          <caption>제가 쓰는 짧은 영상 규격입니다. 채널마다 손볼 곳이 다릅니다.</caption>
+          <thead><tr><th scope="col">채널</th><th scope="col">길이</th><th scope="col">손보는 곳</th></tr></thead>
           <tbody>
             <tr><th scope="row">유튜브 쇼츠</th><td>30~60초</td><td>첫 2초에 결론 자막. 상단에 큰 글씨 두 줄. 긴 영상으로 이어지는 링크.</td></tr>
             <tr><th scope="row">네이버 클립</th><td>30~60초</td><td>제목에 검색어를 그대로. 네이버 안에서 검색으로도 걸립니다.</td></tr>
@@ -740,74 +710,19 @@
           <span class="ch-role">역할 · 사람으로 남는 글</span>
         </div>
       </div>
-      <p>여기는 고객을 데려오는 채널이 아닙니다. <b>“이 사람이 어떤 사람인가”를 남기는 곳</b>입니다. 일하면서 오래 마음에 남은 장면, 답을 못 한 질문, 스승이나 선배에게 배운 한 줄. 검색으로 들어오는 사람은 적지만, 이 글을 읽고 온 사람은 다릅니다.</p>
-      <p class="ch-foot"><b>주의:</b> 브런치는 작가 승인을 받아야 글을 쓸 수 있습니다. 승인 전에는 임시저장만 쌓아 두고, 승인 뒤에 순서대로 내보내면 됩니다. 실제 사례는 반드시 일반화하고, 당사자가 자기 이야기라고 알아볼 수 있는 디테일은 뺍니다.</p>
+      <p>여기는 고객을 데려오는 채널이 아닙니다. <b>“이 사람이 어떤 사람인가”를 남기는 곳</b>입니다. 일하면서 오래 마음에 남은 장면, 답을 못 한 질문, 선배에게 배운 한 줄. 검색으로 들어오는 사람은 적지만, 이 글을 읽고 온 사람은 다릅니다.</p>
+      <p class="ch-foot"><b>주의:</b> 브런치는 작가 승인을 받아야 글을 쓸 수 있습니다. 승인 전에는 임시저장만 쌓아 두고, 승인 뒤에 순서대로 내보내면 됩니다.</p>
     </div>
 
-    <div class="quote">
-      채널을 늘리는 것보다 <b>채널마다 다른 말을 하는 것</b>이 어렵습니다. 그런데 인공지능 검색 시대에는 그 다른 말이 곧 자산입니다. 같은 말을 열 번 하면 한 번으로 세고, 다른 말을 열 번 하면 열 번으로 셉니다.
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ================= ④ 운영 ================= -->
-<section id="loop">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker"><i>④</i> 피클 운영 루프</p>
-      <h2>발행은 결심이 아니라 재고로 굴러갑니다</h2>
-      <p>“오늘은 뭘 쓰지”로 시작하면 반드시 끊깁니다. 저는 <b>창고에 미리 쌓아 두고, 기준 이하로 떨어지면 피클이 먼저 알리는</b> 방식으로 바꿨습니다. 이 구조로 바꾼 뒤로 발행이 멈춘 적이 없습니다.</p>
-    </div>
-
-    <ol class="loop">
-      <li>
-        <span class="lt">매일</span>
-        <p class="lh">평소처럼 일하면서 3분 녹음 <em>내 몫</em></p>
-        <p>회의 끝나고, 상담 끝나고, 운전대에서. 따로 시간을 내지 않습니다. 이 3분이 다음 주 전체의 재료가 됩니다.</p>
-      </li>
-      <li>
-        <span class="lt">주 1회</span>
-        <p class="lh">피클이 창고를 채웁니다 <em>피클 몫</em></p>
-        <p>지난 한 주 메일과 드라이브를 훑어 노션 표를 채우고, 쓸 만한 씨앗 다섯 개를 골라 채널별 초안과 썸네일까지 만들어 <b>임시저장 상태로</b> 넣어 둡니다. 아직 세상에 나가지 않습니다.</p>
-      </li>
-      <li>
-        <span class="lt">05:00</span>
-        <p class="lh">매일 새벽 — 재고를 셉니다 <em>자동</em></p>
-        <p>블로그 4편, 티스토리 3편, 쇼츠 7편, 긴 영상 2편. 이 숫자 아래로 떨어지면 그날 아침 알림에 “재고 부족”이 먼저 올라옵니다. 제가 기억하지 않아도 됩니다. <b>재고는 기억이 아니라 숫자로 관리합니다.</b></p>
-      </li>
-      <li>
-        <span class="lt">12:30</span>
-        <p class="lh">점심 — 첫 편이 나갑니다 <em>승인 1회</em></p>
-        <p>아침에 훑어보고 승인하면 12시 30분에 공개됩니다. 손대는 것은 문장 몇 개, 사진 한 장 정도입니다. 고칠 게 없으면 그냥 승인하면 끝입니다.</p>
-      </li>
-      <li>
-        <span class="lt">18:00</span>
-        <p class="lh">저녁 — 둘째 편과 쇼츠가 나갑니다 <em>자동</em></p>
-        <p>이미 승인된 것들이 시간에 맞춰 나갑니다. 업무가 길어져도 발행은 흔들리지 않습니다. 알림만 오고, 내가 없어도 나갑니다.</p>
-      </li>
-      <li>
-        <span class="lt">일요일</span>
-        <p class="lh">주말 밤 — 다음 주를 한 번에 정합니다 <em>30분</em></p>
-        <p>지난주에 무엇이 걸렸는지, 다음 주에 무엇을 말할지 한 번에 확인합니다. 이 30분이 없으면 월요일 아침이 다시 “뭘 쓰지”로 시작됩니다.</p>
-      </li>
-    </ol>
-
-    <h3><span class="dot">▪</span> 내가 하는 일은 두 가지뿐입니다</h3>
+    <h3><span class="dot">▪</span> 이 확산이 굴러가는 이유는 위의 세 층입니다</h3>
     <div class="card tint">
-      <div class="grid two">
-        <div>
-          <h4>1. 말하기</h4>
-          <p class="small" style="margin:0;">일상에서 3분 녹음하고, 필요하면 카메라 앞에 앉아 30분 말하는 일. 이건 아무도 대신할 수 없습니다. 대신 준비는 다 되어 있습니다.</p>
-        </div>
-        <div>
-          <h4>2. 최종 승인</h4>
-          <p class="small" style="margin:0;">내 이름으로 나가는 말이니까, 마지막 판단은 사람이 해야 합니다. 하루 두 번, 각 5분이면 됩니다.</p>
-        </div>
-      </div>
+      <ul class="clean">
+        <li><b>수집이 없으면</b> 쓸 말이 없어 매번 새로 꾸며야 합니다.</li>
+        <li><b>노션이 없으면</b> 무엇이 남았는지 몰라 발행이 끊깁니다.</li>
+        <li><b>루프가 없으면</b> 잘 쓴 한 편이 그 한 편으로 끝납니다.</li>
+      </ul>
+      <p class="small muted" style="margin:0;">그래서 이 페이지의 순서가 모으기 → 보이기 → 돌리기 → 내보내기입니다. 마케팅은 맨 앞이 아니라 맨 뒤에 옵니다.</p>
     </div>
-    <p class="small muted">정리·검수·업로드·예약·재고 관리는 피클이 맡습니다. 20%의 일(말하기와 판단)만 남기고, 80%의 잔일은 넘기는 것이 이 설계의 핵심입니다. 넘길 때 기준을 문서로 정해 두면, 매번 지시하지 않아도 같은 품질로 돌아옵니다.</p>
   </div>
 </section>
 
@@ -819,7 +734,7 @@
     <div class="sec-head">
       <p class="sec-kicker"><i>⑤</i> 실행반 적용</p>
       <h2>이번 주에, 아래에서 세 개만 하십시오</h2>
-      <p>처음부터 열 개 채널을 열 필요 없습니다. 세 단계를 순서대로, 한 주에 한 단계씩. 체크한 것은 이 브라우저에 남습니다.</p>
+      <p>처음부터 다섯 판을 만들 필요 없습니다. 세 단계를 순서대로, 한 주에 한 단계씩. 체크한 것은 이 브라우저에 남습니다.</p>
     </div>
 
     <div class="progress" role="status" aria-live="polite">
@@ -830,32 +745,32 @@
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">1</span> 남기는 습관부터</h4>
-      <p class="sd">도구를 바꾸는 일이 아니라, 말을 남기는 습관을 들이는 단계입니다. 이게 되면 나머지는 저절로 따라옵니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s1a"><span><b>플라우드로 하루 한 번 3분</b> — 회의·상담·아이디어 중 하나를 녹음합니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s1b"><span>플라우드 요약이 <b>내 구글 메일로 자동 도착</b>하도록 설정합니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s1c"><span>말할 때 <b>결론 · 숫자 · 질문</b>을 넣는 버릇을 들입니다(이름·금액은 빼고).</span></label>
+      <h4><span class="sn">1</span> 문을 하나로 줄입니다</h4>
+      <p class="sd">수집 허브를 만드는 단계입니다. 도구를 늘리는 게 아니라 들어오는 길을 줄이는 일입니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s1a"><span><b>플라우드 요약이 내 구글 메일로</b> 오도록 설정하고, 라벨 ‘음성기록’을 만듭니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1b"><span>드라이브에 <b>작업 폴더 하나</b>를 정해 PC와 동기화합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1c"><span>메일에 <b>결제·예약 필터</b>를 걸어 자동으로 분류되게 합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1d"><span><b>이름 규칙</b>(날짜_주제)과 라벨 다섯 개를 정합니다.</span></label>
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">2</span> 창고를 만듭니다</h4>
-      <p class="sd">모이는 곳과 쌓이는 곳을 한 번만 만들어 두면, 그다음부터는 자동으로 채워집니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s2a"><span>드라이브에 <b>‘원소스’ 폴더 하나</b>를 만들고 원본을 여기로 모읍니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2b"><span>노션에 <b>‘원소스 창고’ 표</b>를 만듭니다 — 제목·날짜·주제·핵심 3줄·원본 링크·상태.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2c"><span>피클에게 <b>“메일·드라이브를 읽어 표에 정리해 줘”</b> 지시문을 만들어 저장합니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2d"><span>고객 이름·연락처·금액을 <b>빼는 규칙</b>을 지시문에 못 박아 둡니다.</span></label>
+      <h4><span class="sn">2</span> 지도를 세 장만 그립니다</h4>
+      <p class="sd">다섯 판을 다 만들지 말고, 가장 급한 세 개부터. 일일 체크리스트, 실행 보드, 콘텐츠 재고판입니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s2a"><span>노션에 <b>일일 체크리스트</b>를 만들고, 오늘 할 일 세 개만 올립니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2b"><span><b>통합 실행 보드</b>를 만듭니다 — 진행중·확인대기·완료 세 상태로.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2c"><span><b>콘텐츠 재고판</b>을 만듭니다 — 씨앗·초안·승인·발행.</span></label>
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">3</span> 내보내기를 맡깁니다</h4>
-      <p class="sd">맡기는 순간부터 내 일은 말하기와 승인만 남습니다. 다만 기준은 문서로 남겨야 같은 품질이 돌아옵니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s3a"><span><b>채널별 역할</b>을 한 줄씩 정합니다(네이버=유입, 티스토리=근거, 영상=얼굴, 브런치=철학).</span></label>
-      <label class="check"><input type="checkbox" data-ck="s3b"><span>지금 쓴 글 한 편에 <b>질문형 소제목·결론 두 줄·수치와 출처</b>를 넣어 봅니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s3c"><span><b>05시 재고 점검</b>과 12시 30분·18시 발행 알림을 등록합니다.</span></label>
+      <h4><span class="sn">3</span> 루프에 시계를 답니다</h4>
+      <p class="sd">시간을 정해 두면 결심하지 않아도 돌아갑니다. 세 개만 먼저 등록하십시오.</p>
+      <label class="check"><input type="checkbox" data-ck="s3a"><span><b>아침 브리핑</b>과 <b>밤 마감</b> 시간을 정해 알림을 겁니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3b"><span><b>주간 배치 컨펌</b>을 주 1회 고정 시간으로 잡습니다(다른 약속을 넣지 않습니다).</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3c"><span><b>월간 점검</b> 날짜를 정해 고정지출·만기 대장을 한 번 열어 봅니다.</span></label>
     </div>
 
     <div class="quote">
-      이번 주에 하나만 하라면 <b>2단계</b>입니다. 노션 표 하나만 만들어 두어도, 흩어져 있던 재료가 처음으로 “몇 개 남았는지” 셀 수 있게 됩니다. 숫자가 보이면 발행이 굴러갑니다.
+      이번 주에 하나만 하라면 <b>2단계</b>입니다. 노션에 판 세 개만 있어도, 머릿속에서 굴리던 일이 눈앞으로 나옵니다. 눈에 보이면 결정이 빨라지고, 결정이 빠르면 일이 줄어듭니다.
     </div>
   </div>
 </section>
@@ -873,7 +788,7 @@
 
     <div class="card">
       <ul class="clean">
-        <li><b>구체적인 고객 사례와 이름</b>은 모두 일반화했습니다. 이름·직업·지역·날짜가 겹치면 그 사람이 특정됩니다.</li>
+        <li><b>구체적인 사례와 이름</b>은 모두 일반화했습니다. 이름·직업·지역·날짜가 겹치면 그 사람이 특정됩니다.</li>
         <li><b>계정 아이디와 비밀번호</b>는 페이지에 쓰지 않습니다. 링크를 받은 사람이 누구든 열 수 있는 곳이니까요.</li>
         <li><b>매출·고객 수 같은 숫자</b>도 넣지 않았습니다. 설계를 이해하는 데 필요하지 않고, 남의 눈에 들어갈 이유도 없습니다.</li>
         <li><b>효과를 보장하는 표현</b>은 피했습니다. 근거를 붙이는 것과 “무조건 됩니다”라고 말하는 것은 다릅니다.</li>
@@ -886,12 +801,12 @@
         <li>Aggarwal et al., 「Generative Engine Optimization: How to Dominate AI Search」, KDD 2024 — 생성형 검색 응답에서의 노출 연구(최대 40% 향상, 분야별 차이). <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">arxiv.org/abs/2311.09735</a></li>
         <li>네이버 검색 공식 블로그, 「UGC 문서 노출 시스템이 더욱 정교하게 개선됩니다」(2025.2.28) — 원본·사본 판별과 저품질 문서 기준. <a href="https://m.blog.naver.com/naver_search/223777208497" target="_blank" rel="noopener">m.blog.naver.com/naver_search/223777208497</a></li>
         <li>Google Search Central, 「Creating helpful, reliable, people-first content」 — 사람을 먼저 생각한 콘텐츠의 자기 점검 항목. <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">developers.google.com</a></li>
-        <li>제 운영 기록 — 발행 약속 대장, 소재 사전, 채널별 서식(2026년 10~11월).</li>
+        <li>제 운영 기록 — 발행 약속 대장, 소재 사전, 채널별 서식, 주간 배치 컨펌 기록(2026년 10~11월).</li>
       </ul>
     </div>
 
     <div class="note">
-      <p style="margin:0;"><b>이 설계는 정답이 아니라 제 방식입니다.</b> 숫자(하루 3분, 재고 4편, 05시·12시 30분·18시)는 제 기준으로 맞춘 값입니다. 업종과 인력에 따라 늘리거나 줄이십시오. 중요한 것은 숫자가 아니라 <b>말로 남기고, 한곳에 모으고, 표로 쌓아 두고, 시간에 내보내는 구조</b>입니다.</p>
+      <p style="margin:0;"><b>이 설계는 정답이 아니라 제 방식입니다.</b> 숫자(하루 3분, 재고 4편, 05시·12시 30분·18시)는 제 기준으로 맞춘 값입니다. 업종과 인력에 따라 늘리거나 줄이십시오. 중요한 것은 숫자가 아니라 <b>한곳에 모으고, 보이게 두고, 층을 나눠 돌리는 구조</b>입니다.</p>
     </div>
   </div>
 </section>
@@ -902,8 +817,8 @@
   <div class="wrap">
     <p class="foot-sign"><b>이상마 실행반 · 박종익</b> · 2026년 11월 20일</p>
     <h4>이 페이지에 대하여</h4>
-    <p>실행반 동료들과 함께 쓰려고 정리한 실전 설계입니다. 링크는 그대로 전달하셔도 됩니다. 내용을 인용하실 때는 출처만 한 줄 남겨 주십시오.</p>
-    <p>플라우드 → 구글 메일·드라이브 → 노션 → 채널. 이 네 칸만 갖춰지면 업종이 무엇이든 같은 방식으로 돌아갑니다. 피클은 그 사이에서 정리하고 쓰고 쌓아 두는 일을 맡습니다. 최종 판단은 언제나 사람이 합니다.</p>
+    <p>실행반 동료들과 함께 쓰려고 정리한 설계입니다. 링크는 그대로 전달하셔도 됩니다. 내용을 인용하실 때는 출처만 한 줄 남겨 주십시오.</p>
+    <p>구글로 모으고, 노션으로 보이게 두고, 하루·주·월·분기·연도로 돌리고, 채널로 내보냅니다. 이 네 칸이면 업종이 무엇이든 같은 방식으로 굴러갑니다. 최종 판단은 언제나 사람이 합니다.</p>
     <a class="foot-top" href="#top">맨 위로 ↑</a>
   </div>
 </footer>
