@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 · 원소스 멀티유즈 설계</title>
-<meta name="description" content="진료실 녹음과 주 1회 촬영을 원본으로 삼아, 피클이 임상 키워드·논문 근거·환자 질문을 뽑아내고 열 개 채널의 문법에 맞게 다시 쓰고, 매일 05시에 재고를 점검해 12시 30분·18시에 내보내는 실전 설계입니다. 이상마 실행반 공유용.">
+<title>하루 한 번의 녹음이, 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계</title>
+<meta name="description" content="일하면서 남긴 말을 플라우드로 녹음하고, 구글 메일·드라이브에 자동으로 모으고, 노션 데이터베이스로 쌓아 두면, 피클이 채널 열 곳의 문법과 인공지능 검색 구조에 맞게 다시 써서 내보냅니다. 이상마 실행반 공유용 실전 설계.">
 <meta name="author" content="박종익">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mujusang.github.io/pickle-guide/marketing/">
-<meta property="og:site_name" content="가온자리한의원 박종익 원장">
+<meta property="og:site_name" content="이상마 실행반 공유 자료">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 설계">
-<meta property="og:description" content="진료실 녹음 한 번, 촬영 한 번. 나머지는 피클이 쪼개고 다듬고 쌓아 둡니다. 이상마 실행반 공유용 실전 설계도.">
+<meta property="og:title" content="하루 한 번의 녹음이, 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계">
+<meta property="og:description" content="플라우드로 남기고, 구글 메일·드라이브로 모으고, 노션에 쌓고, 피클이 채널 문법에 맞게 다시 씁니다. 누구나 자기 일에 그대로 적용하는 실전 설계.">
 <meta property="og:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="원본 한 번으로 채널 열 곳 — 피클을 활용한 인공지능 검색 최적화 설계 표지">
+<meta property="og:image:alt" content="하루 한 번의 녹음이 채널 열 곳이 되는 법 — 피클을 활용한 인공지능 검색 최적화 설계 표지">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mujusang.github.io/pickle-guide/marketing/assets/og-cover.png">
 <meta name="theme-color" content="#0f1b24">
@@ -85,7 +85,6 @@
   }
   .hero-inner{position:relative;padding-top:clamp(40px,9vw,64px);}
   .hero-meta li b{margin-right:7px;}
-  .flow{position:relative;}
   .hero .eyebrow{
     display:inline-block;font-size:12.5px;letter-spacing:.12em;color:#e9c46a;font-weight:800;
     border:1px solid rgba(233,196,106,.42);border-radius:999px;padding:5px 13px;margin:0 0 20px;
@@ -112,7 +111,7 @@
   .mapband .maphead{display:flex;align-items:baseline;gap:10px;margin:0 0 18px;flex-wrap:wrap;}
   .mapband .maphead h2{margin:0;font-size:clamp(16px,4.2vw,19px);color:#fff;letter-spacing:-0.02em;font-weight:800;}
   .mapband .maphead p{margin:0;font-size:13px;color:#93a6b1;}
-  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none;}
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none;position:relative;}
   .flow li{
     position:relative;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.13);
     border-radius:12px;padding:14px 14px 15px;
@@ -204,6 +203,20 @@
   .prompt .pl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#7fd0b9;margin:0 0 8px;}
   .prompt q{quotes:"“" "”";color:#fff;}
 
+  /* ---------- chain (플라우드 → 구글 → 노션) ---------- */
+  .chain{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
+  .chain li{
+    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:15px 16px;
+  }
+  .chain .cn{
+    display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;
+    background:var(--ink);color:#e9c46a;font-size:14px;font-weight:800;
+  }
+  .chain h4{margin:0 0 5px;font-size:15.5px;}
+  .chain p{margin:0;font-size:14px;line-height:1.75;}
+  .chain .arrow{display:block;text-align:center;color:#c3cfd4;font-size:13px;line-height:1;margin:-6px 0 4px;}
+
   /* ---------- channel ---------- */
   .ch{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 14px;}
   .ch-head{display:flex;align-items:flex-start;gap:12px;margin:0 0 12px;}
@@ -214,7 +227,6 @@
   .ch-head h3{margin:0;font-size:clamp(17px,4.4vw,20px);line-height:1.4;}
   .ch-role{display:block;margin-top:4px;font-size:13px;font-weight:650;color:var(--accent);}
   .ch p{font-size:15px;line-height:1.8;}
-  .ch .k{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:13.5px;font-weight:700;color:var(--ink-2);}
   .ch-foot{margin:12px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);font-size:13.5px;line-height:1.75;color:var(--muted);}
   .ch-foot b{color:var(--body);font-weight:700;}
 
@@ -248,7 +260,7 @@
   .loop li:last-child{padding-bottom:0;}
   .loop .lt{
     position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);
-    border:2px solid var(--accent);color:var(--accent-2);font-size:12px;font-weight:800;
+    border:2px solid var(--accent);color:var(--accent-2);font-size:11.5px;font-weight:800;
     display:inline-flex;align-items:center;justify-content:center;line-height:1;
   }
   .loop .lh{margin:0 0 4px;font-size:15.5px;font-weight:780;color:var(--ink);letter-spacing:-0.02em;}
@@ -294,18 +306,6 @@
   .foot-sign b{color:#fff;font-weight:750;}
   .foot-top{display:inline-block;margin-top:6px;font-size:13px;color:#8fd0bd;border:1px solid rgba(143,208,189,.35);border-radius:999px;padding:6px 13px;}
 
-  @media (max-width:720px){
-    .flow{grid-template-columns:1fr 1fr;}
-    .flow li:after{content:"";}
-    .src2{grid-template-columns:1fr;}
-    .extract{grid-template-columns:1fr;}
-    .grid.two{grid-template-columns:1fr;}
-    .rule{grid-template-columns:36px 1fr;gap:12px;}
-    .rule .rn{width:32px;height:32px;font-size:14px;}
-  }
-  @media (max-width:400px){
-    .flow{grid-template-columns:1fr;}
-  }
   /* ---------- gate ---------- */
   html.gate-lock body{overflow:hidden;}
   .gate{
@@ -317,10 +317,10 @@
   }
   html.gate-open .gate,[hidden]{display:none !important;}
   .gate-card{
-    width:100%;max-width:380px;background:#fff;border-radius:18px;padding:28px 24px 24px;
+    width:100%;max-width:380px;background:#fff;border-radius:18px;padding:26px 24px 22px;
     box-shadow:0 24px 60px rgba(0,0,0,.38);text-align:center;
   }
-  .gate-card .glock{display:block;margin:0 auto 10px;}
+  .gate-card .glock{display:block;margin:0 auto 12px;}
   .gate-card .geyebrow{
     display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--accent-2);
     background:var(--accent-soft);border-radius:999px;padding:4px 11px;margin:0 0 14px;
@@ -344,6 +344,18 @@
   @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 
+  @media (max-width:720px){
+    .flow{grid-template-columns:1fr 1fr;}
+    .flow li:after{content:"";}
+    .src2{grid-template-columns:1fr;}
+    .extract{grid-template-columns:1fr;}
+    .grid.two{grid-template-columns:1fr;}
+    .rule{grid-template-columns:36px 1fr;gap:12px;}
+    .rule .rn{width:32px;height:32px;font-size:14px;}
+  }
+  @media (max-width:400px){
+    .flow{grid-template-columns:1fr;}
+  }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     *{transition:none !important;animation:none !important;}
@@ -353,7 +365,7 @@
     .nav,.progress,.reset,.skip,.mapband,.gate{display:none !important;}
     .hero{background:#fff;color:#111;padding-bottom:10px;}
     .hero h1,.hero .lead,.hero-meta li{color:#111;}
-    .card,.ch,.src,.rule,.stepblock{break-inside:avoid;border-color:#ccc;}
+    .card,.ch,.src,.rule,.stepblock,.chain li{break-inside:avoid;border-color:#ccc;}
     footer{background:#fff;color:#333;}
     footer h4{color:#111;}
   }
@@ -368,14 +380,14 @@
     </svg>
     <p class="geyebrow">이상마 실행반 공유 자료</p>
     <h2 id="gateTitle">입장 비밀번호</h2>
-    <p class="gdesc">동료 원장님께 드리는 자료입니다.<br>안내받은 네 글자를 넣어 주세요.</p>
+    <p class="gdesc">동료께 드리는 자료입니다.<br>안내받은 네 글자를 넣어 주세요.</p>
     <label class="sr" for="gateInput">비밀번호</label>
     <div class="gate-field">
       <input id="gateInput" type="password" inputmode="latin" autocapitalize="off" spellcheck="false" placeholder="••••" maxlength="12" enterkeyhint="go">
       <button type="submit">들어가기</button>
     </div>
     <p class="gate-err" id="gateErr" hidden>비밀번호가 맞지 않습니다. 다시 확인해 주세요.</p>
-    <p class="gate-note">한 번 들어오면 이 기기에서는 다시 묻지 않습니다.<br>비밀번호는 이상마 실행반 안내 문구에 있습니다.</p>
+    <p class="gate-note">한 번 들어오면 이 기기에서는 다시 묻지 않습니다.<br>비밀번호는 실행반 안내 문구에 있습니다.</p>
   </form>
 </div>
 
@@ -386,17 +398,18 @@
 <header class="hero">
   <div class="wrap hero-inner">
     <p class="eyebrow">이상마 실행반 공유 자료 · 2026.11.20</p>
-    <h1>원본 한 번으로,<br><span class="accent">채널 열 곳</span>을 움직이는 법
+    <h1>하루 한 번의 녹음이,<br><span class="accent">채널 열 곳</span>이 되는 법
       <span class="sub">피클을 활용한 인공지능 검색 최적화 · 원소스 멀티유즈 설계</span>
     </h1>
     <p class="lead">
-      진료실에서 한 번 녹음하고, 일주일에 한 번 촬영하면 끝입니다. 쪼개고, 다시 쓰고, 창고에 쌓아 두고, 시간 맞춰 내보내는 일은 피클이 합니다.
-      제가 지난 세 주 동안 제 한의원에서 실제로 굴려 본 순서를, 그대로 따라 하실 수 있게 풀어 적었습니다.
+      일하면서 남긴 말 한 토막이 그대로 재료가 됩니다. 녹음은 플라우드로 가볍게, 보관은 구글 메일과 드라이브로 자동으로,
+      정리는 노션이 맡습니다. 확산은 피클이 합니다. 상담실이든, 매장이든, 강의실이든, 혼자 하는 사업이든 똑같이 돌아가는 구조입니다.
     </p>
     <ul class="hero-meta">
-      <li><b>원본 두 가지</b> 진료 녹음 · 주 1회 촬영</li>
-      <li><b>채널 열 곳</b> 블로그 4 · 영상 6</li>
-      <li><b>원장님 몫</b> 촬영과 최종 승인</li>
+      <li><b>남기기</b> 플라우드 녹음 3분</li>
+      <li><b>모으기</b> 구글 메일 · 드라이브</li>
+      <li><b>쌓기</b> 노션 데이터베이스</li>
+      <li><b>내보내기</b> 채널 열 곳</li>
     </ul>
   </div>
 </header>
@@ -409,24 +422,24 @@
     </div>
     <ol class="flow">
       <li>
-        <span class="fn">① 원본</span>
-        <span class="ft">진료 녹음 · 촬영</span>
-        <span class="fd">한 번만 만듭니다. 이게 재료입니다.</span>
+        <span class="fn">① 남기기</span>
+        <span class="ft">일상에서 플라우드로 녹음</span>
+        <span class="fd">회의·상담·강의·아이디어, 3분이면 됩니다.</span>
       </li>
       <li>
-        <span class="fn">② 추출</span>
-        <span class="ft">피클이 쪼갭니다</span>
-        <span class="fd">환자 질문 · 임상 키워드 · 논문 근거.</span>
+        <span class="fn">② 모으기</span>
+        <span class="ft">구글 메일·드라이브로</span>
+        <span class="fd">요약과 원문이 자동으로 도착합니다.</span>
       </li>
       <li>
-        <span class="fn">③ 변주</span>
+        <span class="fn">③ 쌓기</span>
+        <span class="ft">노션 데이터베이스로 정리</span>
+        <span class="fd">주제·날짜·상태별로 피클이 깔끔하게.</span>
+      </li>
+      <li>
+        <span class="fn">④ 내보내기</span>
         <span class="ft">채널 문법으로 다시 쓰기</span>
         <span class="fd">같은 재료, 다른 그릇. 복사는 금지.</span>
-      </li>
-      <li>
-        <span class="fn">④ 운영</span>
-        <span class="ft">재고로 쌓고 시간에 내보내기</span>
-        <span class="fd">05시 점검, 12시 30분 · 18시 발행.</span>
       </li>
     </ol>
   </div>
@@ -435,89 +448,156 @@
 
 <nav class="nav" aria-label="페이지 목차">
   <div class="nav-inner">
-    <a href="#source"><span>①</span> 원본 만들기</a>
-    <a href="#channels"><span>②</span> 채널별 문법</a>
-    <a href="#loop"><span>③</span> 운영 루프</a>
-    <a href="#checklist"><span>④</span> 3단계 체크리스트</a>
-    <a href="#notes">보안·주의·출처</a>
+    <a href="#source"><span>①</span> 남기기</a>
+    <a href="#archive"><span>②</span> 모으기 · 쌓기</a>
+    <a href="#channels"><span>③</span> 채널별 문법</a>
+    <a href="#loop"><span>④</span> 운영 루프</a>
+    <a href="#checklist"><span>⑤</span> 3단계 체크리스트</a>
+    <a href="#notes">보안·출처</a>
   </div>
 </nav>
 
 <main id="main">
 
-<!-- ================= ① 원본 ================= -->
+<!-- ================= ① 남기기 ================= -->
 <section id="source">
   <div class="wrap">
     <div class="sec-head">
       <p class="sec-kicker"><i>①</i> 원소스 입력</p>
-      <h2>잘 쓰는 것보다, 한 번 잘 남기는 것이 먼저입니다</h2>
-      <p>글을 열 개 채널에 뿌리려면 재료가 열 벌 필요할까요. 아닙니다. <b>좋은 원본 하나면 열 벌이 나옵니다.</b> 그래서 순서를 바꿔야 합니다. 쓰는 시간을 줄이는 게 아니라, 남기는 순간의 밀도를 높이는 것이죠.</p>
+      <h2>잘 쓰려고 애쓰는 대신, 일단 말해 두십시오</h2>
+      <p>글을 열 개 채널에 뿌리려면 재료도 열 벌쯤 있어야 할까요. 아닙니다. <b>좋은 원본 하나면 열 벌이 나옵니다.</b> 그래서 순서를 바꿔야 합니다. 쓰는 시간을 줄이는 게 아니라, 말하는 순간을 남기는 것이죠. 이미 하고 있는 말을 남기면 됩니다.</p>
     </div>
 
-    <div class="src2">
-      <div class="src">
-        <span class="tag">원본 1 · 매일</span>
-        <h4>진료실 녹음</h4>
-        <p>진료하면서 플라우드로 녹음해 둡니다. 환자가 자기 증상을 설명하는 말은, 그대로 검색창에 들어가는 말입니다. “손목이 저리다”가 아니라 “새끼손가락 쪽이 밤에 저려서 잠을 깨요”처럼요.</p>
-        <p class="fine">진료실 카트 PC에서 켜 두면 진료 흐름을 끊지 않습니다.</p>
-      </div>
-      <div class="src">
-        <span class="tag">원본 2 · 주 1회</span>
-        <h4>긴 영상 촬영</h4>
-        <p>일주일에 한 번, 8~10분짜리 한 편을 찍습니다. 이 한 편에서 쇼츠 다섯 편이 나옵니다. 카메라 앞에서 설명하는 습관이 생기면, 그 말이 그대로 블로그 문장이 됩니다.</p>
-        <p class="fine">저는 금요일에 두 편을 몰아 찍습니다. 다음 주 화·토 공개분입니다.</p>
-      </div>
-    </div>
-
-    <h3><span class="dot">▪</span> 피클에게 시키는 일 — 원본에서 네 가지를 뽑습니다</h3>
     <ul class="extract">
       <li>
         <span class="en">01</span>
-        <span class="et">환자가 실제로 쓴 질문</span>
-        <span class="ed">그대로 소제목이 됩니다. 제가 만든 질문보다 검색창에 가깝습니다.</span>
+        <span class="et">회의 · 미팅</span>
+        <span class="ed">결정된 것과 보류된 것. 말로만 오가던 근거와 이유가 여기 남습니다.</span>
       </li>
       <li>
         <span class="en">02</span>
-        <span class="et">임상 키워드</span>
-        <span class="ed">증상 · 병명 · 체질 · 계절 · 직업. 글의 뼈대가 됩니다.</span>
+        <span class="et">상담 · 고객 응대</span>
+        <span class="ed">고객이 자기 문제를 표현한 말이 곧 검색어입니다. 이게 가장 값진 재료입니다.</span>
       </li>
       <li>
         <span class="en">03</span>
-        <span class="et">논문 · 교과서 근거</span>
-        <span class="ed">수치, 표본 수, 연도까지. 인공지능 검색이 인용하는 부분입니다.</span>
+        <span class="et">강의 · 설명</span>
+        <span class="ed">남에게 설명하는 말은 원래 구조가 잡혀 있습니다. 그대로 글이 됩니다.</span>
       </li>
       <li>
         <span class="en">04</span>
-        <span class="et">장면의 디테일</span>
-        <span class="ed">“주방일 하는 분이라 손목을 많이 씁니다” 같은 한 줄. 글이 살아납니다.</span>
+        <span class="et">떠오른 생각</span>
+        <span class="ed">운전대에서, 샤워하다가. 30초만 말해 두면 다음 날 초안이 됩니다.</span>
       </li>
     </ul>
 
+    <h3><span class="dot">▪</span> 플라우드(Plaud) 한 번 켜 두면 끝나는 일</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>하루 한 번, 3분.</b> 길게 잘하려고 하지 마십시오. 오늘 있었던 일 하나, 고객이 물은 것 하나, 내가 판단한 이유 하나. 이 셋이면 충분합니다.</li>
+        <li><b>말할 때 결론부터.</b> “오늘 상담에서 이 얘기가 나왔는데, 결론은 이렇습니다”로 시작하면 요약이 정확해집니다.</li>
+        <li><b>숫자를 말로 넣으십시오.</b> “3주쯤 걸립니다”가 “오래 걸립니다”보다 백 배 쓸모 있습니다. 나중에 근거가 됩니다.</li>
+        <li><b>질문을 소리 내어 던지십시오.</b> “그런데 이건 왜 그럴까요?” 하고 말해 두면, 그 문장이 그대로 소제목이 됩니다.</li>
+        <li><b>이름은 빼고 말하는 습관.</b> 고객 이름·연락처·계약 금액은 말하지 않는 것이 가장 안전합니다. 말버릇으로 만들어 두면 나중에 지울 일이 없습니다.</li>
+      </ul>
+    </div>
+
     <div class="prompt">
       <span class="pl">피클에게 이렇게 한 번만 말하면 됩니다</span>
-      <q>이 진료 녹음에서 환자가 실제로 물은 질문 10개, 그 답에 붙일 논문 근거 3개(수치·표본·연도 포함), 제목으로 쓸 만한 표현 5개를 표로 뽑아 줘. 환자 이름·나이·연락처는 빼고, 진료 내용은 일반화해서 정리해.</q>
+      <q>이 녹음에서 (1) 고객이 실제로 물은 질문 10개, (2) 다시 쓸 만한 숫자와 사례 5개, (3) 제목으로 쓸 만한 표현 5개를 표로 뽑아 줘. 이름·연락처·금액은 빼고, 사례는 일반화해서 정리해.</q>
     </div>
 
     <div class="warn">
-      <p><b>환자 정보는 원본 단계에서 지웁니다.</b> 이름·나이·직업·거주지·진료 날짜가 조합되면 그 사람이 특정됩니다. 피클에게 처음 시킬 때 “이름과 나이는 빼고, 사례는 일반화해서”를 반드시 붙이고, 완성된 글도 한 번 더 훑어보십시오. 사진도 마찬가지입니다. 얼굴·차트·명찰이 걸린 컷은 쓰지 않습니다.</p>
-      <p style="margin-bottom:0;">환자 후기를 인용할 때는 본인 동의를 받은 것만, 표현은 그대로 쓰지 말고 요약해서 씁니다.</p>
+      <p><b>녹음 전에 한 가지만 정하십시오.</b> 고객과 만나는 자리라면 “기록용으로 녹음하겠습니다” 한마디를 먼저 하면 됩니다. 상대가 꺼리면 그 자리는 빼고, 내 생각만 따로 녹음하십시오.</p>
+      <p style="margin-bottom:0;">회의 녹음도 마찬가지입니다. 참석자 이름을 부르지 않고 “담당자분”이라고 말하는 습관만 들이면, 나중에 공유해도 문제 될 것이 거의 없습니다.</p>
     </div>
 
     <div class="quote">
-      원본을 남기는 데 드는 시간은 <b>진료 중 30초, 촬영 1시간</b>입니다. 그 30초가 없으면 저녁에 두 시간을 써도 글이 얄팍해집니다. 재료가 없어서 문장을 꾸미게 되니까요.
+      원본을 남기는 데 드는 시간은 <b>하루 3분</b>입니다. 그 3분이 없으면 저녁에 두 시간을 써도 글이 얄팍해집니다. 재료가 없어서 문장을 꾸미게 되니까요.
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ================= ② 채널 ================= -->
+<!-- ================= ② 모으기 · 쌓기 ================= -->
+<section id="archive">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker"><i>②</i> 자동 보관</p>
+      <h2>모으는 일은 구글이, 정리하는 일은 피클이</h2>
+      <p>녹음을 남겼는데 어디론가 흩어지면 아무 일도 일어나지 않습니다. <b>한 곳에 자동으로 모이고, 보기 좋게 정리되어야</b> 다음 단계가 됩니다. 여기서 사람이 손대는 일은 없습니다.</p>
+    </div>
+
+    <ul class="chain">
+      <li>
+        <span class="cn">1</span>
+        <div>
+          <h4>플라우드가 요약을 만들어 내 구글 메일로 보냅니다</h4>
+          <p>플라우드 앱에서 받는 사람을 내 지메일 주소로 지정해 두면, 녹음이 끝나고 스크립트가 정리된 뒤에 요약과 원문이 메일로 자동 도착합니다. 손으로 옮길 것이 없습니다.</p>
+        </div>
+      </li>
+      <li>
+        <span class="cn">2</span>
+        <div>
+          <h4>원본 파일은 드라이브 폴더에 한곳으로</h4>
+          <p>플라우드 계정을 구글 드라이브와 연결해 두거나, 내려받은 파일을 <b>‘원소스’ 폴더 하나</b>에 모읍니다. 폴더 이름과 규칙만 정해 두면 나중에 피클이 찾기 쉽습니다.</p>
+        </div>
+      </li>
+      <li>
+        <span class="cn">3</span>
+        <div>
+          <h4>피클이 메일과 드라이브를 읽어 노션에 쌓습니다</h4>
+          <p>“지난 한 주 플라우드 요약 메일과 드라이브 원본을 훑어서, 노션 ‘원소스 창고’에 한 줄씩 정리해 줘.” 이 한마디로 표가 채워집니다. 사람은 훑어보기만 합니다.</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3><span class="dot">▪</span> 노션에 만드는 표 — 열은 여섯 개면 충분합니다</h3>
+    <div class="table-wrap">
+      <table>
+        <caption>‘원소스 창고’ 데이터베이스. 이 여섯 열이 재고 관리의 뼈대가 됩니다.</caption>
+        <thead>
+          <tr><th scope="col">열</th><th scope="col">무엇을 적나</th><th scope="col">왜 필요한가</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">제목</th><td>한 줄로 붙인 이름</td><td>나중에 찾을 때 쓰는 유일한 열쇠</td></tr>
+          <tr><th scope="row">날짜</th><td>녹음한 날</td><td>계절·시기가 있는 소재인지 판단</td></tr>
+          <tr><th scope="row">주제</th><td>묶음 이름(상담·가격·시공·후기 등)</td><td>채널별로 돌려 쓸 때 기준</td></tr>
+          <tr><th scope="row">핵심 3줄</th><td>결론·숫자·질문</td><td>글 쓸 때 이 세 줄만 보고 시작</td></tr>
+          <tr><th scope="row">원본 링크</th><td>메일·드라이브 파일 주소</td><td>근거 확인이 필요할 때 바로</td></tr>
+          <tr><th scope="row">상태</th><td>씨앗 → 초안 → 승인 → 발행</td><td><b>재고가 몇 개인지 이 열 하나로 보입니다</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
+
+    <div class="card tint">
+      <h4>왜 굳이 노션인가</h4>
+      <p class="small" style="margin-bottom:8px;">메일함은 읽는 곳이고, 드라이브는 보관하는 곳입니다. 둘 다 “무엇이 아직 안 나갔는지”는 알려주지 않습니다.</p>
+      <p class="small" style="margin-bottom:0;">노션 표는 <b>상태</b>를 볼 수 있습니다. 씨앗이 몇 개인지, 초안이 몇 개 쌓였는지, 발행이 언제 끊겼는지가 한눈에 보입니다. 콘텐츠가 끊기는 이유는 대개 재료가 없어서가 아니라, 무엇이 남았는지 몰라서입니다.</p>
+    </div>
+
+    <div class="prompt">
+      <span class="pl">정리 지시문 — 한 번 만들어 저장해 두고 매주 씁니다</span>
+      <q>지난 한 주 동안 내 구글 메일로 온 플라우드 요약과 드라이브 ‘원소스’ 폴더를 확인해서, 노션 ‘원소스 창고’ 데이터베이스에 항목별로 한 줄씩 넣어 줘. 열은 제목·날짜·주제·핵심 3줄·원본 링크·상태이고, 상태는 ‘씨앗’으로. 이미 있는 항목과 겹치면 새로 만들지 말고 합쳐 줘. 고객 이름·연락처·금액은 빼고.</q>
+    </div>
+
+    <div class="note">
+      <p style="margin:0;"><b>공유 범위를 먼저 정하십시오.</b> 노션 페이지는 기본이 비공개입니다. 원소스 창고는 나만 보는 상태로 두고, 발행이 끝난 글만 공개 링크로 돌리는 식이 안전합니다. 드라이브 폴더도 ‘링크가 있는 사람’이 아니라 ‘특정 사용자’로 두는 편이 낫습니다.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ================= ③ 채널 ================= -->
 <section id="channels">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>②</i> 채널별 문법 변주</p>
-      <h2>같은 재료라도 그릇이 다르면 담는 법이 다릅니다</h2>
-      <p>여기서 많이들 미끄러집니다. 네이버에 쓴 글을 그대로 티스토리에 복사해 붙이는 것. <b>그건 새 콘텐츠가 아니라 사본입니다.</b> 네이버는 원본과 사본을 판별하는 체계를 따로 두고 있습니다. 같은 글을 여러 곳에 올리면 한 곳만 남고 나머지는 밀립니다.</p>
+      <p class="sec-kicker"><i>③</i> 채널별 문법 변주</p>
+      <h2>노션에 쌓인 재료를, 채널마다 다른 말로</h2>
+      <p>여기서 많이들 미끄러집니다. 블로그에 쓴 글을 그대로 다른 블로그에 복사해 붙이는 것. <b>그건 새 콘텐츠가 아니라 사본입니다.</b> 네이버는 원본과 사본을 판별하는 체계를 따로 두고 있습니다. 같은 글을 여러 곳에 올리면 한 곳만 남고 나머지는 밀립니다.</p>
     </div>
 
     <div class="ch">
@@ -525,18 +605,18 @@
         <span class="ch-no">1</span>
         <div>
           <h3>네이버 블로그</h3>
-          <span class="ch-role">역할 · 국내 환자 유입의 본진</span>
+          <span class="ch-role">역할 · 국내 고객 유입의 본진</span>
         </div>
       </div>
-      <p>우리 동네에서 “동래 손목 통증 한의원”을 검색하는 사람은 대개 네이버에서 시작합니다. 그래서 이 채널은 <b>읽기 편함</b>이 기술보다 앞섭니다. 환자는 휴대폰으로, 대기실에서, 한 손으로 봅니다.</p>
+      <p>우리 동네에서 “동래 상담 잘하는 곳”을 검색하는 사람은 대개 네이버에서 시작합니다. 그래서 이 채널은 <b>읽기 편함</b>이 기술보다 앞섭니다. 사람들은 휴대폰으로, 이동 중에, 한 손으로 봅니다.</p>
       <ul class="clean">
         <li><b>한 문장 한 줄, 문단 사이는 띄웁니다.</b> 스크롤을 내리다 지치지 않게. 제 글의 기본값입니다.</li>
         <li><b>첫 화면에 대표 이미지.</b> 배경을 지운 누끼 썸네일이 눈에 잘 들어옵니다. 사진 위 글씨는 크게, 세 단어 이내로.</li>
-        <li><b>원내 실사 사진을 섞습니다.</b> 직접 찍은 사진은 그 자체로 “이 사람이 여기 있다”는 증거입니다. 빌려온 사진은 반대로 독이 됩니다.</li>
-        <li><b>스토리로 시작합니다.</b> “오늘 아침에 이런 환자분이 오셨습니다”로 시작해 원리로 넘어가면 끝까지 읽힙니다.</li>
+        <li><b>직접 찍은 사진을 섞습니다.</b> 그 자체로 “내가 여기 있다”는 증거입니다. 빌려온 사진은 반대로 독이 됩니다.</li>
+        <li><b>이야기로 시작합니다.</b> “오늘 이런 문의가 왔습니다”로 시작해 원리로 넘어가면 끝까지 읽힙니다.</li>
         <li><b>위치 태그와 해시태그</b>는 넣되, 해시태그는 맨 아래에 몰아 둡니다. 본문 중간에 박으면 글이 광고로 읽힙니다.</li>
       </ul>
-      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “그래서 지금 어떻게 하면 되는지” — 집에서 할 수 있는 것, 병원에 와야 하는 기준.</p>
+      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “그래서 지금 어떻게 하면 되는지” — 집에서 해볼 수 있는 것, 찾아와야 하는 기준.</p>
     </div>
 
     <div class="ch">
@@ -547,31 +627,31 @@
           <span class="ch-role">역할 · 인공지능 검색이 인용해 가는 글</span>
         </div>
       </div>
-      <p>요즘 환자는 챗지피티나 제미나이에게 먼저 묻습니다. “손목이 저린데 한의원 가면 뭘 하나요.” 그 대답은 블로그 목록이 아니라, <b>몇 개의 문장을 뽑아 요약한 형태</b>로 나옵니다. 그러니 이 채널의 목표는 잘 읽히는 글이 아니라 <b>인용하기 좋은 글</b>입니다. 원칙은 네 가지뿐입니다.</p>
+      <p>요즘 사람은 챗지피티나 제미나이에게 먼저 묻습니다. “이런 거 어디에 물어봐야 하나요”, “가격은 보통 얼마인가요.” 그 대답은 링크 목록이 아니라, <b>몇 개의 문장을 뽑아 요약한 형태</b>로 나옵니다. 그러니 이 채널의 목표는 잘 읽히는 글이 아니라 <b>인용하기 좋은 글</b>입니다. 원칙은 네 가지뿐입니다.</p>
 
       <div class="rules">
         <div class="rule">
           <span class="rn">1</span>
           <div>
             <h4>소제목을 질문으로 씁니다</h4>
-            <p>사람이 실제로 치는 문장을 그대로 답니다. 명사형 제목(“손목 통증의 원인”)보다 질문형(“손목이 밤에 저리는데 파스만 붙여도 될까요”)이 검색 의도와 정확히 맞물립니다.</p>
-            <div class="ex"><b>예</b> ■ 2. 손목터널증후군, 수술하지 않고 좋아질 수 있나요?</div>
+            <p>사람이 실제로 치는 문장을 그대로 답니다. 명사형 제목(“상담 절차 안내”)보다 질문형(“처음 상담 갈 때 뭘 준비해야 하나요”)이 검색 의도와 정확히 맞물립니다.</p>
+            <div class="ex"><b>예</b> ■ 2. 예약 없이 가도 상담이 가능한가요?</div>
           </div>
         </div>
         <div class="rule">
           <span class="rn">2</span>
           <div>
             <h4>첫 한두 줄에 결론을 씁니다</h4>
-            <p>인공지능은 글 전체를 다 읽고 요약하지 않습니다. 앞머리의 분명한 답을 먼저 집어 갑니다. 인사말·날씨 이야기로 시작하는 순간 그 자리를 놓칩니다.</p>
-            <div class="ex"><b>예</b> 결론부터 말씀드리면, 초기 손목터널증후군은 6~8주 보존 치료로 절반 이상이 호전됩니다. 다만 손등 감각이 떨어졌다면 검사가 먼저입니다.</div>
+            <p>인공지능은 글 전체를 다 읽고 요약하지 않습니다. 앞머리의 분명한 답을 먼저 집어 갑니다. 인사말이나 계절 이야기로 시작하는 순간 그 자리를 놓칩니다.</p>
+            <div class="ex"><b>예</b> 결론부터 말씀드리면, 예약 없이 방문하셔도 첫 상담은 20분 안에 가능합니다. 다만 주말 오후는 대기가 깁니다.</div>
           </div>
         </div>
         <div class="rule">
           <span class="rn">3</span>
           <div>
             <h4>숫자와 출처를 답니다</h4>
-            <p>“많이 좋아집니다”는 인용되지 않습니다. 수치 하나, 그 수치의 출처 하나. 저널명·연도·표본 수를 함께 적으면 그 문장이 근거 있는 문장이 됩니다.</p>
-            <div class="ex"><b>예</b> 60명을 12주간 관찰한 연구에서 침 치료군의 통증 점수가 대조군보다 유의하게 낮았습니다(○○저널, 2019, n=60).</div>
+            <p>“많이 좋아집니다”는 인용되지 않습니다. 수치 하나, 그 수치의 출처 하나. 어디서 나온 숫자인지 밝히면 그 문장이 근거 있는 문장이 됩니다.</p>
+            <div class="ex"><b>예</b> 지난해 상담 1,200건 가운데 78%가 첫 방문에서 견적을 확정했습니다(내부 집계, 2025년).</div>
           </div>
         </div>
         <div class="rule">
@@ -579,17 +659,17 @@
           <div>
             <h4>지역과 전문성을 같은 자리에 고정합니다</h4>
             <p>인공지능이 “누가 쓴 글인지” 확신하려면 매번 같은 표현이 같은 자리에 있어야 합니다. 글마다 바꾸면 서로 다른 사람으로 읽힙니다.</p>
-            <div class="ex"><b>예</b> 부산 동래구 온천동, 가온자리한의원 박종익 원장이 진료실에서 쓴 글입니다.</div>
+            <div class="ex"><b>예</b> 부산 동래에서 ○○년째 상담해 온 김○○ 대표가 쓴 글입니다.</div>
           </div>
         </div>
       </div>
 
       <div class="note">
-        <p><b>이 네 가지가 그냥 감이 아닙니다.</b> 2024년 국제 학회(KDD)에 실린 연구에서, 출처를 밝히고 통계를 넣는 식으로 글을 다듬으면 생성형 검색 응답 안에서 노출이 최대 40%까지 올랐습니다. 다만 분야마다 효과가 달랐습니다. 한의학처럼 전문 영역은 근거를 붙이는 쪽이 더 크게 먹힌다고 봅니다.<br>
+        <p><b>이 네 가지가 그냥 감이 아닙니다.</b> 2024년 국제 학회(KDD)에 실린 연구에서, 출처를 밝히고 통계를 넣는 식으로 글을 다듬으면 생성형 검색 응답 안에서 노출이 최대 40%까지 올랐습니다. 다만 분야마다 효과가 달랐습니다. 전문 영역일수록 근거를 붙이는 쪽이 크게 먹힙니다.<br>
         <span class="small muted">Aggarwal et al., 「Generative Engine Optimization」, KDD 2024 · <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">논문 보기</a></span></p>
       </div>
 
-      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “왜 그런지” — 생리·병리·연구 결과. 네이버에서는 줄인 설명을 여기서는 풀어 씁니다.</p>
+      <p class="ch-foot"><b>이 채널에서만 하는 말:</b> “왜 그런지” — 원리, 기준, 비교. 네이버에서 줄인 설명을 여기서는 풀어 씁니다.</p>
     </div>
 
     <h3><span class="dot">▪</span> 사본이 되지 않으려면 — 세 가지만 바꿉니다</h3>
@@ -602,21 +682,21 @@
         <tbody>
           <tr>
             <th scope="row">문장 구조</th>
-            <td>환자 이야기 → 원리 → 안내</td>
+            <td>사례 → 원리 → 안내</td>
             <td>질문 → 결론 → 근거 → 정리</td>
             <td>장면 → 생각 → 질문 하나</td>
           </tr>
           <tr>
             <th scope="row">이미지</th>
-            <td>누끼 썸네일 + 원내 실사</td>
+            <td>누끼 썸네일 + 현장 사진</td>
             <td>도해·인포그래픽·표</td>
             <td>낮은 채도의 사진 한 장</td>
           </tr>
           <tr>
             <th scope="row">맺는 말</th>
-            <td>“이럴 때 오십시오”</td>
+            <td>“이럴 때 연락 주십시오”</td>
             <td>“정리하면 이렇습니다”</td>
-            <td>“저는 아직 이 질문에 답을 못 했습니다”</td>
+            <td>“저는 아직 답을 못 찾았습니다”</td>
           </tr>
         </tbody>
       </table>
@@ -649,7 +729,7 @@
         </table>
       </div>
       <p class="scroll-hint">표는 옆으로 넘겨 보실 수 있습니다.</p>
-      <p class="ch-foot"><b>영상에서만 하는 말:</b> 시연과 표정. “이렇게 해 보세요”를 손으로 보여 주는 것. 글로는 안 되는 부분입니다.</p>
+      <p class="ch-foot"><b>영상에서만 하는 말:</b> 시연과 표정. “이렇게 하면 됩니다”를 손으로 보여 주는 것. 글로는 안 되는 부분입니다.</p>
     </div>
 
     <div class="ch">
@@ -660,8 +740,8 @@
           <span class="ch-role">역할 · 사람으로 남는 글</span>
         </div>
       </div>
-      <p>여기는 환자를 데려오는 채널이 아닙니다. <b>“이 원장이 어떤 사람인가”를 남기는 곳</b>입니다. 진료에서 오래 마음에 남은 장면, 답을 못 한 질문, 스승에게 배운 한 줄. 검색으로 들어오는 사람은 적지만, 이 글을 읽고 온 사람은 다릅니다.</p>
-      <p class="ch-foot"><b>주의:</b> 브런치는 작가 승인을 받아야 글을 쓸 수 있습니다. 승인 전에는 임시저장만 쌓아 두고, 승인 뒤에 순서대로 내보내면 됩니다. 진료 이야기는 반드시 일반화하고, 환자가 자기 이야기라고 알아볼 수 있는 디테일은 뺍니다.</p>
+      <p>여기는 고객을 데려오는 채널이 아닙니다. <b>“이 사람이 어떤 사람인가”를 남기는 곳</b>입니다. 일하면서 오래 마음에 남은 장면, 답을 못 한 질문, 스승이나 선배에게 배운 한 줄. 검색으로 들어오는 사람은 적지만, 이 글을 읽고 온 사람은 다릅니다.</p>
+      <p class="ch-foot"><b>주의:</b> 브런치는 작가 승인을 받아야 글을 쓸 수 있습니다. 승인 전에는 임시저장만 쌓아 두고, 승인 뒤에 순서대로 내보내면 됩니다. 실제 사례는 반드시 일반화하고, 당사자가 자기 이야기라고 알아볼 수 있는 디테일은 뺍니다.</p>
     </div>
 
     <div class="quote">
@@ -672,30 +752,30 @@
 
 <hr class="divider">
 
-<!-- ================= ③ 운영 ================= -->
+<!-- ================= ④ 운영 ================= -->
 <section id="loop">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>③</i> 피클 운영 루프</p>
+      <p class="sec-kicker"><i>④</i> 피클 운영 루프</p>
       <h2>발행은 결심이 아니라 재고로 굴러갑니다</h2>
       <p>“오늘은 뭘 쓰지”로 시작하면 반드시 끊깁니다. 저는 <b>창고에 미리 쌓아 두고, 기준 이하로 떨어지면 피클이 먼저 알리는</b> 방식으로 바꿨습니다. 이 구조로 바꾼 뒤로 발행이 멈춘 적이 없습니다.</p>
     </div>
 
     <ol class="loop">
       <li>
-        <span class="lt">촬영</span>
-        <p class="lh">금요일 — 몰아서 찍습니다 <em>원장님 몫</em></p>
-        <p>긴 영상 두 편을 한 시간 안에 찍습니다. 대본은 피클이 미리 뽑아 둔 소제목과 근거로 만들고, 저는 앞에 앉아 말하기만 합니다. 이 한 시간이 다음 주 전체의 재료가 됩니다.</p>
+        <span class="lt">매일</span>
+        <p class="lh">평소처럼 일하면서 3분 녹음 <em>내 몫</em></p>
+        <p>회의 끝나고, 상담 끝나고, 운전대에서. 따로 시간을 내지 않습니다. 이 3분이 다음 주 전체의 재료가 됩니다.</p>
       </li>
       <li>
-        <span class="lt">생성</span>
-        <p class="lh">그날 밤 — 피클이 초안을 만듭니다 <em>피클 몫</em></p>
-        <p>녹음과 영상에서 키워드·질문·근거를 뽑아, 네이버용 두 편과 티스토리용 한 편을 씁니다. 썸네일 누끼, 도해 인포그래픽, 쇼츠 다섯 편까지 함께 만들어 <b>임시저장 상태로</b> 넣어 둡니다. 아직 세상에 나가지 않습니다.</p>
+        <span class="lt">주 1회</span>
+        <p class="lh">피클이 창고를 채웁니다 <em>피클 몫</em></p>
+        <p>지난 한 주 메일과 드라이브를 훑어 노션 표를 채우고, 쓸 만한 씨앗 다섯 개를 골라 채널별 초안과 썸네일까지 만들어 <b>임시저장 상태로</b> 넣어 둡니다. 아직 세상에 나가지 않습니다.</p>
       </li>
       <li>
         <span class="lt">05:00</span>
         <p class="lh">매일 새벽 — 재고를 셉니다 <em>자동</em></p>
-        <p>블로그 4편, 티스토리 3편, 쇼츠 7편, 긴 영상 2편. 이 숫자 아래로 떨어지면 그날 아침 보고에 “재고 부족”이 먼저 올라옵니다. 제가 기억하지 않아도 됩니다. <b>재고는 기억이 아니라 숫자로 관리합니다.</b></p>
+        <p>블로그 4편, 티스토리 3편, 쇼츠 7편, 긴 영상 2편. 이 숫자 아래로 떨어지면 그날 아침 알림에 “재고 부족”이 먼저 올라옵니다. 제가 기억하지 않아도 됩니다. <b>재고는 기억이 아니라 숫자로 관리합니다.</b></p>
       </li>
       <li>
         <span class="lt">12:30</span>
@@ -705,41 +785,41 @@
       <li>
         <span class="lt">18:00</span>
         <p class="lh">저녁 — 둘째 편과 쇼츠가 나갑니다 <em>자동</em></p>
-        <p>이미 승인된 것들이 시간에 맞춰 나갑니다. 저녁 진료가 길어져도 발행은 흔들리지 않습니다. 알림만 오고, 제가 없어도 나갑니다.</p>
+        <p>이미 승인된 것들이 시간에 맞춰 나갑니다. 업무가 길어져도 발행은 흔들리지 않습니다. 알림만 오고, 내가 없어도 나갑니다.</p>
       </li>
       <li>
-        <span class="lt">주말</span>
-        <p class="lh">일요일 밤 — 다음 주를 한 번에 정합니다 <em>30분</em></p>
-        <p>지난주에 무엇이 걸렸는지, 다음 주에 무엇을 찍을지 한 번에 확인합니다. 이 30분이 없으면 월요일 아침이 다시 “뭘 쓰지”로 시작됩니다.</p>
+        <span class="lt">일요일</span>
+        <p class="lh">주말 밤 — 다음 주를 한 번에 정합니다 <em>30분</em></p>
+        <p>지난주에 무엇이 걸렸는지, 다음 주에 무엇을 말할지 한 번에 확인합니다. 이 30분이 없으면 월요일 아침이 다시 “뭘 쓰지”로 시작됩니다.</p>
       </li>
     </ol>
 
-    <h3><span class="dot">▪</span> 원장님이 하는 일은 두 가지뿐입니다</h3>
+    <h3><span class="dot">▪</span> 내가 하는 일은 두 가지뿐입니다</h3>
     <div class="card tint">
       <div class="grid two">
         <div>
-          <h4>1. 촬영</h4>
-          <p class="small" style="margin:0;">카메라 앞에 앉아 말하는 일. 이건 아무도 대신할 수 없습니다. 대신 준비는 다 되어 있습니다.</p>
+          <h4>1. 말하기</h4>
+          <p class="small" style="margin:0;">일상에서 3분 녹음하고, 필요하면 카메라 앞에 앉아 30분 말하는 일. 이건 아무도 대신할 수 없습니다. 대신 준비는 다 되어 있습니다.</p>
         </div>
         <div>
           <h4>2. 최종 승인</h4>
-          <p class="small" style="margin:0;">환자에게 나가는 말이니까, 마지막 판단은 사람이 해야 합니다. 하루 두 번, 각 5분이면 됩니다.</p>
+          <p class="small" style="margin:0;">내 이름으로 나가는 말이니까, 마지막 판단은 사람이 해야 합니다. 하루 두 번, 각 5분이면 됩니다.</p>
         </div>
       </div>
     </div>
-    <p class="small muted">정리·검수·업로드·예약·재고 관리는 제가 맡지 않습니다. 20%의 일(촬영과 판단)만 남기고, 80%의 잔일은 넘기는 것이 이 설계의 핵심입니다. 넘길 때 기준을 문서로 정해 두면, 매번 지시하지 않아도 같은 품질로 돌아옵니다.</p>
+    <p class="small muted">정리·검수·업로드·예약·재고 관리는 피클이 맡습니다. 20%의 일(말하기와 판단)만 남기고, 80%의 잔일은 넘기는 것이 이 설계의 핵심입니다. 넘길 때 기준을 문서로 정해 두면, 매번 지시하지 않아도 같은 품질로 돌아옵니다.</p>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ================= ④ 체크리스트 ================= -->
+<!-- ================= ⑤ 체크리스트 ================= -->
 <section id="checklist">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-kicker"><i>④</i> 실행반 원장님 적용</p>
-      <h2>이번 주에 셋만 하십시오</h2>
-      <p>처음부터 열 개 채널을 열 필요 없습니다. 아래 세 단계를 순서대로, 한 주에 하나씩. 체크한 것은 이 브라우저에 남습니다.</p>
+      <p class="sec-kicker"><i>⑤</i> 실행반 적용</p>
+      <h2>이번 주에, 아래에서 세 개만 하십시오</h2>
+      <p>처음부터 열 개 채널을 열 필요 없습니다. 세 단계를 순서대로, 한 주에 한 단계씩. 체크한 것은 이 브라우저에 남습니다.</p>
     </div>
 
     <div class="progress" role="status" aria-live="polite">
@@ -750,32 +830,32 @@
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">1</span> 채널별 역할을 나눕니다</h4>
-      <p class="sd">채널을 늘리기 전에, 각 채널이 무슨 일을 하는지 한 줄로 정합니다. 역할이 겹치면 글이 겹칩니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s1a"><span><b>네이버 블로그</b>는 국내 환자 유입 — “이럴 때 오십시오”까지 씁니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s1b"><span><b>티스토리(또는 구글 블로거)</b>는 인공지능 검색용 — 원리와 근거를 숫자로 씁니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s1c"><span><b>영상과 브런치</b>는 얼굴과 철학 — 쇼츠 다섯 채널과 에세이 한 편으로 나눕니다.</span></label>
+      <h4><span class="sn">1</span> 남기는 습관부터</h4>
+      <p class="sd">도구를 바꾸는 일이 아니라, 말을 남기는 습관을 들이는 단계입니다. 이게 되면 나머지는 저절로 따라옵니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s1a"><span><b>플라우드로 하루 한 번 3분</b> — 회의·상담·아이디어 중 하나를 녹음합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1b"><span>플라우드 요약이 <b>내 구글 메일로 자동 도착</b>하도록 설정합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s1c"><span>말할 때 <b>결론 · 숫자 · 질문</b>을 넣는 버릇을 들입니다(이름·금액은 빼고).</span></label>
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">2</span> 인공지능 검색용 구조를 잡습니다</h4>
-      <p class="sd">지금 쓰시는 글 한 편을 골라, 아래 네 가지만 손보십시오. 새로 쓰지 않아도 됩니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s2a"><span>소제목 셋을 <b>환자가 실제로 치는 질문</b>으로 바꿉니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2b"><span>첫 두 줄을 인사말 대신 <b>결론</b>으로 시작합니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2c"><span>본문에 <b>수치 하나와 출처 하나</b>(저널·연도·표본)를 넣습니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s2d"><span><b>지역·이름·전문성</b>을 글마다 같은 문장으로 고정합니다.</span></label>
+      <h4><span class="sn">2</span> 창고를 만듭니다</h4>
+      <p class="sd">모이는 곳과 쌓이는 곳을 한 번만 만들어 두면, 그다음부터는 자동으로 채워집니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s2a"><span>드라이브에 <b>‘원소스’ 폴더 하나</b>를 만들고 원본을 여기로 모읍니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2b"><span>노션에 <b>‘원소스 창고’ 표</b>를 만듭니다 — 제목·날짜·주제·핵심 3줄·원본 링크·상태.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2c"><span>피클에게 <b>“메일·드라이브를 읽어 표에 정리해 줘”</b> 지시문을 만들어 저장합니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s2d"><span>고객 이름·연락처·금액을 <b>빼는 규칙</b>을 지시문에 못 박아 둡니다.</span></label>
     </div>
 
     <div class="stepblock">
-      <h4><span class="sn">3</span> 피클에 초안·이미지·재고를 맡깁니다</h4>
-      <p class="sd">맡기는 순간부터 원장님은 촬영과 승인만 하시면 됩니다. 다만 기준은 문서로 남겨야 같은 품질이 돌아옵니다.</p>
-      <label class="check"><input type="checkbox" data-ck="s3a"><span>진료 녹음에서 <b>질문·키워드·근거</b>를 뽑는 지시문을 한 번 만들어 저장합니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s3b"><span><b>문체·금지 표현·사진 규칙</b>(환자 정보 삭제 포함)을 문서 한 장으로 정해 둡니다.</span></label>
-      <label class="check"><input type="checkbox" data-ck="s3c"><span><b>매일 05시 재고 점검</b>과 12시 30분·18시 발행 알림을 등록합니다.</span></label>
+      <h4><span class="sn">3</span> 내보내기를 맡깁니다</h4>
+      <p class="sd">맡기는 순간부터 내 일은 말하기와 승인만 남습니다. 다만 기준은 문서로 남겨야 같은 품질이 돌아옵니다.</p>
+      <label class="check"><input type="checkbox" data-ck="s3a"><span><b>채널별 역할</b>을 한 줄씩 정합니다(네이버=유입, 티스토리=근거, 영상=얼굴, 브런치=철학).</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3b"><span>지금 쓴 글 한 편에 <b>질문형 소제목·결론 두 줄·수치와 출처</b>를 넣어 봅니다.</span></label>
+      <label class="check"><input type="checkbox" data-ck="s3c"><span><b>05시 재고 점검</b>과 12시 30분·18시 발행 알림을 등록합니다.</span></label>
     </div>
 
     <div class="quote">
-      이번 주에 하나만 하라면 <b>2단계</b>입니다. 이미 쓰신 글 한 편에 질문형 소제목과 결론 두 줄만 넣어도, 그 글은 다른 글이 됩니다. 도구를 바꾸지 않아도 되고, 돈도 들지 않습니다.
+      이번 주에 하나만 하라면 <b>2단계</b>입니다. 노션 표 하나만 만들어 두어도, 흩어져 있던 재료가 처음으로 “몇 개 남았는지” 셀 수 있게 됩니다. 숫자가 보이면 발행이 굴러갑니다.
     </div>
   </div>
 </section>
@@ -793,10 +873,10 @@
 
     <div class="card">
       <ul class="clean">
-        <li><b>환자 사례의 구체 정보</b>는 모두 일반화했습니다. 이름·나이·직업·거주지·날짜가 겹치면 특정됩니다.</li>
-        <li><b>계정 아이디와 비밀번호</b>는 원칙적으로 페이지에 쓰지 않습니다. 링크를 받은 사람이 누구든 열 수 있는 곳이니까요.</li>
-        <li><b>매출·환자 수 같은 숫자</b>도 넣지 않았습니다. 설계를 이해하는 데 필요하지 않고, 남의 눈에 들어갈 이유도 없습니다.</li>
-        <li><b>의료법상 표현</b>은 “치료됩니다·완치·최고” 같은 보장형 문구를 피했습니다. 근거를 붙이는 것과 효과를 보장하는 것은 다릅니다.</li>
+        <li><b>구체적인 고객 사례와 이름</b>은 모두 일반화했습니다. 이름·직업·지역·날짜가 겹치면 그 사람이 특정됩니다.</li>
+        <li><b>계정 아이디와 비밀번호</b>는 페이지에 쓰지 않습니다. 링크를 받은 사람이 누구든 열 수 있는 곳이니까요.</li>
+        <li><b>매출·고객 수 같은 숫자</b>도 넣지 않았습니다. 설계를 이해하는 데 필요하지 않고, 남의 눈에 들어갈 이유도 없습니다.</li>
+        <li><b>효과를 보장하는 표현</b>은 피했습니다. 근거를 붙이는 것과 “무조건 됩니다”라고 말하는 것은 다릅니다.</li>
       </ul>
     </div>
 
@@ -806,12 +886,12 @@
         <li>Aggarwal et al., 「Generative Engine Optimization: How to Dominate AI Search」, KDD 2024 — 생성형 검색 응답에서의 노출 연구(최대 40% 향상, 분야별 차이). <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">arxiv.org/abs/2311.09735</a></li>
         <li>네이버 검색 공식 블로그, 「UGC 문서 노출 시스템이 더욱 정교하게 개선됩니다」(2025.2.28) — 원본·사본 판별과 저품질 문서 기준. <a href="https://m.blog.naver.com/naver_search/223777208497" target="_blank" rel="noopener">m.blog.naver.com/naver_search/223777208497</a></li>
         <li>Google Search Central, 「Creating helpful, reliable, people-first content」 — 사람을 먼저 생각한 콘텐츠의 자기 점검 항목. <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">developers.google.com</a></li>
-        <li>제 운영 기록 — 발행 약속 대장, 꼭지 사전, 채널별 서식(2026년 10~11월, 가온자리한의원).</li>
+        <li>제 운영 기록 — 발행 약속 대장, 소재 사전, 채널별 서식(2026년 10~11월).</li>
       </ul>
     </div>
 
     <div class="note">
-      <p style="margin:0;"><b>이 설계는 정답이 아니라 제 방식입니다.</b> 숫자(주 1회 촬영, 재고 4편, 05시·12시 30분·18시)는 제 한의원 기준으로 맞춘 값입니다. 진료량과 인력에 따라 늘리거나 줄이십시오. 중요한 것은 숫자가 아니라 <b>창고에 쌓아 두고 시간에 내보내는 구조</b>입니다.</p>
+      <p style="margin:0;"><b>이 설계는 정답이 아니라 제 방식입니다.</b> 숫자(하루 3분, 재고 4편, 05시·12시 30분·18시)는 제 기준으로 맞춘 값입니다. 업종과 인력에 따라 늘리거나 줄이십시오. 중요한 것은 숫자가 아니라 <b>말로 남기고, 한곳에 모으고, 표로 쌓아 두고, 시간에 내보내는 구조</b>입니다.</p>
     </div>
   </div>
 </section>
@@ -820,10 +900,10 @@
 
 <footer>
   <div class="wrap">
-    <p class="foot-sign"><b>가온자리한의원 박종익 원장</b> · 부산 동래구 온천동 · 2026년 11월 20일</p>
+    <p class="foot-sign"><b>이상마 실행반 · 박종익</b> · 2026년 11월 20일</p>
     <h4>이 페이지에 대하여</h4>
-    <p>이상마 실행반 동료 원장님들께 공유하려고 만든 실전 설계 정리입니다. 링크는 그대로 전달하셔도 됩니다. 내용을 인용하실 때는 출처만 한 줄 남겨 주십시오.</p>
-    <p>피클은 원장님의 촬영·승인 아래에서만 움직입니다. 환자에게 나가는 말의 마지막 판단은 언제나 사람이 합니다.</p>
+    <p>실행반 동료들과 함께 쓰려고 정리한 실전 설계입니다. 링크는 그대로 전달하셔도 됩니다. 내용을 인용하실 때는 출처만 한 줄 남겨 주십시오.</p>
+    <p>플라우드 → 구글 메일·드라이브 → 노션 → 채널. 이 네 칸만 갖춰지면 업종이 무엇이든 같은 방식으로 돌아갑니다. 피클은 그 사이에서 정리하고 쓰고 쌓아 두는 일을 맡습니다. 최종 판단은 언제나 사람이 합니다.</p>
     <a class="foot-top" href="#top">맨 위로 ↑</a>
   </div>
 </footer>
