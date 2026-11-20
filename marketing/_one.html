@@ -1,0 +1,6 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0;background:#66727a;padding:10px}
+.c{width:390px;height:820px;overflow:hidden;position:relative;background:#fff;border-radius:6px}
+iframe{width:390px;height:16000px;border:0;position:absolute;left:0;top:0}</style></head>
+<body><div class="c"><iframe id="f" src="index.html?v=8"></iframe></div>
+<script>document.getElementById('f').onload=function(){var w=this.contentWindow,d=this.contentDocument,el=d.querySelector('#loops');
+if(el){this.style.top=(-(el.getBoundingClientRect().top+w.scrollY-6))+'px';}};</script></body></html>

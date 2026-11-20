@@ -150,7 +150,7 @@
   .ladder{display:grid;gap:10px;margin:0 0 16px;padding:0;list-style:none;}
   .ladder li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden;}
   .ladder .lhead{display:flex;align-items:center;gap:12px;padding:15px 16px 0;}
-  .ladder .tag{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:30px;border-radius:8px;background:var(--ink);color:#e9c46a;font-size:12.5px;font-weight:800;letter-spacing:.02em;padding:0 9px;}
+  .ladder .tag{display:inline-flex;align-items:center;justify-content:center;min-width:58px;height:30px;border-radius:8px;background:var(--ink);color:#e9c46a;font-size:12.5px;font-weight:800;letter-spacing:.02em;padding:0 9px;white-space:nowrap;flex:0 0 auto;}
   .ladder .lname{font-size:16.5px;font-weight:780;color:var(--ink);letter-spacing:-0.02em;line-height:1.4;}
   .ladder .lbody{padding:10px 16px 16px;}
   .ladder .lbody p{margin:0 0 8px;font-size:14px;line-height:1.78;}
@@ -256,6 +256,7 @@
     .rule,.board{grid-template-columns:36px 1fr;gap:12px;}
     .rule .rn,.board .bn{width:32px;height:32px;font-size:14px;}
   }
+  @media (max-width:440px){ .progress > span{display:none;} }
   @media (max-width:400px){ .flow{grid-template-columns:1fr;} }
   @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none !important;animation:none !important;} }
   @media print{
